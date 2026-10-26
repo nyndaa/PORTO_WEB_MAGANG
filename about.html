@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>About — Nadia | Junior Frontend Developer Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffdf9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN cocok untuk prototipe/portofolio statis tanpa proses build. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Konfigurasi tema terpusat agar warna dan font mudah disesuaikan.
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: "#fffdf9",
+            ink: "#302b31",
+            muted: "#817780",
+            pink: "#f7dce5",
+            rose: "#b96782",
+            line: "#eee7e4",
+            butter: "#f9edc9",
+            sage: "#e2eadc",
+            lilac: "#e9e1f3"
+          },
+          fontFamily: {
+            sans: ["DM Sans", "Arial", "sans-serif"],
+            serif: ["Playfair Display", "Georgia", "serif"]
+          },
+          boxShadow: {
+            soft: "0 20px 50px rgba(90, 62, 73, .08)"
+          }
+        }
+      }
+    };
+  </script>
+  <!-- Style kecil ini hanya untuk elemen dekoratif yang sulit dibuat dengan utility biasa. -->
+  <style>
+    .flower-shadow { text-shadow: 6px 7px 0 #f6dce5; }
+    .portrait-arch { border-radius: 48% 48% 16px 16px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body class="bg-paper font-sans text-ink antialiased">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <!-- Navigasi utama dipakai konsisten pada semua halaman. -->
+    <header class="flex min-h-20 flex-wrap items-center justify-between gap-4 border-b border-line py-4">
+      <a href="index.html" class="flex items-center gap-2 text-2xl font-bold tracking-tight" aria-label="Nadia, kembali ke Home">
+        <span class="text-rose text-3xl" aria-hidden="true">✿</span> nadia<span class="-ml-2 text-rose">.</span>
+      </a>
+      <nav aria-label="Main navigation" class="flex items-center gap-5 sm:gap-8">
+        <a href="index.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose" >Home</a>
+        <a href="about.html" class="border-b-2 py-2 text-sm transition-colors border-rose text-rose" aria-current="page">About</a>
+        <a href="projects.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose" >Projects</a>
+      </nav>
+      <a href="mailto:your.email@example.com" class="hidden rounded-full border border-[#e6dcd9] px-4 py-2 text-sm font-semibold transition hover:bg-pink sm:inline-flex">Internship contact <span class="ml-2 text-rose">↗</span></a>
+    </header>
+    <main>
+      <!-- Pengantar halaman About. -->
+      <section class="py-12 text-center sm:py-16">
+        <p class="flex justify-center items-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted"><span class="h-2 w-2 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span> THE PERSON BEHIND THE PIXELS</p>
+        <h1 class="my-5 font-serif text-5xl font-semibold tracking-tight sm:text-6xl">A little bit<br><em class="font-medium text-rose">about me.</em></h1>
+        <p class="mx-auto max-w-xl text-sm leading-7 text-muted">I’m an Informatics student preparing for a Junior Frontend Developer internship. I learn by building, testing, and improving real interfaces.</p>
+      </section>
+      <!-- Bagian profil: dekorasi di kiri, deskripsi dan CTA di kanan. -->
+      <section class="grid items-center gap-10 px-0 pb-16 sm:px-8 md:grid-cols-[.9fr_1.1fr] md:gap-16 md:pb-20">
+        <div class="mx-auto w-full max-w-sm p-3">
+          <div class="portrait-arch relative flex h-80 items-center justify-center overflow-hidden bg-[#f7e2e8] sm:h-[350px]">
+            <div class="absolute left-1/2 top-11 h-56 w-56 -translate-x-1/2 rounded-full bg-[#f1cad7]"></div>
+            <span class="absolute right-10 top-8 text-4xl text-[#bc9d5b]">☼</span><span class="flower-shadow relative text-8xl text-[#bd718d] sm:text-9xl">✿</span>
+            <p class="absolute bottom-5 left-5 text-[11px] leading-5 tracking-wide text-[#8b6372]">currently<br>learning<br><strong class="font-serif text-base tracking-normal text-[#9c536e]">something new</strong></p>
+          </div>
+          <p class="mt-3 text-center text-[10px] italic text-[#a2959b]">a work in progress — just like everyone else ♡</p>
+        </div>
+        <div>
+          <p class="text-[10px] font-bold tracking-[.16em] text-muted">HELLO, NICE TO MEET YOU</p>
+          <h2 class="my-4 font-serif text-3xl leading-snug">I’m Nadia, an Informatics student who wants to build <em class="text-rose">useful and accessible web experiences.</em></h2>
+          <p class="mb-4 text-sm leading-7 text-muted">I’m focused on frontend development: translating designs into responsive pages, organizing reusable UI, and making sure interactions feel clear on desktop and mobile.</p>
+          <p class="text-sm leading-7 text-muted">I’m practicing HTML, CSS, JavaScript, and React while learning how to work with APIs, Git, and backend services such as Supabase. I’m looking for an internship where I can contribute, receive feedback, and keep improving.</p>
+          <a href="projects.html" class="mt-5 inline-flex rounded-full bg-pink px-5 py-3 text-xs font-bold text-[#573a46] transition hover:-translate-y-0.5 hover:shadow-soft">See what I’m making <span class="ml-2 text-rose">↗</span></a>
+        </div>
+      </section>
+      <!-- Prinsip kerja ditampilkan sebagai tiga kartu yang mudah ditambah. -->
+      <section class="border-t border-line py-14 sm:py-16">
+        <p class="text-[10px] font-bold tracking-[.16em] text-muted">MY LITTLE COMPASS</p>
+        <h2 class="mb-8 mt-3 font-serif text-3xl sm:text-4xl">How I approach <em class="text-rose">frontend development.</em></h2>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="rounded-2xl border border-line bg-white p-6"><span class="grid h-10 w-10 place-items-center rounded-xl bg-[#f8e6eb] text-xl text-[#bd7890]">✦</span><h3 class="mb-2 mt-5 font-serif text-xl">Keep learning</h3><p class="text-xs leading-6 text-muted">Explore documentation, practice new concepts, and learn from code reviews.</p></article>
+          <article class="rounded-2xl border border-line bg-white p-6"><span class="grid h-10 w-10 place-items-center rounded-xl bg-butter text-xl text-[#b89a59]">♡</span><h3 class="mb-2 mt-5 font-serif text-xl">Build responsively</h3><p class="text-xs leading-6 text-muted">Consider mobile layouts, accessibility, and clear interactions from the start.</p></article>
+          <article class="rounded-2xl border border-line bg-white p-6"><span class="grid h-10 w-10 place-items-center rounded-xl bg-sage text-xl text-[#849875]">↗</span><h3 class="mb-2 mt-5 font-serif text-xl">Write maintainable code</h3><p class="text-xs leading-6 text-muted">Use consistent naming, reusable patterns, and comments where they add value.</p></article>
+        </div>
+      </section>
+      <!-- CTA kontak global. -->
+      <section class="mb-14 flex flex-col items-start justify-between gap-5 rounded-2xl bg-[#f7e8ec] p-6 sm:mb-20 sm:flex-row sm:items-center sm:p-9">
+        <div><p class="text-[10px] font-bold tracking-[.16em] text-muted">HAVE SOMETHING IN MIND?</p><h2 class="mt-2 font-serif text-3xl">Let’s make something <em class="text-rose">good.</em></h2></div>
+        <a href="mailto:your.email@example.com" class="rounded-full bg-[#352d32] px-5 py-3 text-xs font-bold text-white transition hover:-translate-y-0.5">Get in touch <span class="ml-2 text-[#f1bdcf]">↗</span></a>
+      </section>
+    </main>
+    <!-- Footer: ganti email placeholder sebelum website dipublikasikan. -->
+    <footer class="flex flex-wrap items-center justify-between gap-4 border-t border-line py-7 text-xs text-muted">
+      <a href="index.html" class="text-lg font-bold text-ink"><span class="text-rose">✿</span> nadia<span class="text-rose">.</span></a>
+      <p>Made slowly, with love. <span class="text-rose">♡</span> 2026</p>
+      <a class="font-semibold text-[#7b5968] hover:text-rose" href="mailto:your.email@example.com">Say hello ↗</a>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

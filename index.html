@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>Home — Nadia | Junior Frontend Developer Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffdf9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN cocok untuk prototipe/portofolio statis tanpa proses build. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Konfigurasi tema terpusat agar warna dan font mudah disesuaikan.
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: "#fffdf9",
+            ink: "#302b31",
+            muted: "#817780",
+            pink: "#f7dce5",
+            rose: "#b96782",
+            line: "#eee7e4",
+            butter: "#f9edc9",
+            sage: "#e2eadc",
+            lilac: "#e9e1f3"
+          },
+          fontFamily: {
+            sans: ["DM Sans", "Arial", "sans-serif"],
+            serif: ["Playfair Display", "Georgia", "serif"]
+          },
+          boxShadow: {
+            soft: "0 20px 50px rgba(90, 62, 73, .08)"
+          }
+        }
+      }
+    };
+  </script>
+  <!-- Style kecil ini hanya untuk elemen dekoratif yang sulit dibuat dengan utility biasa. -->
+  <style>
+    .flower-shadow { text-shadow: 6px 7px 0 #f6dce5; }
+    .portrait-arch { border-radius: 48% 48% 16px 16px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body class="bg-paper font-sans text-ink antialiased">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <!-- Navigasi utama dipakai konsisten pada semua halaman. -->
+    <header class="flex min-h-20 flex-wrap items-center justify-between gap-4 border-b border-line py-4">
+      <a href="index.html" class="flex items-center gap-2 text-2xl font-bold tracking-tight" aria-label="Nadia, kembali ke Home">
+        <span class="text-rose text-3xl" aria-hidden="true">✿</span> nadia<span class="-ml-2 text-rose">.</span>
+      </a>
+      <nav aria-label="Main navigation" class="flex items-center gap-5 sm:gap-8">
+        <a href="index.html" class="border-b-2 py-2 text-sm transition-colors border-rose text-rose" aria-current="page">Home</a>
+        <a href="about.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose" >About</a>
+        <a href="projects.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose" >Projects</a>
+      </nav>
+      <a href="mailto:your.email@example.com" class="hidden rounded-full border border-[#e6dcd9] px-4 py-2 text-sm font-semibold transition hover:bg-pink sm:inline-flex">Internship contact <span class="ml-2 text-rose">↗</span></a>
+    </header>
+    <main>
+      <!-- Hero memperkenalkan fokus, status magang, dan CTA utama. -->
+      <section class="grid min-h-[560px] items-center gap-10 py-14 md:grid-cols-2 md:gap-12 md:py-20">
+        <div>
+          <p class="flex items-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted"><span class="h-2 w-2 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span> OPEN TO FRONTEND INTERNSHIP</p>
+          <h1 class="my-6 font-serif text-5xl font-semibold leading-[1.12] tracking-tight sm:text-6xl lg:text-7xl">Building the web,<br>one <em class="font-medium text-rose">little step</em><br>at a time.</h1>
+          <p class="max-w-lg text-sm leading-8 text-muted sm:text-base">Hi, I’m Nadia — an Informatics student and aspiring Junior Frontend Developer who enjoys building responsive, user-friendly websites with clean and thoughtful interfaces.</p>
+          <div class="mt-8 flex flex-wrap items-center gap-6">
+            <a href="projects.html" class="rounded-full bg-pink px-5 py-3 text-xs font-bold text-[#573a46] transition hover:-translate-y-0.5 hover:shadow-soft">View my projects <span class="ml-2 text-rose">↗</span></a>
+            <a href="about.html" class="text-xs font-bold hover:text-rose">A little about me <span class="ml-1 text-rose">→</span></a>
+          </div>
+          <p class="mt-12 flex items-center gap-3 text-xs italic text-[#9c9198]"><span class="h-px w-8 bg-[#d8b8c3]"></span> Learning HTML, CSS, JavaScript, and React one project at a time.</p>
+        </div>
+        <!-- Ilustrasi dekoratif dibuat dari elemen HTML sehingga tidak perlu file gambar tambahan. -->
+        <div class="relative mx-auto flex h-[340px] w-full max-w-md items-center justify-center sm:h-[390px]" aria-label="Pastel decorative illustration">
+          <div class="absolute right-6 top-8 h-64 w-64 rounded-full bg-[#f9e9ed] sm:right-10 sm:h-80 sm:w-80"></div>
+          <div class="absolute right-8 top-12 h-60 w-44 rotate-6 rounded-2xl bg-butter p-6 shadow-soft sm:right-12 sm:h-64 sm:w-52">
+            <span class="text-4xl text-[#bf9b51]">✳</span>
+            <p class="absolute bottom-6 left-6 text-[10px] leading-6 tracking-[.2em] text-[#8d7954]">GOOD THINGS<br>TAKE TIME</p>
+          </div>
+          <div class="absolute left-6 top-12 h-64 w-48 -rotate-3 rounded-2xl border border-[#f2e9e6] bg-paper p-4 shadow-soft sm:left-12 sm:h-72 sm:w-56">
+            <div class="flex gap-1"><i class="h-1.5 w-1.5 rounded-full bg-[#f2c8d4]"></i><i class="h-1.5 w-1.5 rounded-full bg-[#ead9aa]"></i><i class="h-1.5 w-1.5 rounded-full bg-[#d6e0cc]"></i></div>
+            <div class="flower-shadow mt-5 text-center text-8xl leading-tight text-[#d78ba5]">✿</div>
+            <p class="text-center font-serif text-lg leading-tight">making the web<br><strong class="text-rose">a little softer</strong></p>
+            <div class="absolute bottom-4 left-7 right-7 rounded-full bg-[#f7e8ec] px-2 py-1 text-center text-[9px] text-[#96667a]">✦ made with curiosity</div>
+          </div>
+          <span class="absolute right-5 top-3 text-4xl text-[#c88aa0]">✿</span><span class="absolute bottom-7 right-10 text-4xl text-[#c2a45e]">✧</span><span class="absolute bottom-12 left-3 text-4xl text-[#d58da7]">♡</span>
+          <span class="absolute bottom-2 right-0 font-serif text-lg italic text-[#b67a91]">hello<br>there!</span>
+        </div>
+      </section>
+      <!-- Ringkasan fokus frontend dan tautan menuju halaman About. -->
+      <section class="grid items-center gap-5 border-y border-line py-10 md:grid-cols-[1.2fr_1fr_44px] md:gap-10">
+        <div><p class="text-[10px] font-bold tracking-[.16em] text-muted">JUNIOR FRONTEND DEVELOPER</p><h2 class="mt-3 font-serif text-3xl leading-snug">Writing clean interfaces.<br><em class="text-rose">Learning through real projects.</em></h2></div>
+        <p class="text-sm leading-7 text-muted">I’m building my frontend foundation through hands-on projects, responsive layouts, reusable components, and a focus on accessible user experiences.</p>
+        <a href="about.html" aria-label="Read about me" class="grid h-11 w-11 place-items-center rounded-full border border-[#e8d9df] text-xl text-rose transition hover:bg-pink">↗</a>
+      </section>
+      <!-- Proyek unggulan. Detail semua proyek ada di projects.html. -->
+      <section class="py-16 sm:py-20">
+        <div class="mb-7 flex items-end justify-between gap-4"><div><p class="text-[10px] font-bold tracking-[.16em] text-muted">SELECTED FRONTEND PROJECTS</p><h2 class="mt-2 font-serif text-4xl">Selected <em class="text-rose">projects</em></h2></div><a href="projects.html" class="pb-1 text-xs font-bold hover:text-rose">View all projects →</a></div>
+        <div class="grid gap-6 md:grid-cols-2">
+          <a href="projects.html#matchup" class="overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-1 hover:shadow-soft">
+            <div class="flex items-center justify-between px-5 pt-5"><span class="text-[9px] font-bold tracking-[.16em] text-muted">01 / WEB APP</span><span class="grid h-8 w-8 place-items-center rounded-full border border-[#dfd4d5]">↗</span></div>
+            <div class="relative h-60 overflow-hidden bg-[#f8e5eb]">
+              <div class="absolute left-[15%] top-6 h-52 w-[62%] rounded-lg bg-paper p-4 shadow-soft"><div class="flex justify-between text-[10px] font-bold">matchup <span class="text-[#cf8da4]">✦</span></div><p class="mt-6 font-serif text-2xl leading-tight">Find your<br><b class="text-rose">next chapter.</b></p><div class="mt-3 h-1 w-3/4 rounded bg-[#f0e8e9]"></div><div class="mt-2 h-1 w-1/2 rounded bg-[#f0e8e9]"></div><span class="mt-4 inline-block rounded bg-[#d58ca5] px-3 py-1.5 text-[8px] text-white">Explore jobs →</span></div>
+              <span class="absolute bottom-6 right-4 grid h-20 w-20 rotate-6 place-content-center rounded-full bg-paper text-center font-serif text-[11px] italic text-[#a75f7a] shadow-soft">your future<br>looks bright ♡</span>
+            </div>
+            <div class="p-5"><h3 class="font-serif text-2xl">Matchup AI</h3><p class="mt-2 text-xs text-muted">A friendly job-search experience with smarter matching.</p><span class="mt-4 inline-block rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">UI / UX · React</span></div>
+          </a>
+          <a href="projects.html#store" class="overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-1 hover:shadow-soft">
+            <div class="flex items-center justify-between px-5 pt-5"><span class="text-[9px] font-bold tracking-[.16em] text-muted">02 / E-COMMERCE</span><span class="grid h-8 w-8 place-items-center rounded-full border border-[#dfd4d5]">↗</span></div>
+            <div class="relative grid h-60 place-items-center overflow-hidden bg-[#fbf0d1]">
+              <div class="absolute left-[20%] top-8 grid h-14 w-12 -rotate-12 place-items-center rounded-xl bg-[#f3d3dc] text-3xl text-[#ba6e88]">✿</div><div class="absolute right-[18%] top-12 grid h-14 w-12 rotate-12 place-items-center rounded-xl bg-sage text-3xl text-[#8da17d]">✧</div><div class="absolute right-[22%] bottom-7 grid h-14 w-12 rotate-6 place-items-center rounded-xl bg-lilac text-3xl text-[#9d7bb2]">♡</div>
+              <div class="z-10 grid h-40 w-40 place-content-center rounded-full border border-[#e8d7a9] bg-[#fff8e9] text-center text-sm tracking-widest text-[#7c6a4a]">little<br><em class="font-serif text-3xl text-[#b67c76]">finds</em><span class="mt-1 text-[#cf8ca0]">♡</span></div>
+              <span class="absolute bottom-5 left-[12%] font-serif text-sm italic text-[#9a7c55]">a happy place<br>to shop</span>
+            </div>
+            <div class="p-5"><h3 class="font-serif text-2xl">Little Finds</h3><p class="mt-2 text-xs text-muted">A cheerful storefront concept for everyday treasures.</p><span class="mt-4 inline-block rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Web Design · Front-end</span></div>
+          </a>
+        </div>
+      </section>
+    </main>
+    <!-- Footer: ganti email placeholder sebelum website dipublikasikan. -->
+    <footer class="flex flex-wrap items-center justify-between gap-4 border-t border-line py-7 text-xs text-muted">
+      <a href="index.html" class="text-lg font-bold text-ink"><span class="text-rose">✿</span> nadia<span class="text-rose">.</span></a>
+      <p>Made slowly, with love. <span class="text-rose">♡</span> 2026</p>
+      <a class="font-semibold text-[#7b5968] hover:text-rose" href="mailto: raharjiansustanadiawijayanti@gmail.com">Say hello ↗</a>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

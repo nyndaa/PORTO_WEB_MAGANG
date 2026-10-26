@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>Projects — Nadia | Junior Frontend Developer Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffdf9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN cocok untuk prototipe/portofolio statis tanpa proses build. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Konfigurasi tema terpusat agar warna dan font mudah disesuaikan.
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: "#fffdf9",
+            ink: "#302b31",
+            muted: "#817780",
+            pink: "#f7dce5",
+            rose: "#b96782",
+            line: "#eee7e4",
+            butter: "#f9edc9",
+            sage: "#e2eadc",
+            lilac: "#e9e1f3"
+          },
+          fontFamily: {
+            sans: ["DM Sans", "Arial", "sans-serif"],
+            serif: ["Playfair Display", "Georgia", "serif"]
+          },
+          boxShadow: {
+            soft: "0 20px 50px rgba(90, 62, 73, .08)"
+          }
+        }
+      }
+    };
+  </script>
+  <!-- Style kecil ini hanya untuk elemen dekoratif yang sulit dibuat dengan utility biasa. -->
+  <style>
+    .flower-shadow { text-shadow: 6px 7px 0 #f6dce5; }
+    .portrait-arch { border-radius: 48% 48% 16px 16px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body class="bg-paper font-sans text-ink antialiased">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <!-- Navigasi utama dipakai konsisten pada semua halaman. -->
+    <header class="flex min-h-20 flex-wrap items-center justify-between gap-4 border-b border-line py-4">
+      <a href="index.html" class="flex items-center gap-2 text-2xl font-bold tracking-tight" aria-label="Nadia, kembali ke Home">
+        <span class="text-rose text-3xl" aria-hidden="true">✿</span> nadia<span class="-ml-2 text-rose">.</span>
+      </a>
+      <nav aria-label="Main navigation" class="flex items-center gap-5 sm:gap-8">
+        <a href="index.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose" >Home</a>
+        <a href="about.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose" >About</a>
+        <a href="projects.html" class="border-b-2 py-2 text-sm transition-colors border-rose text-rose" aria-current="page">Projects</a>
+      </nav>
+      <a href="mailto:your.email@example.com" class="hidden rounded-full border border-[#e6dcd9] px-4 py-2 text-sm font-semibold transition hover:bg-pink sm:inline-flex">Internship contact <span class="ml-2 text-rose">↗</span></a>
+    </header>
+    <main>
+      <!-- Header Projects menjelaskan bahwa beberapa item masih berupa konsep. -->
+      <section class="py-12 pb-10 text-center sm:py-16">
+        <p class="flex items-center justify-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted"><span class="h-2 w-2 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span> FRONTEND PRACTICE &amp; PROJECTS</p>
+        <h1 class="my-5 font-serif text-5xl font-semibold tracking-tight sm:text-6xl">Made with care,<br><em class="font-medium text-rose">shared with you.</em></h1>
+        <p class="mx-auto max-w-xl text-sm leading-7 text-muted">A collection of student, hackathon, and concept projects where I practice interface development, responsive design, and turning ideas into usable web experiences.</p>
+      </section>
+      <!-- Tombol filter menggunakan data-filter yang harus cocok dengan data-category pada kartu. -->
+      <div class="mb-8 flex flex-col gap-4 border-b border-line py-4 sm:flex-row sm:items-center sm:justify-between">
+        <span class="text-[10px] font-bold tracking-[.16em] text-muted">BROWSE THE COLLECTION</span>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" data-filter="all" aria-pressed="true" class="rounded-full border border-pink bg-pink px-4 py-2 text-[11px] text-[#70485a] transition">All projects <span class="ml-1 text-[9px]">04</span></button>
+          <button type="button" data-filter="web" aria-pressed="false" class="rounded-full border border-[#e9dfdf] px-4 py-2 text-[11px] text-[#786c73] transition hover:bg-pink">Web &amp; UI <span class="ml-1 text-[9px]">02</span></button>
+          <button type="button" data-filter="concept" aria-pressed="false" class="rounded-full border border-[#e9dfdf] px-4 py-2 text-[11px] text-[#786c73] transition hover:bg-pink">Concepts <span class="ml-1 text-[9px]">02</span></button>
+        </div>
+      </div>
+      <!-- Tambahkan project-card baru dengan data-category web atau concept untuk mengaktifkan filter. -->
+      <section class="mb-16 flex flex-col gap-6 sm:mb-20">
+        <article id="matchup" data-category="web" class="grid overflow-hidden rounded-2xl border border-line bg-white md:grid-cols-2">
+          <div class="relative grid min-h-72 place-items-center overflow-hidden bg-[#f8e5eb] p-8">
+            <div class="w-[72%] max-w-xs rounded-xl bg-paper p-5 shadow-soft"><div class="flex justify-between text-[10px] font-bold">matchup <span class="text-[#cf8da4]">✦</span></div><h3 class="mt-7 font-serif text-3xl leading-tight">Find your<br><b class="text-rose">next chapter.</b></h3><div class="mt-4 h-1 w-3/4 rounded bg-[#f0e8e9]"></div><div class="mt-2 h-1 w-1/2 rounded bg-[#f0e8e9]"></div><span class="mt-5 inline-block rounded bg-[#d58ca5] px-3 py-2 text-[9px] text-white">Explore jobs →</span></div>
+            <span class="absolute bottom-5 right-4 rounded-full bg-paper p-4 text-center font-serif text-xs italic text-[#a75f7a] shadow-soft">your future<br>looks bright ♡</span>
+          </div>
+          <div class="self-center p-7 sm:p-10"><p class="flex gap-3 text-[9px] font-bold tracking-[.16em] text-muted"><span class="text-rose">01</span> WEB APP · AI</p><h2 class="my-4 font-serif text-3xl">Matchup AI</h2><p class="text-sm leading-7 text-muted">A job-search platform concept designed to help people find opportunities that fit their skills, with CV scanning and smarter job matching.</p><div class="my-5 flex flex-wrap gap-2"><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">React</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Supabase</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">UI / UX</span></div><span class="text-xs font-semibold text-rose">Hackathon project · In progress ✦</span></div>
+        </article>
+        <article id="store" data-category="web" class="grid overflow-hidden rounded-2xl border border-line bg-white md:grid-cols-2">
+          <div class="relative order-1 grid min-h-72 place-items-center overflow-hidden bg-[#fbf0d1] p-8 md:order-2">
+            <div class="absolute left-[16%] top-14 grid h-14 w-12 -rotate-12 place-items-center rounded-xl bg-[#f3d3dc] text-3xl text-[#ba6e88]">✿</div><div class="absolute right-[15%] top-16 grid h-14 w-12 rotate-12 place-items-center rounded-xl bg-sage text-3xl text-[#8da17d]">✧</div><div class="absolute right-[19%] bottom-9 grid h-14 w-12 rotate-6 place-items-center rounded-xl bg-lilac text-3xl text-[#9d7bb2]">♡</div>
+            <div class="z-10 grid h-48 w-48 place-content-center rounded-full border border-[#e8d7a9] bg-[#fff8e9] text-center text-sm tracking-widest text-[#7c6a4a]">little<br><em class="font-serif text-4xl text-[#b67c76]">finds</em><span class="mt-1 text-[#cf8ca0]">♡</span></div><span class="absolute bottom-6 left-[12%] font-serif text-sm italic text-[#9a7c55]">a happy place<br>to shop</span>
+          </div>
+          <div class="order-2 self-center p-7 sm:p-10 md:order-1"><p class="flex gap-3 text-[9px] font-bold tracking-[.16em] text-muted"><span class="text-rose">02</span> WEB DESIGN · CONCEPT</p><h2 class="my-4 font-serif text-3xl">Little Finds</h2><p class="text-sm leading-7 text-muted">A playful e-commerce storefront concept exploring soft colors, simple navigation, and a relaxed shopping experience.</p><div class="my-5 flex flex-wrap gap-2"><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Figma</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">HTML / CSS</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Responsive</span></div><span class="text-xs font-semibold text-rose">Design exploration · Concept ✦</span></div>
+        </article>
+        <article id="campus" data-category="concept" class="grid overflow-hidden rounded-2xl border border-line bg-white md:grid-cols-2">
+          <div class="relative grid min-h-72 place-items-center overflow-hidden bg-[#e6ecdf] p-8"><div class="-rotate-2 bg-paper p-6 shadow-soft"><span class="text-[8px] tracking-[.16em] text-[#91a17e]">STUDY NOTES / 001</span><h3 class="mt-6 font-serif text-3xl leading-tight">Make room<br>for <em class="text-[#a2769b]">ideas.</em></h3><div class="mt-4 h-10 w-44 max-w-full" style="background:repeating-linear-gradient(to bottom,transparent 0,transparent 13px,#e9e3dc 14px,#e9e3dc 15px)"></div></div><span class="absolute right-[12%] top-[18%] text-4xl text-[#b28bb1]">✿</span></div>
+          <div class="self-center p-7 sm:p-10"><p class="flex gap-3 text-[9px] font-bold tracking-[.16em] text-muted"><span class="text-rose">03</span> PRODUCTIVITY · CONCEPT</p><h2 class="my-4 font-serif text-3xl">Study Bloom</h2><p class="text-sm leading-7 text-muted">A gentle study-planner concept to help students organize tasks, set small goals, and celebrate steady progress.</p><div class="my-5 flex flex-wrap gap-2"><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Product thinking</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Wireframes</span></div><span class="text-xs font-semibold text-rose">Early concept · Exploring ✦</span></div>
+        </article>
+        <article id="personal" data-category="concept" class="grid overflow-hidden rounded-2xl border border-line bg-white md:grid-cols-2">
+          <div class="relative order-1 grid min-h-72 place-items-center overflow-hidden bg-[#f3e6f2] p-8 md:order-2"><div class="relative w-[58%] min-w-52 rotate-2 bg-paper p-7 shadow-soft"><span class="text-2xl text-[#b28bb1]">✧</span><p class="my-4 font-serif text-2xl leading-tight">little notes<br>for a <em class="text-[#a2769b]">big life</em></p><p class="text-[10px] leading-6 text-muted">✓ learn something<br>✓ take a deep breath<br>✓ keep going</p><span class="absolute bottom-3 right-4 text-2xl text-[#c88da9]">♡</span></div></div>
+          <div class="order-2 self-center p-7 sm:p-10 md:order-1"><p class="flex gap-3 text-[9px] font-bold tracking-[.16em] text-muted"><span class="text-rose">04</span> VISUAL EXPLORATION</p><h2 class="my-4 font-serif text-3xl">Little Notes</h2><p class="text-sm leading-7 text-muted">A mini visual system for personal notes and reminders — calm, friendly, and intentionally uncluttered.</p><div class="my-5 flex flex-wrap gap-2"><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Visual design</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Typography</span></div><span class="text-xs font-semibold text-rose">Creative exercise · Concept ✦</span></div>
+        </article>
+      </section>
+      <!-- Ajakan kontak di akhir halaman Projects. -->
+      <section class="mb-14 flex flex-col items-start justify-between gap-5 rounded-2xl bg-[#f7e8ec] p-6 sm:mb-20 sm:flex-row sm:items-center sm:p-9">
+        <div><p class="text-[10px] font-bold tracking-[.16em] text-muted">MORE COLLABORATIONS, PLEASE</p><h2 class="mt-2 font-serif text-3xl">Have an idea? <em class="text-rose">I’m listening.</em></h2></div>
+        <a href="mailto:your.email@example.com" class="rounded-full bg-[#352d32] px-5 py-3 text-xs font-bold text-white transition hover:-translate-y-0.5">Say hello <span class="ml-2 text-[#f1bdcf]">↗</span></a>
+      </section>
+    </main>
+    <!-- Footer: ganti email placeholder sebelum website dipublikasikan. -->
+    <footer class="flex flex-wrap items-center justify-between gap-4 border-t border-line py-7 text-xs text-muted">
+      <a href="index.html" class="text-lg font-bold text-ink"><span class="text-rose">✿</span> nadia<span class="text-rose">.</span></a>
+      <p>Made slowly, with love. <span class="text-rose">♡</span> 2026</p>
+      <a class="font-semibold text-[#7b5968] hover:text-rose" href="mailto:your.email@example.com">Say hello ↗</a>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
