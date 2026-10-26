@@ -46,19 +46,27 @@
 </head>
 <body class="bg-paper font-sans text-ink antialiased">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <!-- Navigasi utama dipakai konsisten pada semua halaman. -->
+
+
+    <!-- Navigasi utama terbarui dengan Menu Contact dan Toggle Tema -->
     <header class="flex min-h-20 flex-wrap items-center justify-between gap-4 border-b border-line py-4">
       <a href="index.html" class="flex items-center gap-2 text-2xl font-bold tracking-tight" aria-label="Nadia, kembali ke Home">
         <span class="text-rose text-3xl" aria-hidden="true">✿</span> nadia<span class="-ml-2 text-rose">.</span>
       </a>
-      <nav aria-label="Main navigation" class="flex items-center gap-5 sm:gap-8">
-        <a href="index.html" class="border-b-2 py-2 text-sm transition-colors border-rose text-rose" aria-current="page">Home</a>
-        <a href="about.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose" >About</a>
-        <a href="projects.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose" >Projects</a>
+      
+      <nav aria-label="Main navigation" class="flex items-center gap-4 sm:gap-7">
+        <a href="index.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">Home</a>
+        <a href="about.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">About</a>
+        <a href="projects.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">Projects</a>
+        <a href="contact.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">Contact</a>
       </nav>
-      <a href="mailto:your.email@example.com" class="hidden rounded-full border border-[#e6dcd9] px-4 py-2 text-sm font-semibold transition hover:bg-pink sm:inline-flex">Internship contact <span class="ml-2 text-rose">↗</span></a>
+
+      <!-- Tombol Toggle Tema Terang / Gelap -->
+      <button id="theme-toggle" type="button" aria-label="Ganti Tema" class="flex items-center gap-2 rounded-full border border-[#e6dcd9] px-3.5 py-1.5 text-xs font-semibold text-ink transition hover:bg-pink">
+        <span id="theme-toggle-icon">🌙</span>
+        <span id="theme-toggle-text" class="hidden sm:inline">Dark</span>
+      </button>
     </header>
-    <main>
 
 
       <!-- Hero dengan struktur baru tapi menggunakan style teks portofolio kamu -->
