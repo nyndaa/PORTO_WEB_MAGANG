@@ -68,30 +68,65 @@
           <div class="mt-8 flex flex-wrap items-center gap-6">
             <a href="about.html" class="rounded-full bg-[#fdf2f5] px-5 py-3 text-xs font-bold text-[#8b6372] transition hover:-translate-y-0.5 hover:shadow-soft hover:bg-[#f7dce5]">A little about me <span class="ml-2 text-rose">→</span></a>
             <a href="projects.html" class="rounded-full bg-pink px-5 py-3 text-xs font-bold text-[#573a46] transition hover:-translate-y-0.5 hover:shadow-soft">View my projects <span class="ml-2 text-rose">↗</span></a>
-            
-          
           </div>
           <p class="mt-12 flex items-center gap-3 text-xs italic text-[#9c9198]"><span class="h-px w-8 bg-[#d8b8c3]"></span> Learning HTML, CSS, JavaScript, and React one project at a time.</p>
-       
-       
         </div>
-        <!-- Ilustrasi dekoratif dibuat dari elemen HTML sehingga tidak perlu file gambar tambahan. -->
-        <div class="relative mx-auto flex h-[340px] w-full max-w-md items-center justify-center sm:h-[390px]" aria-label="Pastel decorative illustration">
-          <div class="absolute right-6 top-8 h-64 w-64 rounded-full bg-[#f9e9ed] sm:right-10 sm:h-80 sm:w-80"></div>
-          <div class="absolute right-8 top-12 h-60 w-44 rotate-6 rounded-2xl bg-butter p-6 shadow-soft sm:right-12 sm:h-64 sm:w-52">
-            <span class="text-4xl text-[#bf9b51]">✳</span>
-            <p class="absolute bottom-6 left-6 text-[10px] leading-6 tracking-[.2em] text-[#8d7954]">GOOD THINGS<br>TAKE TIME</p>
+
+
+       <!-- ILUSTRASI BARU DENGAN ANIMASI -->
+        <div class="relative mx-auto flex h-[340px] w-full max-w-md items-center justify-center sm:h-[390px]" aria-label="Decorative animated illustration">
+          <!-- Latar belakang lingkaran lembut -->
+          <div class="absolute right-4 top-6 h-60 w-60 rounded-full bg-pink/40 animate-pulse-soft sm:right-8 sm:h-72 sm:w-72"></div>
+          <div class="absolute left-2 top-10 h-48 w-48 rounded-full bg-sage/40 animate-pulse-soft" style="animation-delay: 1s"></div>
+          <div class="absolute bottom-6 right-6 h-40 w-40 rounded-full bg-lilac/40 animate-pulse-soft" style="animation-delay: 2s"></div>
+          
+          <!-- Kartu utama -->
+          <div class="relative z-10 h-72 w-64 rounded-3xl bg-paper p-6 shadow-soft sm:h-80 sm:w-72 animate-float-slow">
+            <!-- Tombol warna -->
+            <div class="flex gap-2">
+              <span class="h-3 w-3 rounded-full bg-rose/70"></span>
+              <span class="h-3 w-3 rounded-full bg-[#e2b86a]/70"></span>
+              <span class="h-3 w-3 rounded-full bg-sage/70"></span>
+            </div>
+            
+            <!-- Bunga utama -->
+            <div class="mt-4 text-center animate-sway">
+              <span class="text-8xl text-rose/80">✿</span>
+            </div>
+            
+            <!-- Teks -->
+            <p class="mt-4 text-center font-serif text-lg">
+              creating <em class="text-rose">beautiful</em><br>
+              digital experiences
+            </p>
+            
+            <!-- Garis dekoratif -->
+            <div class="mt-4 flex justify-center gap-1">
+              <span class="h-0.5 w-6 bg-rose/40"></span>
+              <span class="h-0.5 w-3 bg-rose/30"></span>
+              <span class="h-0.5 w-6 bg-rose/40"></span>
+            </div>
+            
+            <!-- Label bawah -->
+            <div class="absolute bottom-5 left-5 right-5 rounded-full bg-butter/60 px-3 py-2 text-center text-[10px] text-[#8a7342]">
+              ✦ built with passion & code ✦
+            </div>
           </div>
-          <div class="absolute left-6 top-12 h-64 w-48 -rotate-3 rounded-2xl border border-[#f2e9e6] bg-paper p-4 shadow-soft sm:left-12 sm:h-72 sm:w-56">
-            <div class="flex gap-1"><i class="h-1.5 w-1.5 rounded-full bg-[#f2c8d4]"></i><i class="h-1.5 w-1.5 rounded-full bg-[#ead9aa]"></i><i class="h-1.5 w-1.5 rounded-full bg-[#d6e0cc]"></i></div>
-            <div class="flower-shadow mt-5 text-center text-8xl leading-tight text-[#d78ba5]">✿</div>
-            <p class="text-center font-serif text-lg leading-tight">making the web<br><strong class="text-rose">a little softer</strong></p>
-            <div class="absolute bottom-4 left-7 right-7 rounded-full bg-[#f7e8ec] px-2 py-1 text-center text-[9px] text-[#96667a]">✦ made with curiosity</div>
-          </div>
-          <span class="absolute right-5 top-3 text-4xl text-[#c88aa0]">✿</span><span class="absolute bottom-7 right-10 text-4xl text-[#c2a45e]">✧</span><span class="absolute bottom-12 left-3 text-4xl text-[#d58da7]">♡</span>
-          <span class="absolute bottom-2 right-0 font-serif text-lg italic text-[#b67a91]">hello<br>there!</span>
+          
+          <!-- Elemen mengambang -->
+          <span class="absolute top-4 right-12 text-3xl text-rose/60 animate-float" style="animation-delay: 0s">✧</span>
+          <span class="absolute top-20 left-4 text-2xl text-[#d4b459]/60 animate-float" style="animation-delay: 0.7s">✦</span>
+          <span class="absolute bottom-16 left-8 text-3xl text-sage/60 animate-float" style="animation-delay: 1.4s">❀</span>
+          <span class="absolute bottom-6 right-4 text-2xl text-lilac/70 animate-float" style="animation-delay: 2.1s">♡</span>
+          <span class="absolute top-32 right-2 text-xl text-rose/50 animate-sparkle" style="animation-delay: 0.5s">✧</span>
+          <span class="absolute bottom-28 right-16 text-xl text-[#d4b459]/50 animate-sparkle" style="animation-delay: 1.2s">✦</span>
+          <span class="absolute top-8 left-16 text-xl text-sage/50 animate-sparkle" style="animation-delay: 1.8s">✧</span>
+          
+          <!-- Pesan kecil -->
+          <span class="absolute bottom-2 right-2 font-serif text-sm italic text-rose/70 animate-float" style="animation-delay: 2.5s">let's create ✿</span>
         </div>
       </section>
+
       <!-- Ringkasan fokus frontend dan tautan menuju halaman About. -->
       <section class="grid items-center gap-5 border-y border-line py-10 md:grid-cols-[1.2fr_1fr_44px] md:gap-10">
         <div><p class="text-[10px] font-bold tracking-[.16em] text-muted">JUNIOR FRONTEND DEVELOPER</p><h2 class="mt-3 font-serif text-3xl leading-snug">Writing clean interfaces.<br><em class="text-rose">Learning through real projects.</em></h2></div>
