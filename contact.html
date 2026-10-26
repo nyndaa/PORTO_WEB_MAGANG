@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>Contact — Nadia | Junior Frontend Developer Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffdf9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            paper: "#fffdf9",
+            ink: "#302b31",
+            muted: "#817780",
+            pink: "#f7dce5",
+            rose: "#b96782",
+            line: "#eee7e4",
+            butter: "#f9edc9",
+            sage: "#e2eadc",
+            lilac: "#e9e1f3"
+          },
+          fontFamily: {
+            sans: ["DM Sans", "Arial", "sans-serif"],
+            serif: ["Playfair Display", "Georgia", "serif"]
+          },
+          boxShadow: {
+            soft: "0 20px 50px rgba(90, 62, 73, .08)"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .flower-shadow { text-shadow: 6px 7px 0 #f6dce5; }
+    .portrait-arch { border-radius: 48% 48% 16px 16px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body class="bg-paper font-sans text-ink antialiased">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    
+    <!-- Navigasi utama -->
+    <header class="flex min-h-20 flex-wrap items-center justify-between gap-4 border-b border-line py-4">
+      <a href="index.html" class="flex items-center gap-2 text-2xl font-bold tracking-tight" aria-label="Nadia, kembali ke Home">
+        <span class="text-rose text-3xl" aria-hidden="true">✿</span> nadia<span class="-ml-2 text-rose">.</span>
+      </a>
+      <nav aria-label="Main navigation" class="flex items-center gap-4 sm:gap-7">
+        <a href="index.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">Home</a>
+        <a href="about.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">About</a>
+        <a href="projects.html" class="border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">Projects</a>
+        <a href="contact.html" class="border-b-2 py-2 text-sm transition-colors border-rose text-rose" aria-current="page">Contact</a>
+      </nav>
+      <button id="theme-toggle" type="button" aria-label="Ganti Tema" class="flex items-center gap-2 rounded-full border border-[#e6dcd9] px-3.5 py-1.5 text-xs font-semibold text-ink transition hover:bg-pink">
+        <span id="theme-toggle-icon">🌙</span>
+        <span id="theme-toggle-text" class="hidden sm:inline">Dark</span>
+      </button>
+    </header>
+
+    <main>
+      <!-- Pengantar Halaman Contact -->
+      <section class="py-12 text-center sm:py-16">
+        <p class="flex items-center justify-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted">
+          <span class="h-2 w-2 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span> GET IN TOUCH
+        </p>
+        <h1 class="my-5 font-serif text-5xl font-semibold tracking-tight sm:text-6xl">
+          Let’s build something<br><em class="font-medium text-rose">great together.</em>
+        </h1>
+        <p class="mx-auto max-w-xl text-sm leading-7 text-muted">
+          I'm currently open for Junior Frontend Developer internship opportunities, project collaborations, or just a friendly tech chat. Feel free to reach out!
+        </p>
+      </section>
+
+      <!-- Kartu Informasi Kontak & Media Sosial -->
+      <section class="grid gap-6 pb-20 md:grid-cols-2">
+        
+        <!-- Kartu Kirim Email -->
+        <div class="flex flex-col justify-between rounded-2xl border border-line bg-white p-8 shadow-soft">
+          <div>
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-pink text-2xl text-rose">✉</span>
+            <h2 class="mt-6 font-serif text-3xl">Direct Email</h2>
+            <p class="mt-2 text-xs leading-6 text-muted">
+              Prefer writing emails? Drop a message anytime and I’ll get back to you as soon as possible.
+            </p>
+          </div>
+          <a href="mailto:raharjiansustanadiawijayanti@gmail.com" class="mt-8 inline-flex items-center justify-between rounded-full bg-[#fdf2f5] px-6 py-3.5 text-xs font-bold text-[#8b6372] transition hover:bg-pink hover:text-[#573a46]">
+            <span>raharjiansustanadiawijayanti@gmail.com</span>
+            <span class="text-rose">↗</span>
+          </a>
+        </div>
+
+        <!-- Kartu Social & Profiles -->
+        <div class="flex flex-col justify-between rounded-2xl border border-line bg-white p-8 shadow-soft">
+          <div>
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-butter text-2xl text-[#b89a59]">✿</span>
+            <h2 class="mt-6 font-serif text-3xl">Socials & Code</h2>
+            <p class="mt-2 text-xs leading-6 text-muted">
+              Check out my latest code repositories or connect with me across social platforms.
+            </p>
+          </div>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a href="https://github.com/nyndaa" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between rounded-full border border-line px-5 py-2.5 text-xs font-bold transition hover:border-rose hover:text-rose sm:w-[48%]">
+              <span>GitHub</span>
+              <span>↗</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between rounded-full border border-line px-5 py-2.5 text-xs font-bold transition hover:border-rose hover:text-rose sm:w-[48%]">
+              <span>LinkedIn</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="flex flex-wrap items-center justify-between gap-4 border-t border-line py-7 text-xs text-muted">
+      <a href="index.html" class="text-lg font-bold text-ink"><span class="text-rose">✿</span> nadia<span class="text-rose">.</span></a>
+      <p>Made slowly, with love. <span class="text-rose">♡</span> 2026</p>
+      <a class="font-semibold text-[#7b5968] hover:text-rose" href="mailto:raharjiansustanadiawijayanti@gmail.com">Say hello ↗</a>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
