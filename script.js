@@ -10,32 +10,33 @@
 
 /**
  * Memuat komponen HTML dari folder components.
- * Navbar dan footer digunakan bersama oleh seluruh halaman.
- *
- * @param {string} elementId - ID container tempat komponen dimuat.
- * @param {string} filePath - Lokasi file HTML komponen.
+ * Menggunakan URL relatif agar kompatibel dengan GitHub Pages.
  */
 async function loadComponent(elementId, filePath) {
     const container = document.getElementById(elementId);
 
-    // Hentikan proses jika container tidak ditemukan.
-    if (!container) return;
+    if (!container) {
+        console.warn(`Container #${elementId} tidak ditemukan.`);
+        return;
+    }
+
+    // Membentuk URL berdasarkan lokasi halaman saat ini.
+    const componentURL = new URL(filePath, window.location.href);
 
     try {
-        const response = await fetch(filePath);
+        const response = await fetch(componentURL);
 
-        // Periksa apakah file berhasil ditemukan.
         if (!response.ok) {
-            throw new Error(`Gagal memuat ${filePath}`);
+            throw new Error(
+                `Gagal memuat ${componentURL.href}. Status: ${response.status}`
+            );
         }
 
-        // Masukkan isi komponen ke dalam container.
         container.innerHTML = await response.text();
 
     } catch (error) {
-        console.error(`Terjadi kesalahan saat memuat ${filePath}:`, error);
+        console.error("Component loading error:", error);
 
-        // Tampilkan pesan jika komponen gagal dimuat.
         container.innerHTML = `
             <p class="py-4 text-sm text-muted">
                 Komponen tidak dapat dimuat.
