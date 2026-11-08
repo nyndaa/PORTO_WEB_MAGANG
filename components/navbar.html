@@ -1,0 +1,55 @@
+<!-- ==========================================
+     NAVBAR COMPONENT
+     Digunakan bersama oleh seluruh halaman.
+========================================== -->
+
+<header class="flex min-h-20 flex-wrap items-center justify-between gap-4 border-b border-line py-4">
+
+    <!-- Logo / Brand -->
+    <a
+        href="index.html"
+        class="flex items-center gap-2 text-2xl font-bold tracking-tight"
+        aria-label="Nadia, kembali ke Home"
+    >
+        <span class="text-rose text-3xl" aria-hidden="true">✿</span>
+        nadia<span class="-ml-2 text-rose">.</span>
+    </a>
+
+    <!-- Navigasi Utama -->
+    <nav
+        aria-label="Main navigation"
+        class="flex items-center gap-4 sm:gap-7"
+    >
+        <a href="index.html" data-page="index.html"
+           class="nav-link border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">
+            Home
+        </a>
+
+        <a href="about.html" data-page="about.html"
+           class="nav-link border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">
+            About
+        </a>
+
+        <a href="projects.html" data-page="projects.html"
+           class="nav-link border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">
+            Projects
+        </a>
+
+        <a href="contact.html" data-page="contact.html"
+           class="nav-link border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">
+            Contact
+        </a>
+    </nav>
+
+    <!-- Theme Toggle -->
+    <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Ganti Tema"
+        class="flex items-center gap-2 rounded-full border border-[#e6dcd9] px-3.5 py-1.5 text-xs font-semibold text-ink transition hover:bg-pink"
+    >
+        <span id="theme-toggle-icon">🌙</span>
+        <span id="theme-toggle-text" class="hidden sm:inline">Dark</span>
+    </button>
+
+</header>
