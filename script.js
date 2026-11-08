@@ -4,13 +4,14 @@
    ============================================================ */
 
 
+
 /* ============================================================
    1. LOAD SHARED COMPONENTS
    ============================================================ */
 
 /**
  * Memuat komponen HTML dari folder components.
- * Menggunakan URL relatif agar kompatibel dengan GitHub Pages.
+ * Path disesuaikan dengan GitHub Pages project repository.
  */
 async function loadComponent(elementId, filePath) {
     const container = document.getElementById(elementId);
@@ -20,15 +21,17 @@ async function loadComponent(elementId, filePath) {
         return;
     }
 
-    // Membentuk URL berdasarkan lokasi halaman saat ini.
-    const componentURL = new URL(filePath, window.location.href);
-
     try {
+        // Base URL khusus repository GitHub Pages.
+        const baseURL = "/PORTO_WEB_MAGANG/";
+
+        const componentURL = `${baseURL}${filePath}`;
+
         const response = await fetch(componentURL);
 
         if (!response.ok) {
             throw new Error(
-                `Gagal memuat ${componentURL.href}. Status: ${response.status}`
+                `Gagal memuat ${componentURL}. Status: ${response.status}`
             );
         }
 
