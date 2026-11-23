@@ -136,10 +136,10 @@ darkThemeStyle.textContent = `
         border-color: #f4abbf !important;
     }
 
-    /* Navbar & Footer sticky saat dark mode */
-    html.dark header,
-    html.dark footer {
-        background-color: rgba(32, 26, 30, 0.9) !important;
+  /* Navbar sticky saat dark mode */
+    html.dark #navbar-container {
+        background-color: rgba(32, 26, 30, 0.85) !important;
+        border-color: #44363f !important;
     }
 
     /* Container switch dua bilah saat dark mode */
