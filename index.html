@@ -13,7 +13,7 @@
   <script>
     // Konfigurasi tema terpusat agar warna dan font mudah disesuaikan.
     tailwind.config = {
-       darkMode: 'class',
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -52,14 +52,17 @@
   </script>
 </head>
 <body class="overflow-x-clip bg-paper font-sans text-ink antialiased">
+
+  <!-- Navigasi utama (lebar penuh & sticky di atas) -->
+  <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md transition-colors"></div>
+
   <div class="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
 
-    <!-- Navigasi utama -->
-   <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md transition-colors"></div>
-
     <main class="flex-1">
-      <!-- Hero: 1 kolom di HP & split-screen (< 1024px), 2 kolom di laptop penuh (lg:) -->
+      <!-- Hero: 1 kolom di HP & split-screen (< 1024px), 2 kolom sejajar di laptop penuh (lg:) -->
       <section class="grid min-h-[calc(100vh-5rem)] items-center gap-10 py-10 lg:grid-cols-2 lg:gap-14 lg:py-16">
+        
+        <!-- KOLOM 1 (KIRI): Teks & Tombol -->
         <div class="min-w-0 text-center lg:text-left">
           <!-- Label bidang fokus -->
           <p class="inline-flex items-center gap-2.5 text-[10px] font-bold tracking-[.16em] text-muted">
@@ -67,18 +70,17 @@
             JUNIOR FRONTEND DEVELOPER
           </p>
           
-          <!-- Nama lengkap: skala mulus dari HP kecil (32px) ke layar penuh (68px) -->
+          <!-- Nama lengkap -->
           <h1 class="my-5 break-words font-serif text-[clamp(2rem,5vw,4.25rem)] font-semibold leading-[1.12] tracking-tight sm:my-6">
             Raharjian Sustanadia<br><em class="font-medium text-rose">Wijayanti.</em>
           </h1>
           
           <!-- Deskripsi keahlian -->
           <p class="mx-auto max-w-xl text-sm leading-7 text-muted sm:text-base sm:leading-8 lg:mx-0">
-            Informatics student and aspiring Junior Frontend Developer focused on building clean, responsive, and user-friendly web interfaces using HTML, CSS, JavaScript, React, Tailwind CSS, and Laravel!!.
+            Informatics student and aspiring Junior Frontend Developer focused on building clean, responsive, and user-friendly web interfaces using HTML, CSS, JavaScript, React, Tailwind CSS, and Laravel.
           </p>
-        </div>
           
-          <!-- Tombol aksi -->
+          <!-- Tombol aksi (tetap di dalam kolom kiri) -->
           <div class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-5 lg:justify-start">
             <!-- Tombol Download CV -->
             <a
@@ -99,8 +101,10 @@
               <span class="text-rose">→</span>
             </a>
           </div>
+        </div>
+        <!-- AKHIR KOLOM 1 -->
         
-        <!-- ILUSTRASI FOTO PROFIL BULAT (AMAN DI SEMUA UKURAN) -->
+        <!-- KOLOM 2 (KANAN): Ilustrasi Foto Profil Bulat -->
         <div
           class="relative mx-auto flex aspect-square w-full max-w-[290px] items-center justify-center sm:max-w-[380px] lg:max-w-[440px]"
           aria-label="Animated circular profile illustration"
@@ -122,7 +126,7 @@
             />
           </div>
 
-          <!-- Dekorasi melayang (aman di dalam kotak tanpa keluar tepi) -->
+          <!-- Dekorasi melayang -->
           <span class="pointer-events-none absolute right-6 top-2 text-2xl text-rose/60 sm:text-4xl animate-float" style="animation-delay: 0s">✧</span>
           <span class="pointer-events-none absolute left-4 top-12 text-xl text-[#d4b459]/60 sm:text-3xl animate-float" style="animation-delay: 0.7s">✦</span>
           <span class="pointer-events-none absolute bottom-14 left-5 text-2xl text-sage/60 sm:text-4xl animate-float" style="animation-delay: 1.4s">❀</span>
@@ -131,6 +135,8 @@
           <span class="pointer-events-none absolute bottom-24 right-8 text-lg text-[#d4b459]/50 sm:text-2xl animate-sparkle" style="animation-delay: 1.2s">✦</span>
           <span class="pointer-events-none absolute left-10 top-3 text-lg text-sage/50 sm:text-2xl animate-sparkle" style="animation-delay: 1.8s">✧</span>
         </div>
+        <!-- AKHIR KOLOM 2 -->
+
       </section>
     </main>
 
