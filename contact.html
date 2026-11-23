@@ -49,12 +49,13 @@
   </script>
 </head>
 <body class="overflow-x-clip bg-paper font-sans text-ink antialiased">
-  <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
-    
-    <!-- Navigasi utama -->
-   <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md transition-colors"></div>
 
-    <main>
+  <!-- Navigasi utama (lebar penuh & sticky di atas) -->
+  <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md transition-colors"></div>
+
+  <div class="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
+
+    <main class="flex-1">
       <!-- Pengantar Halaman Contact -->
       <section class="py-12 text-center sm:py-16">
         <p class="flex items-center justify-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted">
@@ -64,47 +65,111 @@
           Let’s build something<br><em class="font-medium text-rose">great together.</em>
         </h1>
         <p class="mx-auto max-w-xl text-sm leading-7 text-muted">
-          I'm currently open for Junior Frontend Developer internship opportunities, project collaborations, or just a friendly tech chat. Feel free to reach out!
+          I'm currently open for Junior Web Developer internship opportunities, project collaborations, or just a friendly tech chat. Feel free to reach out!
         </p>
       </section>
 
-      <!-- Kartu Informasi Kontak & Media Sosial -->
-      <section class="grid gap-6 pb-20 md:grid-cols-2 lg:gap-8">
+      <!-- 5 Kotak Kontak Individual (Rata Tengah & Simetris) -->
+      <section class="mx-auto flex max-w-5xl flex-wrap justify-center gap-5 pb-20 sm:gap-6">
         
-        <!-- Kartu Kirim Email -->
-        <div class="flex flex-col justify-between rounded-2xl border border-line bg-white p-8 shadow-soft lg:p-10">
+        <!-- 1. Kotak Email -->
+        <a
+          href="mailto:raharjianwijayanti555@gmail.com"
+          class="group flex w-full flex-col justify-between rounded-2xl border border-line bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:border-rose sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+        >
           <div>
-            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-pink text-2xl text-rose">✉</span>
-            <h2 class="mt-6 font-serif text-3xl">Direct Email</h2>
-            <p class="mt-2 text-xs leading-6 text-muted">
-              Prefer writing emails? Drop a message anytime and I’ll get back to you as soon as possible.
+            <div class="flex items-center justify-between">
+              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-pink text-xl text-rose">✉</span>
+              <span class="text-sm text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-rose">↗</span>
+            </div>
+            <h2 class="mt-5 font-serif text-2xl">Email</h2>
+            <p class="mt-1.5 break-all text-xs leading-6 text-muted">
+              raharjianwijayanti555@gmail.com
             </p>
           </div>
-          <a href="mailto:raharjianwijayanti555@gmail.com" class="mt-8 inline-flex items-center justify-between gap-2 rounded-full bg-[#fdf2f5] px-6 py-3.5 text-xs font-bold text-[#8b6372] transition hover:bg-pink hover:text-[#573a46]">
-            <span class="break-all">raharjianwijayanti555@gmail.com</span>
-            <span class="shrink-0 text-rose">↗</span>
-          </a>
-        </div>
+          <span class="mt-6 inline-block text-xs font-bold text-rose">Send an email →</span>
+        </a>
 
-        <!-- Kartu Social & Profiles -->
-        <div class="flex flex-col justify-between rounded-2xl border border-line bg-white p-8 shadow-soft lg:p-10">
+        <!-- 2. Kotak WhatsApp -->
+        <a
+          href="https://wa.me/628XXXXXXXXXX"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex w-full flex-col justify-between rounded-2xl border border-line bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:border-rose sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+        >
           <div>
-            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-butter text-2xl text-[#b89a59]">✿</span>
-            <h2 class="mt-6 font-serif text-3xl">Socials &amp; Code</h2>
-            <p class="mt-2 text-xs leading-6 text-muted">
-              Check out my latest code repositories or connect with me across social platforms.
+            <div class="flex items-center justify-between">
+              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-sage text-xl text-[#6e8a62]">💬</span>
+              <span class="text-sm text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-rose">↗</span>
+            </div>
+            <h2 class="mt-5 font-serif text-2xl">WhatsApp</h2>
+            <p class="mt-1.5 text-xs leading-6 text-muted">
+              Quick chat &amp; direct message
             </p>
           </div>
-          <div class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <a href="https://github.com/nyndaa" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between rounded-full border border-line px-5 py-2.5 text-xs font-bold transition hover:border-rose hover:text-rose">
-              <span>GitHub</span>
-              <span>↗</span>
-            </a>
-            <a href="https://www.linkedin.com/in/raharjian-sustanadia-wijayanti/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between rounded-full border border-line px-5 py-2.5 text-xs font-bold transition hover:border-rose hover:text-rose">
-              <span>LinkedIn</span>
-              <span>↗</span>
-            </a>
+          <span class="mt-6 inline-block text-xs font-bold text-rose">Chat on WhatsApp →</span>
+        </a>
+
+        <!-- 3. Kotak LinkedIn -->
+        <a
+          href="https://www.linkedin.com/in/raharjian-sustanadia-wijayanti/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex w-full flex-col justify-between rounded-2xl border border-line bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:border-rose sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-lilac text-base font-bold text-[#7c5d99]">in</span>
+              <span class="text-sm text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-rose">↗</span>
+            </div>
+            <h2 class="mt-5 font-serif text-2xl">LinkedIn</h2>
+            <p class="mt-1.5 text-xs leading-6 text-muted">
+              Raharjian Sustanadia Wijayanti
+            </p>
           </div>
+          <span class="mt-6 inline-block text-xs font-bold text-rose">Connect with me →</span>
+        </a>
+
+        <!-- 4. Kotak GitHub -->
+        <a
+          href="https://github.com/nyndaa"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex w-full flex-col justify-between rounded-2xl border border-line bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:border-rose sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-butter text-xl text-[#b89a59]">⌘</span>
+              <span class="text-sm text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-rose">↗</span>
+            </div>
+            <h2 class="mt-5 font-serif text-2xl">GitHub</h2>
+            <p class="mt-1.5 text-xs leading-6 text-muted">
+              @nyndaa · Code &amp; repositories
+            </p>
+          </div>
+          <span class="mt-6 inline-block text-xs font-bold text-rose">View repositories →</span>
+        </a>
+
+        <!-- 5. Kotak Instagram -->
+        <a
+          href="https://www.instagram.com/nynda._/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex w-full flex-col justify-between rounded-2xl border border-line bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:border-rose sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-[#f8e6eb] text-xl text-rose">✿</span>
+              <span class="text-sm text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-rose">↗</span>
+            </div>
+            <h2 class="mt-5 font-serif text-2xl">Instagram</h2>
+            <p class="mt-1.5 text-xs leading-6 text-muted">
+              @nynda._ · Creative &amp; daily updates
+            </p>
+          </div>
+          <span class="mt-6 inline-block text-xs font-bold text-rose">Follow along →</span>
+        </a>
+
       </section>
     </main>
 
