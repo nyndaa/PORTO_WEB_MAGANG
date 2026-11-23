@@ -3,69 +3,68 @@
      Digunakan bersama oleh seluruh halaman.
 ========================================== -->
 
-<header class="flex min-h-20 flex-wrap items-center justify-between gap-4 border-b border-line py-4">
+<header class="flex min-h-20 flex-wrap items-center justify-between gap-y-3 border-b border-line py-4">
 
-    <!-- Logo / Brand -->
+    <!-- 1. Logo / Brand (Kiri Atas di HP) -->
     <a
         href="index.html"
-        class="flex items-center gap-2 text-2xl font-bold tracking-tight"
+        class="order-1 flex items-center gap-2 text-2xl font-bold tracking-tight"
         aria-label="Nadia, kembali ke Home"
     >
         <span class="text-rose text-3xl" aria-hidden="true">✿</span>
         nadia<span class="-ml-2 text-rose">.</span>
     </a>
 
-    <!-- Navigasi Utama -->
+    <!-- 2. Segmented Theme Switch (Kanan Atas di HP, Kanan di Desktop) -->
+    <div
+        id="theme-toggle"
+        role="group"
+        aria-label="Theme switcher"
+        class="order-2 md:order-3 inline-flex items-center rounded-full border border-line bg-white/80 p-1 text-xs font-semibold shadow-sm"
+    >
+        <button
+            type="button"
+            data-theme-value="light"
+            class="theme-option flex items-center gap-1.5 rounded-full px-2.5 py-1 transition-all duration-200 sm:px-3"
+        >
+            <span>☀️</span>
+            <span>Light</span>
+        </button>
+
+        <button
+            type="button"
+            data-theme-value="dark"
+            class="theme-option flex items-center gap-1.5 rounded-full px-2.5 py-1 transition-all duration-200 sm:px-3"
+        >
+            <span>🌙</span>
+            <span>Dark</span>
+        </button>
+    </div>
+
+    <!-- 3. Navigasi Utama (Baris ke-2 Penuh di HP, Tengah di Desktop) -->
     <nav
         aria-label="Main navigation"
-        class="flex items-center gap-4 sm:gap-7"
+        class="order-3 md:order-2 flex w-full items-center justify-around border-t border-line pt-2 md:w-auto md:justify-center md:gap-7 md:border-none md:pt-0"
     >
         <a href="index.html" data-page="index.html"
-           class="nav-link border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">
+           class="nav-link border-b-2 py-1.5 text-sm transition-colors border-transparent text-muted hover:text-rose md:py-2">
             Home
         </a>
 
         <a href="about.html" data-page="about.html"
-           class="nav-link border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">
+           class="nav-link border-b-2 py-1.5 text-sm transition-colors border-transparent text-muted hover:text-rose md:py-2">
             About
         </a>
 
         <a href="projects.html" data-page="projects.html"
-           class="nav-link border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">
+           class="nav-link border-b-2 py-1.5 text-sm transition-colors border-transparent text-muted hover:text-rose md:py-2">
             Projects
         </a>
 
         <a href="contact.html" data-page="contact.html"
-           class="nav-link border-b-2 py-2 text-sm transition-colors border-transparent text-muted hover:text-rose">
+           class="nav-link border-b-2 py-1.5 text-sm transition-colors border-transparent text-muted hover:text-rose md:py-2">
             Contact
         </a>
     </nav>
-
-    <!-- Theme Toggle -->
-    <!-- Segmented Theme Switch (Kiri: Light, Kanan: Dark) -->
-    <div
-    id="theme-toggle"
-    role="group"
-    aria-label="Theme switcher"
-    class="inline-flex items-center rounded-full border border-line bg-white/80 p-1 text-xs font-semibold shadow-sm"
-    >
-    <button
-        type="button"
-        data-theme-value="light"
-        class="theme-option flex items-center gap-1.5 rounded-full px-3 py-1 transition-all duration-200"
-    >
-        <span>☀️</span>
-        <span>Light</span>
-    </button>
-
-    <button
-        type="button"
-        data-theme-value="dark"
-        class="theme-option flex items-center gap-1.5 rounded-full px-3 py-1 transition-all duration-200"
-    >
-        <span>🌙</span>
-        <span>Dark</span>
-    </button>
-    </div>
 
 </header>
