@@ -136,6 +136,12 @@ darkThemeStyle.textContent = `
         border-color: #f4abbf !important;
     }
 
+    /* Navbar & Footer sticky saat dark mode */
+    html.dark header,
+    html.dark footer {
+        background-color: rgba(32, 26, 30, 0.9) !important;
+    }
+
     /* Container switch dua bilah saat dark mode */
     html.dark #theme-toggle {
         background-color: #2c2328 !important;
@@ -146,7 +152,6 @@ darkThemeStyle.textContent = `
 if (!document.getElementById("dark-mode-styles")) {
     document.head.appendChild(darkThemeStyle);
 }
-
 
 /* ============================================================
 4. THEME TOGGLE UI
