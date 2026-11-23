@@ -46,27 +46,28 @@
   </style>
 
   <!-- Cek tema instan di dalam <head> agar tidak kedip saat pindah halaman -->
-<script>
-  if (localStorage.getItem('portfolio-theme') === 'dark') {
-    document.documentElement.classList.add('dark');
-  }
-</script>
-
+  <script>
+    if (localStorage.getItem('portfolio-theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
 </head>
 <body class="bg-paper font-sans text-ink antialiased">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
 
-    <!-- Navigasi utama terbarui dengan Menu Contact dan Toggle Tema -->
-   <div id="navbar-container"></div>
+    <!-- Navigasi utama -->
+    <div id="navbar-container"></div>
+
     <main>
       <!-- Pengantar halaman About. -->
       <section class="py-12 text-center sm:py-16">
-        <p class="flex justify-center items-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted"><span class="h-2 w-2 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span> THE PERSON BEHIND THE PIXELS</p>
-        <h1 class="my-5 font-serif text-5xl font-semibold tracking-tight sm:text-6xl">A little bit<br><em class="font-medium text-rose">about me.</em></h1>
+        <p class="flex items-center justify-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted"><span class="h-2 w-2 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span> THE PERSON BEHIND THE PIXELS</p>
+        <h1 class="my-5 font-serif text-[clamp(2.5rem,4.5vw,3.75rem)] font-semibold tracking-tight">A little bit<br><em class="font-medium text-rose">about me.</em></h1>
         <p class="mx-auto max-w-xl text-sm leading-7 text-muted">I’m an Informatics student preparing for a Junior Frontend Developer internship. I learn by building, testing, and improving real interfaces.</p>
       </section>
+
       <!-- Bagian profil: dekorasi di kiri, deskripsi dan CTA di kanan. -->
-      <section class="grid items-center gap-10 px-0 pb-16 sm:px-8 md:grid-cols-[.9fr_1.1fr] md:gap-16 md:pb-20">
+      <section class="grid items-center gap-10 px-0 pb-16 sm:px-4 md:grid-cols-[.9fr_1.1fr] lg:gap-16 lg:px-8 md:pb-20">
         <div class="mx-auto w-full max-w-sm p-3">
           <div class="portrait-arch relative flex h-80 items-center justify-center overflow-hidden bg-[#f7e2e8] sm:h-[350px]">
             <div class="absolute left-1/2 top-11 h-56 w-56 -translate-x-1/2 rounded-full bg-[#f1cad7]"></div>
@@ -77,30 +78,33 @@
         </div>
         <div>
           <p class="text-[10px] font-bold tracking-[.16em] text-muted">HELLO, NICE TO MEET YOU</p>
-          <h2 class="my-4 font-serif text-3xl leading-snug">I’m Nadia, an Informatics student who wants to build <em class="text-rose">useful and accessible web experiences.</em></h2>
-          <p class="mb-4 text-sm leading-7 text-muted">I’m focused on frontend development: translating designs into responsive pages, organizing reusable UI, and making sure interactions feel clear on desktop and mobile.</p>
-          <p class="text-sm leading-7 text-muted">I’m practicing HTML, CSS, JavaScript, and React while learning how to work with APIs, Git, and backend services such as Supabase. I’m looking for an internship where I can contribute, receive feedback, and keep improving.</p>
+          <h2 class="my-4 font-serif text-3xl leading-snug lg:text-4xl">I’m Nadia, an Informatics student who wants to build <em class="text-rose">useful and accessible web experiences.</em></h2>
+          <p class="mb-4 text-sm leading-7 text-muted lg:text-base lg:leading-8">I’m focused on frontend development: translating designs into responsive pages, organizing reusable UI, and making sure interactions feel clear on desktop and mobile.</p>
+          <p class="text-sm leading-7 text-muted lg:text-base lg:leading-8">I’m practicing HTML, CSS, JavaScript, and React while learning how to work with APIs, Git, and backend services such as Supabase. I’m looking for an internship where I can contribute, receive feedback, and keep improving.</p>
           <a href="projects.html" class="mt-5 inline-flex rounded-full bg-pink px-5 py-3 text-xs font-bold text-[#573a46] transition hover:-translate-y-0.5 hover:shadow-soft">See what I’m making <span class="ml-2 text-rose">↗</span></a>
         </div>
       </section>
-      <!-- Prinsip kerja ditampilkan sebagai tiga kartu yang mudah ditambah. -->
+
+      <!-- Prinsip kerja ditampilkan sebagai tiga kartu dinamis. -->
       <section class="border-t border-line py-14 sm:py-16">
         <p class="text-[10px] font-bold tracking-[.16em] text-muted">MY LITTLE COMPASS</p>
         <h2 class="mb-8 mt-3 font-serif text-3xl sm:text-4xl">How I approach <em class="text-rose">frontend development.</em></h2>
-        <div class="grid gap-4 md:grid-cols-3">
-          <article class="rounded-2xl border border-line bg-white p-6"><span class="grid h-10 w-10 place-items-center rounded-xl bg-[#f8e6eb] text-xl text-[#bd7890]">✦</span><h3 class="mb-2 mt-5 font-serif text-xl">Keep learning</h3><p class="text-xs leading-6 text-muted">Explore documentation, practice new concepts, and learn from code reviews.</p></article>
-          <article class="rounded-2xl border border-line bg-white p-6"><span class="grid h-10 w-10 place-items-center rounded-xl bg-butter text-xl text-[#b89a59]">♡</span><h3 class="mb-2 mt-5 font-serif text-xl">Build responsively</h3><p class="text-xs leading-6 text-muted">Consider mobile layouts, accessibility, and clear interactions from the start.</p></article>
-          <article class="rounded-2xl border border-line bg-white p-6"><span class="grid h-10 w-10 place-items-center rounded-xl bg-sage text-xl text-[#849875]">↗</span><h3 class="mb-2 mt-5 font-serif text-xl">Write maintainable code</h3><p class="text-xs leading-6 text-muted">Use consistent naming, reusable patterns, and comments where they add value.</p></article>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          <article class="rounded-2xl border border-line bg-white p-6 lg:p-7"><span class="grid h-10 w-10 place-items-center rounded-xl bg-[#f8e6eb] text-xl text-[#bd7890]">✦</span><h3 class="mb-2 mt-5 font-serif text-xl">Keep learning</h3><p class="text-xs leading-6 text-muted">Explore documentation, practice new concepts, and learn from code reviews.</p></article>
+          <article class="rounded-2xl border border-line bg-white p-6 lg:p-7"><span class="grid h-10 w-10 place-items-center rounded-xl bg-butter text-xl text-[#b89a59]">♡</span><h3 class="mb-2 mt-5 font-serif text-xl">Build responsively</h3><p class="text-xs leading-6 text-muted">Consider mobile layouts, accessibility, and clear interactions from the start.</p></article>
+          <article class="rounded-2xl border border-line bg-white p-6 sm:col-span-2 lg:col-span-1 lg:p-7"><span class="grid h-10 w-10 place-items-center rounded-xl bg-sage text-xl text-[#849875]">↗</span><h3 class="mb-2 mt-5 font-serif text-xl">Write maintainable code</h3><p class="text-xs leading-6 text-muted">Use consistent naming, reusable patterns, and comments where they add value.</p></article>
         </div>
       </section>
+
       <!-- CTA kontak global. -->
       <section class="mb-14 flex flex-col items-start justify-between gap-5 rounded-2xl bg-[#f7e8ec] p-6 sm:mb-20 sm:flex-row sm:items-center sm:p-9">
         <div><p class="text-[10px] font-bold tracking-[.16em] text-muted">HAVE SOMETHING IN MIND?</p><h2 class="mt-2 font-serif text-3xl">Let’s make something <em class="text-rose">good.</em></h2></div>
-        <a href="mailto:your.email@example.com" class="rounded-full bg-[#352d32] px-5 py-3 text-xs font-bold text-white transition hover:-translate-y-0.5">Get in touch <span class="ml-2 text-[#f1bdcf]">↗</span></a>
+        <a href="mailto:raharjiansustanadiawijayanti@gmail.com" class="rounded-full bg-[#352d32] px-5 py-3 text-xs font-bold text-white transition hover:-translate-y-0.5">Get in touch <span class="ml-2 text-[#f1bdcf]">↗</span></a>
       </section>
     </main>
-    <!-- Footer: ganti email placeholder sebelum website dipublikasikan. -->
-   <div id="footer-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
   </div>
   <script src="script.js"></script>
 </body>

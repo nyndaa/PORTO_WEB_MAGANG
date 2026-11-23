@@ -45,85 +45,81 @@
     [hidden] { display: none !important; }
   </style>
   <!-- Cek tema instan di dalam <head> agar tidak kedip saat pindah halaman -->
-<script>
-  if (localStorage.getItem('portfolio-theme') === 'dark') {
-    document.documentElement.classList.add('dark');
-  }
-</script>
+  <script>
+    if (localStorage.getItem('portfolio-theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
 </head>
 <body class="bg-paper font-sans text-ink antialiased">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
 
-
-    <!-- Navigasi utama terbarui dengan Menu Contact dan Toggle Tema -->
+    <!-- Navigasi utama -->
     <div id="navbar-container"></div>
 
     <main>
-      <!-- Hero dengan struktur baru tapi menggunakan style teks portofolio kamu -->
-      <section class="grid min-h-[560px] items-center gap-10 py-14 md:grid-cols-2 md:gap-12 md:py-20">
+      <!-- Hero dengan tinggi dan skala dinamis mengikuti layar laptop -->
+      <section class="grid min-h-[calc(100vh-5rem)] items-center gap-10 py-10 md:grid-cols-2 lg:gap-16">
         <div>
           <!-- Label bidang fokus -->
           <p class="flex items-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted">
             <span class="h-2 w-2 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span> JUNIOR FRONTEND DEVELOPER
           </p>
           
-          <!-- Nama lengkap dengan style h1 kamu -->
-          <h1 class="my-6 font-serif text-5xl font-semibold leading-[1.12] tracking-tight sm:text-6xl lg:text-7xl">
+          <!-- Nama lengkap dengan fluid typography (clamp) -->
+          <h1 class="my-6 font-serif text-[clamp(2.5rem,4.5vw,4.5rem)] font-semibold leading-[1.12] tracking-tight">
             Raharjian Sustanadia<br><em class="font-medium text-rose">Wijayanti.</em>
           </h1>
           
-          <!-- Deskripsi keahlian dengan style paragraph kamu -->
-          <p class="max-w-lg text-sm leading-8 text-muted sm:text-base">
+          <!-- Deskripsi keahlian -->
+          <p class="max-w-xl text-sm leading-8 text-muted sm:text-base">
             Informatics student and aspiring Junior Frontend Developer focused on building clean, responsive, and user-friendly web interfaces using HTML, CSS, JavaScript, React, Tailwind CSS, and Laravel!!.
           </p>
           
           <!-- Tombol aksi -->
-          <div class="mt-8 flex flex-wrap items-center gap-6">
-            <a href="about.html" class="rounded-full bg-[#fdf2f5] px-5 py-3 text-xs font-bold text-[#8b6372] transition hover:-translate-y-0.5 hover:shadow-soft hover:bg-[#f7dce5]">A little about me <span class="ml-2 text-rose">→</span></a>
+          <div class="mt-8 flex flex-wrap items-center gap-4 sm:gap-6">
+            <a href="about.html" class="rounded-full bg-[#fdf2f5] px-5 py-3 text-xs font-bold text-[#8b6372] transition hover:-translate-y-0.5 hover:bg-[#f7dce5] hover:shadow-soft">A little about me <span class="ml-2 text-rose">→</span></a>
             <a href="projects.html" class="rounded-full bg-pink px-5 py-3 text-xs font-bold text-[#573a46] transition hover:-translate-y-0.5 hover:shadow-soft">View my projects <span class="ml-2 text-rose">↗</span></a>
           </div>
-          
         </div>
         
-      
-      <!-- ILUSTRASI FOTO PROFIL BULAT DENGAN ANIMASI -->
-      <div
-        class="relative mx-auto flex h-[420px] w-full max-w-lg items-center justify-center sm:h-[480px]"
-        aria-label="Animated circular profile illustration"
-      >
-        <!-- Latar belakang lingkaran pastel -->
-        <div class="absolute right-0 top-4 h-72 w-72 rounded-full bg-pink/40 animate-pulse-soft sm:right-2 sm:top-0 sm:h-[380px] sm:w-[380px]"></div>
-        <div class="absolute left-0 top-8 h-64 w-64 rounded-full bg-sage/40 animate-pulse-soft sm:left-0 sm:top-4 sm:h-[310px] sm:w-[310px]" style="animation-delay: 1s"></div>
-        <div class="absolute bottom-8 right-0 h-56 w-56 rounded-full bg-lilac/40 animate-pulse-soft sm:bottom-4 sm:right-0 sm:h-[280px] sm:w-[280px]" style="animation-delay: 2s"></div>
+        <!-- ILUSTRASI FOTO PROFIL BULAT DINAMIS -->
+        <div
+          class="relative mx-auto flex aspect-square w-full max-w-[360px] items-center justify-center sm:max-w-[420px] lg:max-w-[460px]"
+          aria-label="Animated circular profile illustration"
+        >
+          <!-- Latar belakang lingkaran pastel proporsional (%) -->
+          <div class="absolute right-0 top-2 h-[78%] w-[78%] rounded-full bg-pink/40 animate-pulse-soft"></div>
+          <div class="absolute left-0 top-6 h-[65%] w-[65%] rounded-full bg-sage/40 animate-pulse-soft" style="animation-delay: 1s"></div>
+          <div class="absolute bottom-4 right-0 h-[58%] w-[58%] rounded-full bg-lilac/40 animate-pulse-soft" style="animation-delay: 2s"></div>
 
-        <!-- Foto wajah berbentuk bulat -->
-        <div class="relative z-10 animate-float-slow">
-          <!-- Lingkaran dekoratif di belakang foto -->
-          <div class="absolute -inset-3 rounded-full border-2 border-pink/70"></div>
-          <div class="absolute -inset-6 rounded-full border border-rose/30"></div>
+          <!-- Foto wajah berbentuk bulat -->
+          <div class="relative z-10 animate-float-slow">
+            <!-- Lingkaran dekoratif di belakang foto -->
+            <div class="absolute -inset-3 rounded-full border-2 border-pink/70"></div>
+            <div class="absolute -inset-6 rounded-full border border-rose/30"></div>
 
-          <!-- Ganti URL dengan URL foto pribadi nanti -->
-          <img
-            src="assets/profil-nadia2.png"
-            alt="Foto wajah Nadia"
-            class="relative h-60 w-60 rounded-full border-4 border-white object-cover shadow-soft sm:h-72 sm:w-72"
-          />
+            <img
+              src="assets/profil-nadia2.png"
+              alt="Foto wajah Nadia"
+              class="relative h-[clamp(14rem,22vw,18rem)] w-[clamp(14rem,22vw,18rem)] rounded-full border-4 border-white object-cover shadow-soft"
+            />
+          </div>
+
+          <!-- Dekorasi melayang -->
+          <span class="absolute right-8 top-2 text-4xl text-rose/60 animate-float" style="animation-delay: 0s">✧</span>
+          <span class="absolute left-2 top-16 text-3xl text-[#d4b459]/60 animate-float" style="animation-delay: 0.7s">✦</span>
+          <span class="absolute bottom-20 left-4 text-4xl text-sage/60 animate-float" style="animation-delay: 1.4s">❀</span>
+          <span class="absolute bottom-8 right-2 text-3xl text-lilac/70 animate-float" style="animation-delay: 2.1s">♡</span>
+          <span class="absolute right-0 top-28 text-2xl text-rose/50 animate-sparkle" style="animation-delay: 0.5s">✧</span>
+          <span class="absolute bottom-32 right-12 text-2xl text-[#d4b459]/50 animate-sparkle" style="animation-delay: 1.2s">✦</span>
+          <span class="absolute left-12 top-2 text-2xl text-sage/50 animate-sparkle" style="animation-delay: 1.8s">✧</span>
         </div>
-
-        <!-- Dekorasi melayang -->
-        <span class="absolute right-8 top-2 text-4xl text-rose/60 animate-float" style="animation-delay: 0s">✧</span>
-        <span class="absolute left-2 top-16 text-3xl text-[#d4b459]/60 animate-float" style="animation-delay: 0.7s">✦</span>
-        <span class="absolute bottom-20 left-4 text-4xl text-sage/60 animate-float" style="animation-delay: 1.4s">❀</span>
-        <span class="absolute bottom-8 right-2 text-3xl text-lilac/70 animate-float" style="animation-delay: 2.1s">♡</span>
-        <span class="absolute right-0 top-28 text-2xl text-rose/50 animate-sparkle" style="animation-delay: 0.5s">✧</span>
-        <span class="absolute bottom-32 right-12 text-2xl text-[#d4b459]/50 animate-sparkle" style="animation-delay: 1.2s">✦</span>
-        <span class="absolute left-12 top-2 text-2xl text-sage/50 animate-sparkle" style="animation-delay: 1.8s">✧</span>
-
-      </div>
-
+      </section>
     </main>
-    <!-- Footer: ganti email placeholder sebelum website dipublikasikan. -->
-   <div id="footer-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
   </div>
   <script src="script.js"></script>
 </body>

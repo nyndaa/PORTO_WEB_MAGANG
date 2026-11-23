@@ -42,24 +42,25 @@
     [hidden] { display: none !important; }
   </style>
   <!-- Cek tema instan di dalam <head> agar tidak kedip saat pindah halaman -->
-<script>
-  if (localStorage.getItem('portfolio-theme') === 'dark') {
-    document.documentElement.classList.add('dark');
-  }
-</script>
+  <script>
+    if (localStorage.getItem('portfolio-theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
 </head>
 <body class="bg-paper font-sans text-ink antialiased">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
     
     <!-- Navigasi utama -->
-   <div id="navbar-container"></div>
+    <div id="navbar-container"></div>
+
     <main>
       <!-- Pengantar Halaman Contact -->
       <section class="py-12 text-center sm:py-16">
         <p class="flex items-center justify-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted">
           <span class="h-2 w-2 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span> GET IN TOUCH
         </p>
-        <h1 class="my-5 font-serif text-5xl font-semibold tracking-tight sm:text-6xl">
+        <h1 class="my-5 font-serif text-[clamp(2.5rem,4.5vw,3.75rem)] font-semibold tracking-tight">
           Let’s build something<br><em class="font-medium text-rose">great together.</em>
         </h1>
         <p class="mx-auto max-w-xl text-sm leading-7 text-muted">
@@ -68,10 +69,10 @@
       </section>
 
       <!-- Kartu Informasi Kontak & Media Sosial -->
-      <section class="grid gap-6 pb-20 md:grid-cols-2">
+      <section class="grid gap-6 pb-20 md:grid-cols-2 lg:gap-8">
         
         <!-- Kartu Kirim Email -->
-        <div class="flex flex-col justify-between rounded-2xl border border-line bg-white p-8 shadow-soft">
+        <div class="flex flex-col justify-between rounded-2xl border border-line bg-white p-8 shadow-soft lg:p-10">
           <div>
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-pink text-2xl text-rose">✉</span>
             <h2 class="mt-6 font-serif text-3xl">Direct Email</h2>
@@ -79,17 +80,17 @@
               Prefer writing emails? Drop a message anytime and I’ll get back to you as soon as possible.
             </p>
           </div>
-          <a href="mailto:raharjiansustanadiawijayanti@gmail.com" class="mt-8 inline-flex items-center justify-between rounded-full bg-[#fdf2f5] px-6 py-3.5 text-xs font-bold text-[#8b6372] transition hover:bg-pink hover:text-[#573a46]">
-            <span>raharjiansustanadiawijayanti@gmail.com</span>
-            <span class="text-rose">↗</span>
+          <a href="mailto:raharjiansustanadiawijayanti@gmail.com" class="mt-8 inline-flex items-center justify-between gap-2 rounded-full bg-[#fdf2f5] px-6 py-3.5 text-xs font-bold text-[#8b6372] transition hover:bg-pink hover:text-[#573a46]">
+            <span class="break-all">raharjiansustanadiawijayanti@gmail.com</span>
+            <span class="shrink-0 text-rose">↗</span>
           </a>
         </div>
 
         <!-- Kartu Social & Profiles -->
-        <div class="flex flex-col justify-between rounded-2xl border border-line bg-white p-8 shadow-soft">
+        <div class="flex flex-col justify-between rounded-2xl border border-line bg-white p-8 shadow-soft lg:p-10">
           <div>
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-butter text-2xl text-[#b89a59]">✿</span>
-            <h2 class="mt-6 font-serif text-3xl">Socials & Code</h2>
+            <h2 class="mt-6 font-serif text-3xl">Socials &amp; Code</h2>
             <p class="mt-2 text-xs leading-6 text-muted">
               Check out my latest code repositories or connect with me across social platforms.
             </p>
@@ -110,7 +111,7 @@
     </main>
 
     <!-- Footer -->
-   <div id="footer-container"></div>
+    <div id="footer-container"></div>
   </div>
 
   <script src="script.js"></script>
