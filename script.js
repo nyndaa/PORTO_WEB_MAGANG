@@ -84,15 +84,10 @@ function setActiveNavigation() {
 
 
 /* ============================================================
-   3. DARK MODE STYLE
+3. DARK MODE STYLE
    ============================================================ */
 
-/**
- * Menambahkan aturan CSS khusus untuk dark mode.
- * Style hanya aktif ketika elemen html memiliki class "dark".
- */
 const darkThemeStyle = document.createElement("style");
-
 darkThemeStyle.id = "dark-mode-styles";
 
 darkThemeStyle.textContent = `
@@ -141,39 +136,55 @@ darkThemeStyle.textContent = `
         border-color: #f4abbf !important;
     }
 
-    /* Tombol pergantian tema */
-    html.dark button#theme-toggle {
+    /* Container switch dua bilah saat dark mode */
+    html.dark #theme-toggle {
+        background-color: #2c2328 !important;
         border-color: #5c4754 !important;
-        color: #fceef3 !important;
     }
 `;
 
-// Pastikan style tidak ditambahkan lebih dari sekali.
 if (!document.getElementById("dark-mode-styles")) {
     document.head.appendChild(darkThemeStyle);
 }
 
 
 /* ============================================================
-   4. THEME TOGGLE UI
+4. THEME TOGGLE UI
    ============================================================ */
 
 /**
- * Memperbarui ikon dan teks tombol tema.
+ * Memperbarui status aktif pada bilah Light (kiri) dan Dark (kanan).
  *
  * @param {boolean} isDark - Status tema saat ini.
  */
 function updateToggleUI(isDark) {
-    const icon = document.getElementById("theme-toggle-icon");
-    const text = document.getElementById("theme-toggle-text");
+    const options = document.querySelectorAll(".theme-option");
+    const activeTheme = isDark ? "dark" : "light";
 
-    if (icon) {
-        icon.textContent = isDark ? "☀️" : "🌙";
-    }
+    options.forEach(btn => {
+        const isSelected = btn.dataset.themeValue === activeTheme;
+        btn.setAttribute("aria-pressed", String(isSelected));
 
-    if (text) {
-        text.textContent = isDark ? "Light" : "Dark";
-    }
+        if (isSelected) {
+            // Tampilan bilah yang sedang aktif
+            btn.classList.add(
+                isDark ? "bg-[#5c4754]" : "bg-pink",
+                isDark ? "text-[#fceef3]" : "text-[#573a46]",
+                "shadow-sm"
+            );
+            btn.classList.remove("text-muted", "opacity-70");
+        } else {
+            // Tampilan bilah yang tidak aktif
+            btn.classList.remove(
+                "bg-pink",
+                "bg-[#5c4754]",
+                "text-[#573a46]",
+                "text-[#fceef3]",
+                "shadow-sm"
+            );
+            btn.classList.add("text-muted", "opacity-70");
+        }
+    });
 }
 
 
@@ -198,39 +209,33 @@ function initializeTheme() {
 
 
 /* ============================================================
-   6. THEME EVENT LISTENER
+6. THEME EVENT LISTENER
    ============================================================ */
 
 /**
- * Mengaktifkan pergantian tema ketika tombol ditekan.
- * Preferensi tema akan disimpan ke localStorage.
+ * Mengaktifkan pergantian tema saat bilah kiri (Light) atau kanan (Dark) diklik.
  */
 function initializeThemeToggle() {
-    const themeToggleBtn = document.getElementById("theme-toggle");
+    const options = document.querySelectorAll(".theme-option");
 
-    if (!themeToggleBtn) return;
+    if (!options.length) return;
 
-    // Mencegah event listener terpasang lebih dari sekali.
-    if (themeToggleBtn.dataset.initialized === "true") return;
+    options.forEach(btn => {
+        if (btn.dataset.initialized === "true") return;
+        btn.dataset.initialized = "true";
 
-    themeToggleBtn.dataset.initialized = "true";
+        btn.addEventListener("click", () => {
+            const isDark = btn.dataset.themeValue === "dark";
 
-    themeToggleBtn.addEventListener("click", () => {
-        // Periksa tema yang sedang aktif.
-        const isDark =
-            !document.documentElement.classList.contains("dark");
+            // Terapkan tema yang dipilih
+            document.documentElement.classList.toggle("dark", isDark);
 
-        // Terapkan tema yang dipilih.
-        document.documentElement.classList.toggle("dark", isDark);
+            // Simpan preferensi tema ke localStorage
+            localStorage.setItem("portfolio-theme", isDark ? "dark" : "light");
 
-        // Simpan preferensi tema.
-        localStorage.setItem(
-            "portfolio-theme",
-            isDark ? "dark" : "light"
-        );
-
-        // Perbarui ikon dan teks tombol.
-        updateToggleUI(isDark);
+            // Perbarui tampilan aktif kedua bilah
+            updateToggleUI(isDark);
+        });
     });
 }
 
