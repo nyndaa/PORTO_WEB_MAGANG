@@ -62,43 +62,50 @@
       <!-- Hero: 1 kolom di HP & split-screen (< 1024px), 2 kolom sejajar di laptop penuh (lg:) -->
       <section class="grid min-h-[calc(100vh-5rem)] items-center gap-10 py-10 lg:grid-cols-2 lg:gap-14 lg:py-16">
         
-        <!-- KOLOM 1 (KIRI): Teks & Tombol -->
+        <!-- KOLOM 1 (KIRI): Pembukaan Simpel & Tombol -->
         <div class="min-w-0 text-center lg:text-left">
-          <!-- Label bidang fokus -->
-          <p class="inline-flex items-center gap-2.5 text-[10px] font-bold tracking-[.16em] text-muted">
-            <span class="h-2 w-2 shrink-0 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span>
-            JUNIOR FRONTEND DEVELOPER
+          <!-- Sapaan pembuka -->
+          <p class="text-sm font-bold text-rose sm:text-base">
+            Hello everyone 👋, I’m
           </p>
           
           <!-- Nama lengkap -->
-          <h1 class="my-5 break-words font-serif text-[clamp(2rem,5vw,4.25rem)] font-semibold leading-[1.12] tracking-tight sm:my-6">
+          <h1 class="mt-2 break-words font-serif text-[clamp(2.15rem,4.6vw,4rem)] font-semibold leading-[1.12] tracking-tight">
             Raharjian Sustanadia<br><em class="font-medium text-rose">Wijayanti.</em>
           </h1>
-          
-          <!-- Deskripsi keahlian -->
-          <p class="mx-auto max-w-xl text-sm leading-7 text-muted sm:text-base sm:leading-8 lg:mx-0">
-            Informatics student and aspiring Junior Frontend Developer focused on building clean, responsive, and user-friendly web interfaces using HTML, CSS, JavaScript, React, Tailwind CSS, and Laravel.
+
+          <!-- Peran & Kampus -->
+          <p class="mt-3 text-sm font-medium text-muted sm:text-base">
+            Junior Frontend Developer at
+            <a href="about.html" class="font-semibold text-ink underline decoration-rose/60 decoration-2 underline-offset-4 transition hover:text-rose">
+              Universitas Teknologi Digital Indonesia
+            </a>
           </p>
           
-          <!-- Tombol aksi (tetap di dalam kolom kiri) -->
-          <div class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-5 lg:justify-start">
-            <!-- Tombol Download CV -->
-            <a
-              href="assets/CV-Raharjian_Sustanadia_Wijayanti_2.pdf"
-              download="assets/CV-Raharjian_Sustanadia_Wijayanti_2.pdf"
-              class="inline-flex items-center gap-2 rounded-full bg-rose px-6 py-3 text-xs font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#a3556f]"
-            >
-              <span>Download CV</span>
-              <span>↓</span>
-            </a>
-
+          <!-- Deskripsi singkat -->
+          <p class="mx-auto mt-5 max-w-lg text-sm leading-7 text-muted sm:text-base sm:leading-8 lg:mx-0">
+            This portfolio showcases my projects and explorations in building clean, responsive, and user-friendly web interfaces.
+          </p>
+          
+          <!-- Tombol aksi -->
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 lg:justify-start">
             <!-- Tombol Menuju Halaman Kontak -->
             <a
               href="contact.html"
+              class="inline-flex items-center gap-2 rounded-full bg-rose px-6 py-3 text-xs font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#a3556f]"
+            >
+              <span>Contact Me</span>
+              <span>→</span>
+            </a>
+
+            <!-- Tombol Download CV -->
+            <a
+              href="assets/CV-Raharjian_Sustanadia_Wijayanti_2.pdf"
+              download="CV-Raharjian_Sustanadia_Wijayanti_2.pdf"
               class="inline-flex items-center gap-2 rounded-full border border-pink bg-[#fdf2f5] px-6 py-3 text-xs font-bold text-[#8b6372] transition hover:-translate-y-0.5 hover:bg-pink hover:text-[#573a46]"
             >
-              <span>Hubungi Saya</span>
-              <span class="text-rose">→</span>
+              <span>Download CV</span>
+              <span class="text-rose">↓</span>
             </a>
           </div>
         </div>
