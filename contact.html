@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <title>Contact — Nadia | Junior Frontend Developer Portfolio</title>
+  <title>Contact — Nadia | Junior Web Developer Portfolio</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fffdf9">
@@ -41,7 +41,6 @@
     .portrait-arch { border-radius: 48% 48% 16px 16px; }
     [hidden] { display: none !important; }
   </style>
-  <!-- Cek tema instan di dalam <head> agar tidak kedip saat pindah halaman -->
   <script>
     if (localStorage.getItem('portfolio-theme') === 'dark') {
       document.documentElement.classList.add('dark');
@@ -50,7 +49,7 @@
 </head>
 <body class="overflow-x-clip bg-paper font-sans text-ink antialiased">
 
-  <!-- Navigasi utama (lebar penuh & sticky di atas) -->
+  <!-- Navigasi utama -->
   <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md transition-colors"></div>
 
   <div class="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
@@ -69,105 +68,115 @@
         </p>
       </section>
 
-      <!-- 5 Kotak Kontak Individual (Rata Tengah & Simetris) -->
-      <section class="mx-auto flex max-w-5xl flex-wrap justify-center gap-5 pb-20 sm:gap-6">
+      <!-- Grid Kartu Kontak Editorial (Horizontal Monogram + Teks) -->
+      <section class="mx-auto grid max-w-5xl gap-5 pb-20 md:grid-cols-2 lg:gap-6">
         
-        <!-- 1. Kotak Email -->
+        <!-- 1. Email -->
         <a
           href="mailto:raharjianwijayanti555@gmail.com"
-          class="group flex w-full flex-col justify-between rounded-2xl border border-line bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:border-rose sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          class="group flex items-center gap-5 rounded-2xl border border-line bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-rose/60 sm:gap-6 sm:p-7"
         >
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-pink text-xl text-rose">✉</span>
-              <span class="text-sm text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-rose">↗</span>
-            </div>
-            <h2 class="mt-5 font-serif text-2xl">Email</h2>
-            <p class="mt-1.5 break-all text-xs leading-6 text-muted">
-              raharjianwijayanti555@gmail.com
+          <div class="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-pink bg-[#fdf2f5] font-serif text-xl italic text-rose transition-colors duration-300 group-hover:bg-rose group-hover:text-white sm:h-20 sm:w-20 sm:text-2xl">
+            EM
+          </div>
+          <div class="min-w-0">
+            <p class="text-[10px] font-bold uppercase tracking-[.18em] text-muted">EMAIL</p>
+            <h2 class="mt-1 truncate font-serif text-xl font-medium tracking-tight text-ink sm:text-2xl">
+              raharjianwijayanti555
+            </h2>
+            <p class="mt-1.5 inline-flex items-center gap-1.5 text-xs text-muted transition-colors group-hover:text-rose">
+              <span>Send me a message</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </p>
           </div>
-          <span class="mt-6 inline-block text-xs font-bold text-rose">Send an email →</span>
         </a>
 
-        <!-- 2. Kotak WhatsApp -->
+        <!-- 2. WhatsApp -->
         <a
           href="https://wa.me/628XXXXXXXXXX"
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex w-full flex-col justify-between rounded-2xl border border-line bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:border-rose sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          class="group flex items-center gap-5 rounded-2xl border border-line bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-rose/60 sm:gap-6 sm:p-7"
         >
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-sage text-xl text-[#6e8a62]">💬</span>
-              <span class="text-sm text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-rose">↗</span>
-            </div>
-            <h2 class="mt-5 font-serif text-2xl">WhatsApp</h2>
-            <p class="mt-1.5 text-xs leading-6 text-muted">
-              Quick chat &amp; direct message
+          <div class="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-sage bg-[#f4f8f1] font-serif text-xl italic text-[#6e8a62] transition-colors duration-300 group-hover:bg-[#7f9c73] group-hover:text-white sm:h-20 sm:w-20 sm:text-2xl">
+            WA
+          </div>
+          <div class="min-w-0">
+            <p class="text-[10px] font-bold uppercase tracking-[.18em] text-muted">WHATSAPP</p>
+            <h2 class="mt-1 truncate font-serif text-xl font-medium tracking-tight text-ink sm:text-2xl">
+              +62 8XX-XXXX-XXXX
+            </h2>
+            <p class="mt-1.5 inline-flex items-center gap-1.5 text-xs text-muted transition-colors group-hover:text-rose">
+              <span>Chat directly</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </p>
           </div>
-          <span class="mt-6 inline-block text-xs font-bold text-rose">Chat on WhatsApp →</span>
         </a>
 
-        <!-- 3. Kotak LinkedIn -->
-        <a
-          href="https://www.linkedin.com/in/raharjian-sustanadia-wijayanti/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group flex w-full flex-col justify-between rounded-2xl border border-line bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:border-rose sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
-        >
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-lilac text-base font-bold text-[#7c5d99]">in</span>
-              <span class="text-sm text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-rose">↗</span>
-            </div>
-            <h2 class="mt-5 font-serif text-2xl">LinkedIn</h2>
-            <p class="mt-1.5 text-xs leading-6 text-muted">
-              Raharjian Sustanadia Wijayanti
-            </p>
-          </div>
-          <span class="mt-6 inline-block text-xs font-bold text-rose">Connect with me →</span>
-        </a>
-
-        <!-- 4. Kotak GitHub -->
+        <!-- 3. GitHub -->
         <a
           href="https://github.com/nyndaa"
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex w-full flex-col justify-between rounded-2xl border border-line bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:border-rose sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          class="group flex items-center gap-5 rounded-2xl border border-line bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-rose/60 sm:gap-6 sm:p-7"
         >
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-butter text-xl text-[#b89a59]">⌘</span>
-              <span class="text-sm text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-rose">↗</span>
-            </div>
-            <h2 class="mt-5 font-serif text-2xl">GitHub</h2>
-            <p class="mt-1.5 text-xs leading-6 text-muted">
-              @nyndaa · Code &amp; repositories
+          <div class="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[#edd99e] bg-[#fdf9ec] font-serif text-xl italic text-[#b08e3e] transition-colors duration-300 group-hover:bg-[#c5a14e] group-hover:text-white sm:h-20 sm:w-20 sm:text-2xl">
+            GH
+          </div>
+          <div class="min-w-0">
+            <p class="text-[10px] font-bold uppercase tracking-[.18em] text-muted">GITHUB</p>
+            <h2 class="mt-1 truncate font-serif text-xl font-medium tracking-tight text-ink sm:text-2xl">
+              nyndaa
+            </h2>
+            <p class="mt-1.5 inline-flex items-center gap-1.5 text-xs text-muted transition-colors group-hover:text-rose">
+              <span>View my repositories</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </p>
           </div>
-          <span class="mt-6 inline-block text-xs font-bold text-rose">View repositories →</span>
         </a>
 
-        <!-- 5. Kotak Instagram -->
+        <!-- 4. LinkedIn -->
+        <a
+          href="https://www.linkedin.com/in/raharjian-sustanadia-wijayanti/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center gap-5 rounded-2xl border border-line bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-rose/60 sm:gap-6 sm:p-7"
+        >
+          <div class="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-lilac bg-[#f6f2fb] font-serif text-xl italic text-[#7c5d99] transition-colors duration-300 group-hover:bg-[#8a6ba8] group-hover:text-white sm:h-20 sm:w-20 sm:text-2xl">
+            IN
+          </div>
+          <div class="min-w-0">
+            <p class="text-[10px] font-bold uppercase tracking-[.18em] text-muted">LINKEDIN</p>
+            <h2 class="mt-1 truncate font-serif text-xl font-medium tracking-tight text-ink sm:text-2xl">
+              Raharjian Sustanadia
+            </h2>
+            <p class="mt-1.5 inline-flex items-center gap-1.5 text-xs text-muted transition-colors group-hover:text-rose">
+              <span>Connect with me</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </p>
+          </div>
+        </a>
+
+        <!-- 5. Instagram (Rata tengah di baris bawah pada layar desktop) -->
         <a
           href="https://www.instagram.com/nynda._/"
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex w-full flex-col justify-between rounded-2xl border border-line bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:border-rose sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          class="group flex items-center gap-5 rounded-2xl border border-line bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-rose/60 sm:gap-6 sm:p-7 md:col-span-2 md:mx-auto md:w-[calc(50%-0.75rem)]"
         >
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-[#f8e6eb] text-xl text-rose">✿</span>
-              <span class="text-sm text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-rose">↗</span>
-            </div>
-            <h2 class="mt-5 font-serif text-2xl">Instagram</h2>
-            <p class="mt-1.5 text-xs leading-6 text-muted">
-              @nynda._ · Creative &amp; daily updates
+          <div class="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-pink bg-[#fdf2f5] font-serif text-xl italic text-rose transition-colors duration-300 group-hover:bg-rose group-hover:text-white sm:h-20 sm:w-20 sm:text-2xl">
+            IG
+          </div>
+          <div class="min-w-0">
+            <p class="text-[10px] font-bold uppercase tracking-[.18em] text-muted">INSTAGRAM</p>
+            <h2 class="mt-1 truncate font-serif text-xl font-medium tracking-tight text-ink sm:text-2xl">
+              @nynda._
+            </h2>
+            <p class="mt-1.5 inline-flex items-center gap-1.5 text-xs text-muted transition-colors group-hover:text-rose">
+              <span>Follow my updates</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </p>
           </div>
-          <span class="mt-6 inline-block text-xs font-bold text-rose">Follow along →</span>
         </a>
 
       </section>
