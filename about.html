@@ -8,10 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-  <!-- Tailwind CDN cocok untuk prototipe/portofolio statis tanpa proses build. -->
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Konfigurasi tema terpusat agar warna dan font mudah disesuaikan.
     tailwind.config = {
       darkMode: 'class',
       theme: {
@@ -32,80 +31,710 @@
             serif: ["Playfair Display", "Georgia", "serif"]
           },
           boxShadow: {
-            soft: "0 20px 50px rgba(90, 62, 73, .08)"
+            soft: "0 20px 50px rgba(90, 62, 73, .08)",
+            card: "0 10px 30px rgba(48, 43, 49, .04)"
           }
         }
       }
     };
   </script>
-  <!-- Style kecil ini hanya untuk elemen dekoratif yang sulit dibuat dengan utility biasa. -->
+
   <style>
-    .flower-shadow { text-shadow: 6px 7px 0 #f6dce5; }
-    .portrait-arch { border-radius: 48% 48% 16px 16px; }
     [hidden] { display: none !important; }
+    .portrait-arch { border-radius: 48% 48% 20px 20px; }
+
+    /* Marquee Tech Stack */
+    @keyframes marquee-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 30s linear infinite;
+    }
+
+    .marquee-wrapper:hover .animate-marquee {
+      animation-play-state: paused;
+    }
+
+    /* Hiasan Bergerak Halus */
+    @keyframes float-gentle {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-9px) rotate(6deg); }
+    }
+
+    @keyframes float-reverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(8px) rotate(-6deg); }
+    }
+
+    @keyframes sparkle-pulse {
+      0%, 100% { opacity: 0.35; transform: scale(0.92); }
+      50% { opacity: 0.9; transform: scale(1.12); }
+    }
+
+    @keyframes orb-drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(16px, -14px) scale(1.06); }
+    }
+
+    .animate-float-gentle { animation: float-gentle 5.5s ease-in-out infinite; }
+    .animate-float-reverse { animation: float-reverse 6.5s ease-in-out infinite; }
+    .animate-sparkle-pulse { animation: sparkle-pulse 4s ease-in-out infinite; }
+    .animate-orb-drift { animation: orb-drift 11s ease-in-out infinite; }
   </style>
 
-  <!-- Cek tema instan di dalam <head> agar tidak kedip saat pindah halaman -->
   <script>
     if (localStorage.getItem('portfolio-theme') === 'dark') {
       document.documentElement.classList.add('dark');
     }
   </script>
 </head>
-<body class="overflow-x-clip bg-paper font-sans text-ink antialiased">
-  <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
+<body class="relative overflow-x-clip bg-paper font-sans text-ink antialiased transition-colors duration-300 dark:bg-[#191518] dark:text-[#f5eff2]">
 
-    <!-- Navigasi utama -->
-    <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md transition-colors"></div>
+  <!-- Ambient Pastel Orbs Bergerak di Latar Belakang -->
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+    <div class="animate-orb-drift absolute -left-24 top-24 h-80 w-80 rounded-full bg-pink/35 blur-3xl dark:bg-rose/10"></div>
+    <div class="animate-orb-drift absolute right-[-4rem] top-[38%] h-72 w-72 rounded-full bg-lilac/40 blur-3xl dark:bg-[#2d2236]/25" style="animation-delay: 2.5s;"></div>
+    <div class="animate-orb-drift absolute bottom-12 left-1/3 h-72 w-72 rounded-full bg-sage/35 blur-3xl dark:bg-[#213020]/20" style="animation-delay: 5s;"></div>
+  </div>
 
-    <main>
-      <!-- Pengantar halaman About. -->
-      <section class="py-12 text-center sm:py-16">
-        <p class="flex items-center justify-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted"><span class="h-2 w-2 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span> THE PERSON BEHIND THE PIXELS</p>
-        <h1 class="my-5 font-serif text-[clamp(2.5rem,4.5vw,3.75rem)] font-semibold tracking-tight">A little bit<br><em class="font-medium text-rose">about me.</em></h1>
-        <p class="mx-auto max-w-xl text-sm leading-7 text-muted">I’m an Informatics student preparing for a Junior Frontend Developer internship. I learn by building, testing, and improving real interfaces.</p>
+  <!-- Navigasi utama (konsisten full-width seperti index.html) -->
+  <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur-md transition-colors dark:border-[#2e262b] dark:bg-[#191518]/90"></div>
+
+  <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 sm:px-8 lg:px-12">
+
+    <main class="flex-1">
+      <!-- 1. CENTERED HERO HEADER + FLOATING ACCENTS -->
+      <section class="relative py-12 text-center sm:py-16">
+        <div class="pointer-events-none hidden sm:block" aria-hidden="true">
+          <span class="animate-float-gentle absolute left-14 top-14 text-2xl text-rose/45">✧</span>
+          <span class="animate-sparkle-pulse absolute right-20 top-12 text-lg text-[#c7a858]/55" style="animation-delay: 1s;">✦</span>
+          <span class="animate-float-reverse absolute bottom-6 right-14 text-2xl text-[#8ea87f]/55" style="animation-delay: 1.8s;">❀</span>
+        </div>
+
+        <div class="mx-auto max-w-2xl">
+          <p class="inline-flex items-center gap-2 rounded-full border border-line bg-white/80 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-rose shadow-sm backdrop-blur-sm dark:border-[#2e262b] dark:bg-[#221c20]">
+            <span class="animate-sparkle-pulse text-xs">✦</span>
+            About Me
+          </p>
+          <h1 class="mt-4 font-serif text-[clamp(2.1rem,4.2vw,3.35rem)] font-semibold leading-[1.15] tracking-tight">
+            A closer look at <em class="font-medium text-rose">who I am.</em>
+          </h1>
+          <p class="mt-4 text-sm leading-7 text-muted sm:text-base sm:leading-8 dark:text-[#b5a8b0]">
+            An Informatics undergraduate at Universitas Teknologi Digital Indonesia (UTDI) who loves turning thoughtful designs into clean, responsive web experiences.
+          </p>
+        </div>
       </section>
 
-      <!-- Bagian profil: dekorasi di kiri, deskripsi dan CTA di kanan. -->
-      <section class="grid items-center gap-10 px-0 pb-16 sm:px-4 md:grid-cols-[.9fr_1.1fr] lg:gap-16 lg:px-8 md:pb-20">
-        <div class="mx-auto w-full max-w-sm p-3">
-          <div class="portrait-arch relative flex h-80 items-center justify-center overflow-hidden bg-[#f7e2e8] sm:h-[350px]">
-            <div class="absolute left-1/2 top-11 h-56 w-56 -translate-x-1/2 rounded-full bg-[#f1cad7]"></div>
-            <span class="absolute right-10 top-8 text-4xl text-[#bc9d5b]">☼</span><span class="flower-shadow relative text-8xl text-[#bd718d] sm:text-9xl">✿</span>
-            <p class="absolute bottom-5 left-5 text-[11px] leading-5 tracking-wide text-[#8b6372]">currently<br>learning<br><strong class="font-serif text-base tracking-normal text-[#9c536e]">something new</strong></p>
-          </div>
-          <p class="mt-3 text-center text-[10px] italic text-[#a2959b]">a work in progress — just like everyone else ♡</p>
+      <!-- 2. LAYERED PROFILE CARD & STORY -->
+      <section class="relative grid items-center gap-10 pb-16 md:grid-cols-[310px_1fr] lg:grid-cols-[340px_1fr] lg:gap-16 lg:pb-20">
+        
+        <!-- Kolom Kiri: Kartu Identitas dengan Tumpukan Layer Pastel di Belakangnya -->
+        <div class="relative mx-auto w-full max-w-[330px]">
+          <!-- Layer Belakang Pastel (Memberi kedalaman tanpa terlihat kaku) -->
+          <div class="absolute -inset-2 rotate-2 rounded-3xl border border-pink bg-pink/40 dark:border-[#3d2933] dark:bg-[#291d23]"></div>
+          <div class="absolute -inset-1 -rotate-1 rounded-3xl border border-lilac bg-lilac/40 dark:border-[#32293b] dark:bg-[#231d29]"></div>
+
+          <!-- Ornamen Bergerak -->
+          <span class="pointer-events-none animate-float-gentle absolute -left-4 -top-4 z-20 text-xl text-rose/70" aria-hidden="true">✧</span>
+          <span class="pointer-events-none animate-float-reverse absolute -bottom-3 -right-3 z-20 text-xl text-[#c7a858]/70" aria-hidden="true">✦</span>
+
+          <aside class="relative z-10 rounded-2xl border border-line bg-white p-4 shadow-soft dark:border-[#2e262b] dark:bg-[#221c20]">
+            <div class="portrait-arch aspect-[4/4.3] overflow-hidden bg-[#f7e2e8] dark:bg-[#31242b]">
+              <img 
+                src="assets/profil-nadia2.png" 
+                alt="Raharjian Sustanadia Wijayanti" 
+                class="h-full w-full object-cover object-top"
+              />
+            </div>
+
+            <div class="mt-4 border-b border-line pb-3.5 dark:border-[#2e262b]">
+              <h2 class="font-serif text-lg font-semibold leading-snug">Raharjian Sustanadia Wijayanti</h2>
+              <p class="mt-0.5 text-xs font-medium text-rose">Junior Frontend &amp; Web Developer</p>
+            </div>
+
+            <dl class="mt-3.5 space-y-2 text-xs">
+              <div class="flex items-center justify-between">
+                <dt class="text-muted dark:text-[#b5a8b0]">Location</dt>
+                <dd class="font-medium">Yogyakarta, Indonesia</dd>
+              </div>
+              <div class="flex items-center justify-between">
+                <dt class="text-muted dark:text-[#b5a8b0]">Campus</dt>
+                <dd class="font-medium">UTDI (Informatics ’24)</dd>
+              </div>
+              <div class="flex items-center justify-between">
+                <dt class="text-muted dark:text-[#b5a8b0]">Status</dt>
+                <dd class="inline-flex items-center gap-1.5 font-semibold text-[#5b7a4a] dark:text-[#9ec489]">
+                  <span class="relative flex h-2 w-2">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#6e9459] opacity-75"></span>
+                    <span class="relative inline-flex h-2 w-2 rounded-full bg-[#6e9459]"></span>
+                  </span>
+                  Open for Internship
+                </dd>
+              </div>
+            </dl>
+          </aside>
         </div>
+
+        <!-- Kolom Kanan: Cerita Perkenalan -->
         <div>
-          <p class="text-[10px] font-bold tracking-[.16em] text-muted">HELLO, NICE TO MEET YOU</p>
-          <h2 class="my-4 font-serif text-3xl leading-snug lg:text-4xl">I’m Nadia, an Informatics student who wants to build <em class="text-rose">useful and accessible web experiences.</em></h2>
-          <p class="mb-4 text-sm leading-7 text-muted lg:text-base lg:leading-8">I’m focused on frontend development: translating designs into responsive pages, organizing reusable UI, and making sure interactions feel clear on desktop and mobile.</p>
-          <p class="text-sm leading-7 text-muted lg:text-base lg:leading-8">I’m practicing HTML, CSS, JavaScript, and React while learning how to work with APIs, Git, and backend services such as Supabase. I’m looking for an internship where I can contribute, receive feedback, and keep improving.</p>
-          <a href="projects.html" class="mt-5 inline-flex rounded-full bg-pink px-5 py-3 text-xs font-bold text-[#573a46] transition hover:-translate-y-0.5 hover:shadow-soft">See what I’m making <span class="ml-2 text-rose">↗</span></a>
+          <p class="text-xs font-bold uppercase tracking-[0.16em] text-rose">Hello, I’m Nadia</p>
+          <h2 class="mt-2 font-serif text-2xl font-semibold leading-snug sm:text-3xl lg:text-[2rem]">
+            I enjoy turning designs into <em class="font-medium text-rose">clean, responsive</em> web experiences.
+          </h2>
+          
+          <div class="mt-5 space-y-4 text-sm leading-7 text-muted sm:text-[15px] sm:leading-8 dark:text-[#b5a8b0]">
+            <p>
+              I am a informatics student at <strong class="font-semibold text-ink dark:text-white">Universitas Teknologi Digital Indonesia (UTDI)</strong> with a strong interest in frontend web development and UI/UX implementation. I love paying attention to layout details, visual hierarchy, and smooth user interactions.
+            </p>
+            <p>
+              Alongside crafting client-side interfaces with HTML5, Tailwind CSS, JavaScript, and React, I also build full-stack web applications using Laravel, Node.js, relational and document databases (MySQL, MongoDB, Supabase), as well as cloud object storage.
+            </p>
+            <p>
+              Currently, I am looking for a <strong class="font-semibold text-ink dark:text-white">Junior Frontend or Full-Stack Web Developer Internship</strong> where I can contribute to real-world products, learn from experienced developers, and keep growing as an engineer.
+            </p>
+          </div>
+
+          <div class="mt-8 flex flex-wrap items-center gap-3.5">
+            <a
+              href="projects.html"
+              class="inline-flex items-center gap-2 rounded-full bg-rose px-6 py-3 text-xs font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#a3556f]"
+            >
+              <span>View Selected Projects</span>
+              <span>→</span>
+            </a>
+            <a
+              href="assets/CV-Raharjian_Sustanadia_Wijayanti_2.pdf"
+              download="CV-Raharjian_Sustanadia_Wijayanti_2.pdf"
+              class="inline-flex items-center gap-2 rounded-full border border-pink bg-[#fdf2f5] px-6 py-3 text-xs font-bold text-[#8b6372] transition hover:-translate-y-0.5 hover:bg-pink hover:text-[#573a46] dark:border-[#3c2d34] dark:bg-[#261e23] dark:text-[#e3b8c7] dark:hover:bg-[#33272e]"
+            >
+              <span>Download CV (PDF)</span>
+              <span class="text-rose">↓</span>
+            </a>
+          </div>
         </div>
       </section>
 
-      <!-- Prinsip kerja ditampilkan sebagai tiga kartu dinamis. -->
-      <section class="border-t border-line py-14 sm:py-16">
-        <p class="text-[10px] font-bold tracking-[.16em] text-muted">MY LITTLE COMPASS</p>
-        <h2 class="mb-8 mt-3 font-serif text-3xl sm:text-4xl">How I approach <em class="text-rose">frontend development.</em></h2>
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          <article class="rounded-2xl border border-line bg-white p-6 lg:p-7"><span class="grid h-10 w-10 place-items-center rounded-xl bg-[#f8e6eb] text-xl text-[#bd7890]">✦</span><h3 class="mb-2 mt-5 font-serif text-xl">Keep learning</h3><p class="text-xs leading-6 text-muted">Explore documentation, practice new concepts, and learn from code reviews.</p></article>
-          <article class="rounded-2xl border border-line bg-white p-6 lg:p-7"><span class="grid h-10 w-10 place-items-center rounded-xl bg-butter text-xl text-[#b89a59]">♡</span><h3 class="mb-2 mt-5 font-serif text-xl">Build responsively</h3><p class="text-xs leading-6 text-muted">Consider mobile layouts, accessibility, and clear interactions from the start.</p></article>
-          <article class="rounded-2xl border border-line bg-white p-6 sm:col-span-2 lg:col-span-1 lg:p-7"><span class="grid h-10 w-10 place-items-center rounded-xl bg-sage text-xl text-[#849875]">↗</span><h3 class="mb-2 mt-5 font-serif text-xl">Write maintainable code</h3><p class="text-xs leading-6 text-muted">Use consistent naming, reusable patterns, and comments where they add value.</p></article>
+<!-- 3. PROFESSIONAL ENGINEERING PROCESS (INTERACTIVE SPLIT PANEL) -->
+      <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-sparkle-pulse absolute right-6 top-12 text-lg text-rose/45" aria-hidden="true">✦</span>
+
+        <div class="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Engineering Workflow</p>
+            <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl lg:text-[2rem]">
+              How I approach <em class="font-medium text-rose">web development.</em>
+            </h2>
+          </div>
+          <p class="max-w-md text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
+            A structured workflow focused on interface precision, maintainable codebases, and reliable full-stack integration.
+          </p>
+        </div>
+
+        <!-- Split-Screen Interactive Panel -->
+        <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
+          
+          <!-- Kolom Kiri: Daftar Tahapan Kerja (Navigasi Interaktif) -->
+          <div class="flex flex-col justify-between gap-3.5" role="tablist" aria-label="Work Approach Steps">
+            
+            <!-- Step 01 -->
+            <button
+              type="button"
+              data-approach="0"
+              class="approach-tab group flex w-full items-start gap-4 rounded-2xl border border-rose bg-white p-5 text-left shadow-soft transition-all duration-200 dark:border-rose dark:bg-[#221c20]"
+            >
+              <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-rose text-xs font-bold text-white transition-colors">
+                01
+              </span>
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="font-serif text-lg font-semibold text-ink dark:text-white">Responsive UI Engineering</h3>
+                  <span class="text-xs font-semibold text-rose transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+                </div>
+                <p class="mt-1 text-xs leading-relaxed text-muted dark:text-[#b5a8b0]">
+                  Translating Figma wireframes into accessible, pixel-consistent layouts across mobile and desktop viewports.
+                </p>
+              </div>
+            </button>
+
+            <!-- Step 02 -->
+            <button
+              type="button"
+              data-approach="1"
+              class="approach-tab group flex w-full items-start gap-4 rounded-2xl border border-line bg-white/70 p-5 text-left transition-all duration-200 hover:border-pink hover:bg-white dark:border-[#2e262b] dark:bg-[#221c20]/60 dark:hover:border-[#47353e] dark:hover:bg-[#221c20]"
+            >
+              <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paper text-xs font-bold text-muted transition-colors dark:bg-[#191518] dark:text-[#b5a8b0]">
+                02
+              </span>
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="font-serif text-lg font-semibold text-ink dark:text-white">Modular &amp; Maintainable Code</h3>
+                  <span class="text-xs font-semibold text-muted opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">→</span>
+                </div>
+                <p class="mt-1 text-xs leading-relaxed text-muted dark:text-[#b5a8b0]">
+                  Writing semantic HTML, reusable UI components, and clean state logic designed for team collaboration.
+                </p>
+              </div>
+            </button>
+
+            <!-- Step 03 -->
+            <button
+              type="button"
+              data-approach="2"
+              class="approach-tab group flex w-full items-start gap-4 rounded-2xl border border-line bg-white/70 p-5 text-left transition-all duration-200 hover:border-pink hover:bg-white dark:border-[#2e262b] dark:bg-[#221c20]/60 dark:hover:border-[#47353e] dark:hover:bg-[#221c20]"
+            >
+              <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paper text-xs font-bold text-muted transition-colors dark:bg-[#191518] dark:text-[#b5a8b0]">
+                03
+              </span>
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="font-serif text-lg font-semibold text-ink dark:text-white">End-to-End System Integration</h3>
+                  <span class="text-xs font-semibold text-muted opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">→</span>
+                </div>
+                <p class="mt-1 text-xs leading-relaxed text-muted dark:text-[#b5a8b0]">
+                  Connecting frontend interfaces with RESTful APIs, authentication flows, and relational or NoSQL databases.
+                </p>
+              </div>
+            </button>
+
+          </div>
+
+          <!-- Kolom Kanan: Panel Spesifikasi & Standar Implementasi -->
+          <div class="flex flex-col justify-between rounded-2xl border border-line bg-white p-6 shadow-soft sm:p-8 dark:border-[#2e262b] dark:bg-[#221c20]">
+            <div>
+              <div class="flex items-center justify-between border-b border-line pb-4 dark:border-[#2e262b]">
+                <span class="text-[11px] font-bold uppercase tracking-[0.16em] text-rose" id="approach-badge">
+                  01 / Interface Standard
+                </span>
+                <span class="rounded-full bg-paper px-3 py-1 text-[11px] font-medium text-muted dark:bg-[#191518] dark:text-[#b5a8b0]" id="approach-metric">
+                  Mobile-First &amp; WCAG Ready
+                </span>
+              </div>
+
+              <h3 class="mt-5 font-serif text-2xl font-semibold text-ink dark:text-white" id="approach-title">
+                Responsive UI Engineering
+              </h3>
+              <p class="mt-3 text-xs leading-6 text-muted sm:text-sm sm:leading-7 dark:text-[#b5a8b0]" id="approach-desc">
+                Every interface starts with clear visual hierarchy and fluid breakpoints so users get a consistent experience whether browsing on a smartphone or a wide desktop monitor.
+              </p>
+
+              <!-- Key Deliverables Checklist -->
+              <ul class="mt-6 space-y-3 border-t border-line pt-5 text-xs text-ink dark:border-[#2e262b] dark:text-[#f5eff2]" id="approach-checklist">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Fluid grid and flexbox layouts tested across standard mobile, tablet, and desktop breakpoints.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Consistent light and dark theme parity with readable typography and color contrast.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Interactive feedback states for buttons, forms, navigation menus, and loading indicators.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Core Tools Used in This Stage -->
+            <div class="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4 dark:border-[#2e262b]">
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-muted dark:text-[#b5a8b0]">Applied Stack</span>
+              <div class="flex flex-wrap gap-1.5" id="approach-tags">
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Figma</span>
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">HTML5</span>
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Tailwind CSS</span>
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Responsive CSS</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <!-- CTA kontak global. -->
-      <section class="mb-14 flex flex-col items-start justify-between gap-5 rounded-2xl bg-[#f7e8ec] p-6 sm:mb-20 sm:flex-row sm:items-center sm:p-9">
-        <div><p class="text-[10px] font-bold tracking-[.16em] text-muted">HAVE SOMETHING IN MIND?</p><h2 class="mt-2 font-serif text-3xl">Let’s make something <em class="text-rose">good.</em></h2></div>
-        <a href="mailto:raharjiansustanadiawijayanti@gmail.com" class="rounded-full bg-[#352d32] px-5 py-3 text-xs font-bold text-white transition hover:-translate-y-0.5">Get in touch <span class="ml-2 text-[#f1bdcf]">↗</span></a>
+      <!-- 4. INTERACTIVE TECHNICAL STACK (MARQUEE + CATEGORY FILTER) -->
+      <section class="relative border-t border-line py-14 lg:py-16 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-sparkle-pulse absolute right-4 top-8 text-lg text-rose/45" aria-hidden="true">✧</span>
+
+        <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Technical Stack</p>
+            <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl">Core Technologies &amp; <em class="font-medium text-rose">Tools.</em></h2>
+          </div>
+
+          <div class="flex flex-wrap gap-2" id="tech-filters">
+            <button type="button" data-filter="all" class="tech-tab rounded-full bg-rose px-4 py-1.5 text-xs font-semibold text-white transition">
+              All Stack
+            </button>
+            <button type="button" data-filter="frontend" class="tech-tab rounded-full border border-line bg-white px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-rose hover:text-ink dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#b5a8b0] dark:hover:text-white">
+              Frontend &amp; UI
+            </button>
+            <button type="button" data-filter="backend" class="tech-tab rounded-full border border-line bg-white px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-rose hover:text-ink dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#b5a8b0] dark:hover:text-white">
+              Backend &amp; DB
+            </button>
+            <button type="button" data-filter="tools" class="tech-tab rounded-full border border-line bg-white px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-rose hover:text-ink dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#b5a8b0] dark:hover:text-white">
+              Tools 
+            </button>
+          </div>
+        </div>
+
+        <div id="tech-marquee-view" class="marquee-wrapper relative overflow-hidden rounded-2xl border border-line bg-white py-8 shadow-card dark:border-[#2e262b] dark:bg-[#221c20]">
+          <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-white to-transparent sm:w-24 dark:from-[#221c20]"></div>
+          <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-white to-transparent sm:w-24 dark:from-[#221c20]"></div>
+
+          <div class="animate-marquee items-center gap-5" id="marquee-track"></div>
+        </div>
+
+        <div id="tech-grid-view" hidden class="grid grid-cols-2 gap-3.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"></div>
+
+        <p class="mt-3 text-right text-[11px] text-muted dark:text-[#b5a8b0]">
+          Hover over the stream to pause, or select a category to inspect individual tools.
+        </p>
+      </section>
+
+   <!-- 5. INTERACTIVE JOURNEY ARCHIVE (KONSEP STUDIO DOSSIER ORISINAL) -->
+      <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-float-gentle absolute left-2 top-10 text-xl text-[#9db78f]/55" aria-hidden="true">❀</span>
+        <span class="pointer-events-none animate-sparkle-pulse absolute right-6 top-14 text-lg text-rose/45" aria-hidden="true">✦</span>
+
+        <div class="mb-9 text-center">
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Academic &amp; Credentials</p>
+          <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl">My Education &amp; <em class="font-medium text-rose">Certifications.</em></h2>
+        </div>
+
+        <!-- Container Studio Card dengan Tab Navigasi & Garis Timeline Bernomor -->
+        <div class="overflow-hidden rounded-3xl border border-line bg-white shadow-soft dark:border-[#2e262b] dark:bg-[#221c20]">
+          
+          <!-- Top Bar Studio Header (Orisinal dengan aksen bunga & badge status) -->
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-line bg-[#fcf8f6] px-5 py-4 sm:px-8 dark:border-[#2e262b] dark:bg-[#1c171b]">
+            <div class="flex items-center gap-2.5">
+              <span class="text-base text-rose">✿</span>
+              <span class="text-xs font-bold tracking-wider text-ink dark:text-white">NADIA’S RECORD BOOK</span>
+              <span class="hidden text-xs text-muted sm:inline dark:text-[#b5a8b0]">/ 2024 — 2026</span>
+            </div>
+
+            <!-- Tab Switcher Interaktif -->
+            <div class="flex flex-wrap gap-1.5 rounded-full border border-line bg-white p-1 dark:border-[#33292f] dark:bg-[#221c20]" role="tablist">
+              <button type="button" data-journey="education" class="journey-tab rounded-full bg-rose px-4 py-1.5 text-xs font-bold text-white transition">
+                Education &amp; Campus
+              </button>
+              <button type="button" data-journey="certifications" class="journey-tab rounded-full px-4 py-1.5 text-xs font-semibold text-muted transition hover:text-ink dark:text-[#b5a8b0] dark:hover:text-white">
+                Certifications (3)
+              </button>
+            </div>
+          </div>
+
+        <!-- PANEL 1: EDUCATION (Dengan Timeline Bernomor 01, 02) -->
+          <div id="panel-education" class="p-6 sm:p-8 lg:p-10">
+           
+            <!-- Keterangan Jenjang Pendidikan (Judul & Deskripsi Biasa) -->
+            <div class="mb-7">
+              <h3 class="font-serif text-lg font-semibold text-ink sm:text-xl dark:text-white">
+                Formal Education Journey
+              </h3>
+              <p class="mt-1 text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
+                From Senior High School (SMA) in Natural Sciences to an ongoing Bachelor’s Degree (S1) in Informatics.
+              </p>
+            </div>
+
+            <div class="space-y-6">
+              <!-- Record 01: SMAN 2 Banguntapan -->
+              <div class="flex gap-4 sm:gap-6">
+                <div class="flex flex-col items-center">
+                  <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-lilac bg-lilac/60 text-xs font-bold text-[#5d4b75] dark:border-[#413652] dark:bg-[#31293d] dark:text-[#cbbbe0]">01</span>
+                  <div class="mt-2 h-full w-px bg-line dark:bg-[#2e262b]"></div>
+                </div>
+
+                <div class="flex-1 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:p-6 dark:border-[#33292f] dark:bg-[#191518]/70">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-[#6e598a] dark:text-[#cbbbe0]">Senior High School</span>
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-lilac/70 px-3 py-1 text-[10px] font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">
+                      <span class="h-1.5 w-1.5 rounded-full bg-[#7c659c]"></span>
+                      2020 – 2023 • COMPLETED
+                    </span>
+                  </div>
+
+                  <div class="mt-3 flex items-start gap-4">
+                    <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-lilac bg-[#f2eef8] font-serif text-xs font-bold text-[#5d4b75] dark:border-[#413652] dark:bg-[#31293d] dark:text-[#cbbbe0]">
+                      SMA
+                    </div>
+                    <div>
+                      <h3 class="font-serif text-lg font-semibold text-ink sm:text-xl dark:text-white">SMAN 2 Banguntapan</h3>
+                      <p class="mt-0.5 text-xs font-medium text-muted dark:text-[#b5a8b0]">Natural Sciences Major (Jurusan IPA) • Yogyakarta</p>
+                    </div>
+                  </div>
+
+                  <p class="mt-4 border-t border-dashed border-line pt-3.5 text-xs leading-6 text-muted dark:border-[#2e262b] dark:text-[#b5a8b0]">
+                    Focused on Mathematics, Physics, Chemistry, and Biology—building analytical problem-solving foundations and participating in creative school competitions.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Record 02: Universitas Teknologi Digital Indonesia -->
+              <div class="flex gap-4 sm:gap-6">
+                <div class="flex flex-col items-center">
+                  <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-pink bg-[#fdf2f5] text-xs font-bold text-rose dark:border-rose/30 dark:bg-rose/15">02</span>
+                </div>
+
+                <div class="flex-1 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:p-6 dark:border-[#33292f] dark:bg-[#191518]/70">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-rose">Undergraduate Degree</span>
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-sage/80 px-3 py-1 text-[10px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">
+                      <span class="h-1.5 w-1.5 rounded-full bg-[#658752]"></span>
+                      CURRENTLY STUDYING
+                    </span>
+                  </div>
+
+                  <div class="mt-3 flex items-start gap-4">
+                    <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-pink/80 bg-[#f8e6eb] font-serif text-xs font-bold text-rose dark:border-rose/30 dark:bg-rose/15">
+                      UTDI
+                    </div>
+                    <div>
+                      <h3 class="font-serif text-lg font-semibold text-ink sm:text-xl dark:text-white">Universitas Teknologi Digital Indonesia</h3>
+                      <p class="mt-0.5 text-xs font-medium text-muted dark:text-[#b5a8b0]">Bachelor of Informatics (S1 Informatika) • 2024 – Present</p>
+                    </div>
+                  </div>
+
+                  <p class="mt-4 border-t border-dashed border-line pt-3.5 text-xs leading-6 text-muted dark:border-[#2e262b] dark:text-[#b5a8b0]">
+                    Studying core software engineering, Web Frameworks, Cloud Computing, Data Engineering, Artificial Neural Networks, and developing a full-stack web capstone project.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        <!-- PANEL 2: CERTIFICATIONS (Muncul saat tab Certifications diklik) -->
+          <div id="panel-certifications" hidden class="p-6 sm:p-8 lg:p-10">
+
+            <!-- Keterangan Kelas Tambahan & Sertifikasi (Judul & Deskripsi Biasa) -->
+            <div class="mb-7">
+              <h3 class="font-serif text-lg font-semibold text-ink sm:text-xl dark:text-white">
+                Additional Courses &amp; Certifications
+              </h3>
+              <p class="mt-1 text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
+                Beyond formal university coursework, I actively take specialized bootcamps and training programs in programming, AI, and web security to strengthen my technical foundation.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              
+              <!-- Certificate 01 -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lilac/80 font-serif text-xs font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">01</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Samsung Electronics Indonesia</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Samsung Innovation Campus (Batch 8) — Python Programming</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Completed intensive Python programming &amp; algorithmic problem-solving training.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-lilac/70 px-3.5 py-1 text-[11px] font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">2025</span>
+                  <a
+                    href="sertifikat/samsung-innovation-campus-batch-8.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 02 -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink/70 font-serif text-xs font-bold text-rose dark:bg-rose/20">02</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">AI Engineer for Milenial</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Practical foundations in machine learning workflows and AI-assisted applications.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-pink/70 px-3.5 py-1 text-[11px] font-bold text-[#7c485a] dark:bg-rose/20 dark:text-[#e6a4ba]">2025</span>
+                  <a
+                    href="sertifikat/komdigi-ai-engineer-for-milenial.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 03 -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sage/80 font-serif text-xs font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">03</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Ethical Hacker for Dummies</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Web security fundamentals, vulnerability awareness, and safe development practices.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-sage/80 px-3.5 py-1 text-[11px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">2025</span>
+                  <a
+                    href="sertifikat/komdigi-ethical-hacker-for-dummies.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Status Bar -->
+          <div class="flex items-center justify-between border-t border-line bg-[#fcf8f6] px-5 py-3 text-[11px] text-muted sm:px-8 dark:border-[#2e262b] dark:bg-[#1c171b] dark:text-[#b5a8b0]">
+            <span class="inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-[#8fb37d]"></span>
+              Updated November 2026
+            </span>
+            <span>Yogyakarta, ID</span>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- 6. CLOSING CTA BANNER -->
+      <section class="relative mb-16 overflow-hidden rounded-3xl border border-pink/70 bg-[#f7e8ec] p-7 sm:mb-20 sm:flex sm:items-center sm:justify-between sm:p-10 dark:border-[#382730] dark:bg-[#261c21]">
+        <span class="pointer-events-none animate-float-gentle absolute right-48 top-4 text-lg text-rose/45" aria-hidden="true">✧</span>
+        <span class="pointer-events-none animate-sparkle-pulse absolute bottom-3 right-6 text-base text-[#c7a858]/55" aria-hidden="true">♡</span>
+
+        <div class="relative z-10">
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Let’s Connect</p>
+          <h2 class="mt-1.5 font-serif text-2xl font-semibold sm:text-3xl">Looking for a frontend <em class="text-rose">developer intern?</em></h2>
+          <p class="mt-2 max-w-xl text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
+            Feel free to reach out for internship opportunities, web collaborations, or just to say hello.
+          </p>
+        </div>
+        <div class="relative z-10 mt-6 sm:mt-0 sm:shrink-0">
+          <a 
+            href="contact.html" 
+            class="inline-flex items-center gap-2 rounded-full bg-rose px-6 py-3.5 text-xs font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#a3556f]"
+          >
+            <span>Get in Touch</span>
+            <span>↗</span>
+          </a>
+        </div>
       </section>
     </main>
 
     <!-- Footer -->
     <div id="footer-container"></div>
   </div>
+
+  <!-- Script Global Navbar & Footer -->
   <script src="script.js"></script>
+
+  <!-- Script Interaktif Tech Stack & Journey Tabs -->
+  <script>
+    // 1. Tech Stack Marquee & Filter
+    const techStackData = [
+      { name: "HTML5", category: "frontend", role: "Markup", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
+      { name: "CSS3", category: "frontend", role: "Styling", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
+      { name: "JavaScript", category: "frontend", role: "ES6+ Logic", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+      { name: "Tailwind CSS", category: "frontend", role: "CSS Framework", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "Vue.js", category: "frontend", role: "Frontend UI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" },
+      { name: "React", category: "frontend", role: "UI Library", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+      { name: "Figma", category: "frontend", role: "UI/UX Design", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" },
+
+      { name: "PHP", category: "backend", role: "Server Language", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" },
+      { name: "Laravel", category: "backend", role: "Full-Stack MVC", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" },
+      { name: "Node.js", category: "backend", role: "JS Runtime", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
+      { name: "Express", category: "backend", role: "REST API", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" },
+      { name: "MySQL", category: "backend", role: "Relational DB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+      { name: "MongoDB", category: "backend", role: "NoSQL DB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" },
+      { name: "Supabase", category: "backend", role: "BaaS & Auth", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" },
+      { name: "Git", category: "tools", role: "Version Control", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
+      { name: "GitHub", category: "tools", role: "Collaboration", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" },
+      { name: "VS Code", category: "tools", role: "Code Editor", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" },
+    
+      { name: "Vercel", category: "tools", role: "Deployment", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg" },
+      { name: "Postman", category: "tools", role: "API Testing", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" }
+    ];
+
+    const marqueeTrack = document.getElementById("marquee-track");
+    const marqueeView = document.getElementById("tech-marquee-view");
+    const gridView = document.getElementById("tech-grid-view");
+    const filterButtons = document.querySelectorAll(".tech-tab");
+
+    function createTechCard(item) {
+      const needsLightBadge = ["Express", "GitHub", "Vercel"].includes(item.name);
+      const iconWrapperClass = needsLightBadge
+        ? "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white p-1.5 shadow-sm"
+        : "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-paper p-1.5 dark:bg-[#191518]";
+
+      return `
+        <div class="group flex items-center gap-3.5 rounded-xl border border-line bg-paper/70 px-4 py-3 transition duration-200 hover:-translate-y-0.5 hover:border-rose hover:bg-white dark:border-[#33292f] dark:bg-[#191518]/80 dark:hover:border-rose dark:hover:bg-[#292126]">
+          <div class="${iconWrapperClass}">
+            <img src="${item.icon}" alt="${item.name} logo" class="h-6 w-6 object-contain transition-transform duration-200 group-hover:scale-110" loading="lazy" />
+          </div>
+          <div>
+            <p class="text-xs font-bold text-ink dark:text-white">${item.name}</p>
+            <p class="text-[10px] text-muted dark:text-[#b5a8b0]">${item.role}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    marqueeTrack.innerHTML = [...techStackData, ...techStackData].map(createTechCard).join("");
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const selected = btn.getAttribute("data-filter");
+
+        filterButtons.forEach((b) => {
+          b.className = "tech-tab rounded-full border border-line bg-white px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-rose hover:text-ink dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#b5a8b0] dark:hover:text-white";
+        });
+        btn.className = "tech-tab rounded-full bg-rose px-4 py-1.5 text-xs font-semibold text-white transition";
+
+        if (selected === "all") {
+          marqueeView.hidden = false;
+          gridView.hidden = true;
+        } else {
+          const filtered = techStackData.filter((item) => item.category === selected);
+          gridView.innerHTML = filtered.map(createTechCard).join("");
+          marqueeView.hidden = true;
+          gridView.hidden = false;
+        }
+      });
+    });
+
+    // 2. Journey Archive Tabs (Education vs Certifications)
+    const journeyTabs = document.querySelectorAll(".journey-tab");
+    const panelEducation = document.getElementById("panel-education");
+    const panelCertifications = document.getElementById("panel-certifications");
+
+    journeyTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.getAttribute("data-journey");
+
+        journeyTabs.forEach((t) => {
+          t.className = "journey-tab rounded-full px-4 py-1.5 text-xs font-semibold text-muted transition hover:text-ink dark:text-[#b5a8b0] dark:hover:text-white";
+        });
+        tab.className = "journey-tab rounded-full bg-rose px-4 py-1.5 text-xs font-bold text-white transition";
+
+        if (target === "education") {
+          panelEducation.hidden = false;
+          panelCertifications.hidden = true;
+        } else {
+          panelEducation.hidden = true;
+          panelCertifications.hidden = false;
+        }
+      });
+    });
+  </script>
 </body>
 </html>

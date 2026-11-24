@@ -294,9 +294,158 @@ function initializeProjectFilter() {
     });
 }
 
+/* ============================================================
+8. WORK APPROACH INTERACTIVE PANEL
+   ============================================================ */
+
+/**
+ * Mengatur panel interaktif pada bagian Engineering Workflow (halaman About).
+ * Memperbarui status aktif tab di sebelah kiri dan konten detail di sebelah kanan.
+ */
+function initializeWorkApproach() {
+    const tabs = document.querySelectorAll(".approach-tab");
+    const badgeEl = document.getElementById("approach-badge");
+    const metricEl = document.getElementById("approach-metric");
+    const titleEl = document.getElementById("approach-title");
+    const descEl = document.getElementById("approach-desc");
+    const checklistEl = document.getElementById("approach-checklist");
+    const tagsEl = document.getElementById("approach-tags");
+
+    // Hentikan jika halaman tidak memiliki panel Work Approach.
+    if (!tabs.length || !titleEl) return;
+
+    const approachData = [
+        {
+            badge: "01 / Interface Standard",
+            metric: "Mobile-First & WCAG Ready",
+            title: "Responsive UI Engineering",
+            desc: "Every interface starts with clear visual hierarchy and fluid breakpoints so users get a consistent experience whether browsing on a smartphone or a wide desktop monitor.",
+            checklist: [
+                "Fluid grid and flexbox layouts tested across standard mobile, tablet, and desktop breakpoints.",
+                "Consistent light and dark theme parity with readable typography and color contrast.",
+                "Interactive feedback states for buttons, forms, navigation menus, and loading indicators."
+            ],
+            tags: ["Figma", "HTML5", "Tailwind CSS", "Responsive CSS"]
+        },
+        {
+            badge: "02 / Code Architecture",
+            metric: "Clean & Scalable Structure",
+            title: "Modular & Maintainable Code",
+            desc: "Structuring components, stylesheets, and client-side state logically so features can be extended, debugged, and maintained cleanly across collaborative repositories.",
+            checklist: [
+                "Semantic HTML5 markup paired with predictable, reusable UI component patterns.",
+                "Decoupled JavaScript modules and clean event handling without fragile DOM dependencies.",
+                "Consistent naming conventions, Git version control hygiene, and clear documentation."
+            ],
+            tags: ["JavaScript (ES6+)", "Component Architecture", "Git & GitHub", "Semantic HTML"]
+        },
+        {
+            badge: "03 / Full-Stack Delivery",
+            metric: "API & Data Reliability",
+            title: "End-to-End System Integration",
+            desc: "Bridging user interfaces with backend services, authentication flows, and structured databases to deliver complete, production-ready web applications.",
+            checklist: [
+                "Asynchronous RESTful API integration with clear loading, empty, and error state handling.",
+                "Structured database schemas and secure CRUD workflows across relational and NoSQL stores.",
+                "Environment configuration, cloud asset storage, and deployment verification."
+            ],
+            tags: ["REST API", "Laravel / Node.js", "MySQL & MongoDB", "S3 Object Storage"]
+        }
+    ];
+
+    const activeTabClasses = ["border-rose", "bg-white", "shadow-soft", "dark:border-rose", "dark:bg-[#221c20]"];
+    const inactiveTabClasses = ["border-line", "bg-white/70", "hover:border-pink", "hover:bg-white", "dark:border-[#2e262b]", "dark:bg-[#221c20]/60", "dark:hover:border-[#47353e]", "dark:hover:bg-[#221c20]"];
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            const index = Number(tab.dataset.approach);
+            const data = approachData[index];
+            if (!data) return;
+
+            // Perbarui status aktif dan tampilan tab kiri.
+            tabs.forEach((t, i) => {
+                const numBadge = t.querySelector("span");
+                const arrow = t.querySelector("h3 + span");
+                const isSelected = i === index;
+
+                if (isSelected) {
+                    t.classList.remove(...inactiveTabClasses);
+                    t.classList.add(...activeTabClasses);
+                    numBadge.classList.remove("bg-paper", "text-muted", "dark:bg-[#191518]", "dark:text-[#b5a8b0]");
+                    numBadge.classList.add("bg-rose", "text-white");
+                    arrow.classList.remove("text-muted", "opacity-0");
+                    arrow.classList.add("text-rose", "opacity-100");
+                } else {
+                    t.classList.remove(...activeTabClasses);
+                    t.classList.add(...inactiveTabClasses);
+                    numBadge.classList.remove("bg-rose", "text-white");
+                    numBadge.classList.add("bg-paper", "text-muted", "dark:bg-[#191518]", "dark:text-[#b5a8b0]");
+                    arrow.classList.remove("text-rose", "opacity-100");
+                    arrow.classList.add("text-muted", "opacity-0");
+                }
+            });
+
+            // Perbarui konten panel kanan.
+            badgeEl.textContent = data.badge;
+            metricEl.textContent = data.metric;
+            titleEl.textContent = data.title;
+            descEl.textContent = data.desc;
+
+            checklistEl.innerHTML = data.checklist
+                .map(
+                    item => `
+                    <li class="flex items-start gap-2.5">
+                        <span class="mt-0.5 text-rose">✓</span>
+                        <span>${item}</span>
+                    </li>`
+                )
+                .join("");
+
+            tagsEl.innerHTML = data.tags
+                .map(
+                    tag => `
+                    <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">${tag}</span>`
+                )
+                .join("");
+        });
+    });
+}
+
 
 /* ============================================================
-   8. INITIALIZE PORTFOLIO
+9. INITIALIZE PORTFOLIO
+   ============================================================ */
+
+/**
+ * Menjalankan seluruh fungsi setelah halaman selesai dimuat.
+ * Navbar dan footer dimuat terlebih dahulu sebelum inisialisasi
+ * navigasi dan tombol tema dilakukan.
+ */
+document.addEventListener("DOMContentLoaded", async () => {
+
+    // Muat Navbar dan Footer secara bersamaan.
+    await Promise.all([
+        loadComponent("navbar-container", "components/navbar.html"),
+        loadComponent("footer-container", "components/footer.html")
+    ]);
+
+    // Inisialisasi navigasi setelah navbar tersedia.
+    setActiveNavigation();
+
+    // Inisialisasi tema dan tombol pergantian tema.
+    initializeTheme();
+    initializeThemeToggle();
+
+    // Inisialisasi filter project.
+    initializeProjectFilter();
+
+    // Inisialisasi panel interaktif Work Approach.
+    initializeWorkApproach();
+
+});
+
+/* ============================================================
+   10. INITIALIZE PORTFOLIO
    ============================================================ */
 
 /**
