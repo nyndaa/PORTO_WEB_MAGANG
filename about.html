@@ -84,7 +84,29 @@
     .animate-float-reverse { animation: float-reverse 6.5s ease-in-out infinite; }
     .animate-sparkle-pulse { animation: sparkle-pulse 4s ease-in-out infinite; }
     .animate-orb-drift { animation: orb-drift 11s ease-in-out infinite; }
-  </style>
+
+/* Custom Pastel Scrollbar untuk Daftar Sertifikat */
+    .record-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .record-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .record-scroll::-webkit-scrollbar-thumb {
+      background-color: #ead3db;
+      border-radius: 9999px;
+    }
+
+    .record-scroll::-webkit-scrollbar-thumb:hover {
+      background-color: #b96782;
+    }
+
+    .dark .record-scroll::-webkit-scrollbar-thumb {
+      background-color: #3d2d35;
+    }
+</style>
 
   <script>
     if (localStorage.getItem('portfolio-theme') === 'dark') {
@@ -393,7 +415,7 @@
         </p>
       </section>
 
-   <!-- 5. INTERACTIVE JOURNEY ARCHIVE (KONSEP STUDIO DOSSIER ORISINAL) -->
+<!-- 5. INTERACTIVE JOURNEY ARCHIVE (KONSEP STUDIO DOSSIER ORISINAL) -->
       <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
         <span class="pointer-events-none animate-float-gentle absolute left-2 top-10 text-xl text-[#9db78f]/55" aria-hidden="true">❀</span>
         <span class="pointer-events-none animate-sparkle-pulse absolute right-6 top-14 text-lg text-rose/45" aria-hidden="true">✦</span>
@@ -406,26 +428,26 @@
         <!-- Container Studio Card dengan Tab Navigasi & Garis Timeline Bernomor -->
         <div class="overflow-hidden rounded-3xl border border-line bg-white shadow-soft dark:border-[#2e262b] dark:bg-[#221c20]">
           
-          <!-- Top Bar Studio Header (Orisinal dengan aksen bunga & badge status) -->
+          <!-- Top Bar Studio Header -->
           <div class="flex flex-wrap items-center justify-between gap-4 border-b border-line bg-[#fcf8f6] px-5 py-4 sm:px-8 dark:border-[#2e262b] dark:bg-[#1c171b]">
             <div class="flex items-center gap-2.5">
               <span class="text-base text-rose">✿</span>
               <span class="text-xs font-bold tracking-wider text-ink dark:text-white">NADIA’S RECORD BOOK</span>
-              <span class="hidden text-xs text-muted sm:inline dark:text-[#b5a8b0]">/ 2024 — 2026</span>
+              <span class="hidden text-xs text-muted sm:inline dark:text-[#b5a8b0]">/ 2020 — 2026</span>
             </div>
 
             <!-- Tab Switcher Interaktif -->
             <div class="flex flex-wrap gap-1.5 rounded-full border border-line bg-white p-1 dark:border-[#33292f] dark:bg-[#221c20]" role="tablist">
               <button type="button" data-journey="education" class="journey-tab rounded-full bg-rose px-4 py-1.5 text-xs font-bold text-white transition">
-                Education &amp; Campus
+                Education
               </button>
               <button type="button" data-journey="certifications" class="journey-tab rounded-full px-4 py-1.5 text-xs font-semibold text-muted transition hover:text-ink dark:text-[#b5a8b0] dark:hover:text-white">
-                Certifications (3)
+                Certifications (13)
               </button>
             </div>
           </div>
 
-        <!-- PANEL 1: EDUCATION (Dengan Timeline Bernomor 01, 02) -->
+          <!-- PANEL 1: EDUCATION (Dengan Timeline Bernomor 01, 02) -->
           <div id="panel-education" class="p-6 sm:p-8 lg:p-10">
            
             <!-- Keterangan Jenjang Pendidikan (Judul & Deskripsi Biasa) -->
@@ -496,7 +518,7 @@
                     </div>
                   </div>
 
-                  <p class="mt-4 border-t border-dashed border-line pt-3.5 text-xs leading-6 text-muted dark:border-[#2e262b] dark:text-[#b5a8b0]">
+                 <p class="mt-4 border-t border-dashed border-line pt-3.5 text-xs leading-6 text-muted dark:border-[#2e262b] dark:text-[#b5a8b0]">
                     Studying core software engineering, Web Frameworks, Cloud Computing, Data Engineering, Artificial Neural Networks, and developing a full-stack web capstone project.
                   </p>
                 </div>
@@ -504,36 +526,59 @@
 
             </div>
           </div>
-
-        <!-- PANEL 2: CERTIFICATIONS (Muncul saat tab Certifications diklik) -->
+      
+          <!-- PANEL 2: CERTIFICATIONS (Muncul saat tab Certifications diklik) -->
           <div id="panel-certifications" hidden class="p-6 sm:p-8 lg:p-10">
 
-            <!-- Keterangan Kelas Tambahan & Sertifikasi (Judul & Deskripsi Biasa) -->
             <div class="mb-7">
               <h3 class="font-serif text-lg font-semibold text-ink sm:text-xl dark:text-white">
                 Additional Courses &amp; Certifications
               </h3>
               <p class="mt-1 text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
-                Beyond formal university coursework, I actively take specialized bootcamps and training programs in programming, AI, and web security to strengthen my technical foundation.
+                Beyond formal university coursework, I actively complete intensive bootcamps, micro-skills, and industry certifications in full-stack web development, cloud computing, AI, cybersecurity, and digital literacy.
               </p>
             </div>
 
-            <div class="space-y-4">
+            <div class="record-scroll max-h-[460px] space-y-4 overflow-y-auto pr-2">
               
-              <!-- Certificate 01 -->
+              <!-- Certificate 01: Standard Chartered Foundation & Plan International -->
               <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
                 <div class="flex items-start gap-4">
-                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lilac/80 font-serif text-xs font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">01</span>
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink/70 font-serif text-xs font-bold text-rose dark:bg-rose/20">01</span>
                   <div>
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Samsung Electronics Indonesia</span>
-                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Samsung Innovation Campus (Batch 8) — Python Programming</h3>
-                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Completed intensive Python programming &amp; algorithmic problem-solving training.</p>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Standard Chartered Foundation × Plan International</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Web Programming Training (136 Learning Hours)</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Full-stack web development program covering HTML, CSS, JavaScript, React.js, PHP, MySQL, Express.js REST APIs, and authentication.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-pink/70 px-3.5 py-1 text-[11px] font-bold text-[#7c485a] dark:bg-rose/20 dark:text-[#e6a4ba]">2026</span>
+                  <a
+                    href="sertifikat/Certificate_of_Completion.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 02: Microsoft Learn -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lilac/80 font-serif text-xs font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">02</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Microsoft</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Microsoft Azure AI Fundamentals</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Core concepts of artificial intelligence workloads, machine learning, and cloud AI services on Microsoft Azure.</p>
                   </div>
                 </div>
                 <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
                   <span class="rounded-full bg-lilac/70 px-3.5 py-1 text-[11px] font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">2025</span>
                   <a
-                    href="sertifikat/samsung-innovation-campus-batch-8.pdf"
+                    href="sertifikat/Achievements-raharjiansustanadiawijayanti-8928%20_%20Microsoft%20Learn.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
@@ -544,44 +589,260 @@
                 </div>
               </div>
 
-              <!-- Certificate 02 -->
-              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
-                <div class="flex items-start gap-4">
-                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink/70 font-serif text-xs font-bold text-rose dark:bg-rose/20">02</span>
-                  <div>
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
-                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">AI Engineer for Milenial</h3>
-                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Practical foundations in machine learning workflows and AI-assisted applications.</p>
-                  </div>
-                </div>
-                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
-                  <span class="rounded-full bg-pink/70 px-3.5 py-1 text-[11px] font-bold text-[#7c485a] dark:bg-rose/20 dark:text-[#e6a4ba]">2025</span>
-                  <a
-                    href="sertifikat/komdigi-ai-engineer-for-milenial.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
-                  >
-                    <span>View Certificate</span>
-                    <span aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </div>
-
-              <!-- Certificate 03 -->
+              <!-- Certificate 03: Dicoding Indonesia -->
               <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
                 <div class="flex items-start gap-4">
                   <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sage/80 font-serif text-xs font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">03</span>
                   <div>
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
-                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Ethical Hacker for Dummies</h3>
-                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Web security fundamentals, vulnerability awareness, and safe development practices.</p>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Dicoding Indonesia</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Belajar Dasar AI (10 Learning Hours)</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Foundations of Artificial Intelligence, data utilization for AI, machine learning, and deep learning concepts.</p>
                   </div>
                 </div>
                 <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
                   <span class="rounded-full bg-sage/80 px-3.5 py-1 text-[11px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">2025</span>
                   <a
-                    href="sertifikat/komdigi-ethical-hacker-for-dummies.pdf"
+                    href="sertifikat/sertifikat_course_653_4290008_160125222600.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 04: Cisco Networking Academy -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-butter/80 font-serif text-xs font-bold text-[#8a6d2b] dark:bg-[#332b19] dark:text-[#e3c681]">04</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Cisco Networking Academy</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Computer Hardware Basics</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Foundational computer architecture, hardware components, and system troubleshooting principles.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-butter/80 px-3.5 py-1 text-[11px] font-bold text-[#7d6225] dark:bg-[#332b19] dark:text-[#e3c681]">2025</span>
+                  <a
+                    href="sertifikat/BASIC_HARDWARE.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 05: Komdigi - AI Engineer For Milenial -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink/70 font-serif text-xs font-bold text-rose dark:bg-rose/20">05</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">AI Engineer for Milenial</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Prompt engineering fundamentals and AI-assisted workflow optimization.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-pink/70 px-3.5 py-1 text-[11px] font-bold text-[#7c485a] dark:bg-rose/20 dark:text-[#e6a4ba]">2025</span>
+                  <a
+                    href="sertifikat/Ai_engginer_for_milenial.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 06: Komdigi - Ethical Hacker For Dummies -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lilac/80 font-serif text-xs font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">06</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Ethical Hacker for Dummies</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Cybersecurity fundamentals, ethical hacking concepts, and secure web development practices.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-lilac/70 px-3.5 py-1 text-[11px] font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">2025</span>
+                  <a
+                    href="sertifikat/Ethical_hacker_for_dummies.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 07: Komdigi - Introduction To Cloud Computing -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sage/80 font-serif text-xs font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">07</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Introduction to Cloud Computing</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Cloud service models (IaaS, PaaS, SaaS) and cloud deployment architecture fundamentals.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-sage/80 px-3.5 py-1 text-[11px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">2025</span>
+                  <a
+                    href="sertifikat/Introduction_to_cloud_computing.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 08: Komdigi - Konsep Pemrograman -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-butter/80 font-serif text-xs font-bold text-[#8a6d2b] dark:bg-[#332b19] dark:text-[#e3c681]">08</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Konsep Pemrograman (Programming Concepts)</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Algorithmic logic, control structures, and foundational software programming principles.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-butter/80 px-3.5 py-1 text-[11px] font-bold text-[#7d6225] dark:bg-[#332b19] dark:text-[#e3c681]">2025</span>
+                  <a
+                    href="sertifikat/Konsep_pemrograman.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 09: Komdigi - Literasi Digital untuk Video Content Creator -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink/70 font-serif text-xs font-bold text-rose dark:bg-rose/20">09</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Pengantar Literasi Digital untuk Video Content Creator</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Digital skills, safety, ethics, and cultural awareness in digital video content production.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-pink/70 px-3.5 py-1 text-[11px] font-bold text-[#7c485a] dark:bg-rose/20 dark:text-[#e6a4ba]">2025</span>
+                  <a
+                    href="sertifikat/Sertifikat_RAHARJIAN_SUSTANADIA_WIJAYANTI_Pengantar-Literasi-Digital-untuk-Video-Content-Creator.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 10: Komdigi - Dampak Teknologi Digital bagi UMKM -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lilac/80 font-serif text-xs font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">10</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Dampak Teknologi Digital bagi UMKM</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Digital transformation and technology adoption strategies for small and medium enterprises.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-lilac/70 px-3.5 py-1 text-[11px] font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">2025</span>
+                  <a
+                    href="sertifikat/Dampak_teknologi_digital_bagi_umkm.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 11: Komdigi - Pengantar Mindset Digital 1 -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sage/80 font-serif text-xs font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">11</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Pengantar Mindset Digital: Mengubah Masa Depan dengan Pola Pikir Digital</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Core elements of digital mindset and adaptability in rapidly evolving technology environments.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-sage/80 px-3.5 py-1 text-[11px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">2025</span>
+                  <a
+                    href="sertifikat/Mengubah-masa-depan-dengan-pola-pikir-digital.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 12: Komdigi - Mindset Digital 1: Growth Mindset -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-butter/80 font-serif text-xs font-bold text-[#8a6d2b] dark:bg-[#332b19] dark:text-[#e3c681]">12</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Mindset Digital: Pola Pikir Bertumbuh (Growth Mindset)</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Continuous learning habits, constructive feedback adoption, and resilience in problem-solving.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-butter/80 px-3.5 py-1 text-[11px] font-bold text-[#7d6225] dark:bg-[#332b19] dark:text-[#e3c681]">2025</span>
+                  <a
+                    href="sertifikat/Pola-pikir-bertumbuh_(growth%20mindset).pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 13: MySkill - Internet of Things (IoT) Introduction -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink/70 font-serif text-xs font-bold text-rose dark:bg-rose/20">13</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">MySkill E-Learning</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Internet of Things (IoT) Introduction</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Connected device ecosystems, sensor communication, and smart system fundamentals.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-pink/70 px-3.5 py-1 text-[11px] font-bold text-[#7c485a] dark:bg-rose/20 dark:text-[#e6a4ba]">2024</span>
+                  <a
+                    href="sertifikat/Internet_of_Things_(IoT)_Introduction.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
@@ -606,7 +867,6 @@
         </div>
       </section>
 
-      
       <!-- 6. CLOSING CTA BANNER -->
       <section class="relative mb-16 overflow-hidden rounded-3xl border border-pink/70 bg-[#f7e8ec] p-7 sm:mb-20 sm:flex sm:items-center sm:justify-between sm:p-10 dark:border-[#382730] dark:bg-[#261c21]">
         <span class="pointer-events-none animate-float-gentle absolute right-48 top-4 text-lg text-rose/45" aria-hidden="true">✧</span>
