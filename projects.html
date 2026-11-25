@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <title>Projects — Nadia | Junior Frontend Developer Portfolio</title>
   <meta charset="UTF-8">
@@ -8,10 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-  <!-- Tailwind CDN cocok untuk prototipe/portofolio statis tanpa proses build. -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Konfigurasi tema terpusat agar warna dan font mudah disesuaikan.
     tailwind.config = {
       darkMode: 'class',
       theme: {
@@ -38,82 +36,456 @@
       }
     };
   </script>
-  <!-- Style kecil ini hanya untuk elemen dekoratif yang sulit dibuat dengan utility biasa. -->
   <style>
     .flower-shadow { text-shadow: 6px 7px 0 #f6dce5; }
     .portrait-arch { border-radius: 48% 48% 16px 16px; }
     [hidden] { display: none !important; }
   </style>
-  <!-- Cek tema instan di dalam <head> agar tidak kedip saat pindah halaman -->
   <script>
     if (localStorage.getItem('portfolio-theme') === 'dark') {
       document.documentElement.classList.add('dark');
     }
   </script>
 </head>
-<body class="overflow-x-clip bg-paper font-sans text-ink antialiased">
-  <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
+<body class="overflow-x-clip bg-paper font-sans text-ink antialiased dark:bg-[#19161a] dark:text-[#f5eff2]">
+  <div class="mx-auto w-full max-w-5xl px-4 sm:px-8 lg:px-10">
 
-    <!-- Navigasi utama -->
-    <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md transition-colors"></div>
+    <!-- Main Navigation -->
+    <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md transition-colors dark:border-[#2e2830] dark:bg-[#19161a]/85"></div>
 
     <main>
-      <!-- Header Projects -->
-      <section class="py-12 pb-10 text-center sm:py-16">
-        <p class="flex items-center justify-center gap-3 text-[10px] font-bold tracking-[.16em] text-muted"><span class="h-2 w-2 rounded-full bg-[#9db78f] ring-4 ring-[#e9f0e5]"></span> FRONTEND PRACTICE &amp; PROJECTS</p>
-        <h1 class="my-5 font-serif text-[clamp(2.5rem,4.5vw,3.75rem)] font-semibold tracking-tight">Made with care,<br><em class="font-medium text-rose">shared with you.</em></h1>
-        <p class="mx-auto max-w-xl text-sm leading-7 text-muted">A collection of student, hackathon, and concept projects where I practice interface development, responsive design, and turning ideas into usable web experiences.</p>
+      <!-- Projects Header -->
+      <section class="py-10 pb-8 text-center sm:py-14">
+        <p class="inline-flex items-center gap-2 rounded-full border border-line bg-white/80 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-rose shadow-sm backdrop-blur-sm dark:border-[#2e262b] dark:bg-[#221c20]">
+          <span class="animate-sparkle-pulse text-xs">✦</span>
+          Project Archive · 2025–2026
+        </p>
+
+        <h1 class="my-4 font-serif text-[clamp(2.1rem,5vw,3.5rem)] font-semibold leading-tight tracking-tight">
+          Things I’ve built,<br><em class="font-medium text-rose dark:text-[#e89bb4]">deployed &amp; learned from.</em>
+        </h1>
+        <p class="mx-auto max-w-lg text-xs leading-6 text-muted sm:text-sm sm:leading-7 dark:text-[#b2a6ae]">
+          From frontend interfaces to cloud-backed web apps — select any project below to inspect the stack, features, and live deployment.
+        </p>
       </section>
 
-      <!-- Tombol filter -->
-      <div class="mb-8 flex flex-col gap-4 border-b border-line py-4 sm:flex-row sm:items-center sm:justify-between">
-        <span class="text-[10px] font-bold tracking-[.16em] text-muted">BROWSE THE COLLECTION</span>
-        <div class="flex flex-wrap gap-2">
-          <button type="button" data-filter="all" aria-pressed="true" class="rounded-full border border-pink bg-pink px-4 py-2 text-[11px] text-[#70485a] transition">All projects <span class="ml-1 text-[9px]">04</span></button>
-          <button type="button" data-filter="web" aria-pressed="false" class="rounded-full border border-[#e9dfdf] px-4 py-2 text-[11px] text-[#786c73] transition hover:bg-pink">Web &amp; UI <span class="ml-1 text-[9px]">02</span></button>
-          <button type="button" data-filter="concept" aria-pressed="false" class="rounded-full border border-[#e9dfdf] px-4 py-2 text-[11px] text-[#786c73] transition hover:bg-pink">Concepts <span class="ml-1 text-[9px]">02</span></button>
+      <!-- Category Filter -->
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-3 px-1">
+        <span class="text-[10px] font-bold tracking-[.16em] text-muted dark:text-[#b2a6ae]">SELECTED WORKS (07)</span>
+        <div class="flex flex-wrap gap-1.5">
+          <button type="button" data-filter="all" class="filter-chip rounded-full border border-rose bg-pink px-3.5 py-1.5 text-[11px] font-semibold text-[#70485a] transition">
+            All (07)
+          </button>
         </div>
       </div>
 
-      <!-- Daftar kartu project -->
-      <section class="mb-16 flex flex-col gap-6 sm:mb-20 lg:gap-8">
-        <article id="matchup" data-category="web" class="grid overflow-hidden rounded-2xl border border-line bg-white lg:grid-cols-2">
-          <div class="relative grid min-h-72 place-items-center overflow-hidden bg-[#f8e5eb] p-8 lg:min-h-80 lg:p-12">
-            <div class="w-[72%] max-w-xs rounded-xl bg-paper p-5 shadow-soft"><div class="flex justify-between text-[10px] font-bold">matchup <span class="text-[#cf8da4]">✦</span></div><h3 class="mt-7 font-serif text-3xl leading-tight">Find your<br><b class="text-rose">next chapter.</b></h3><div class="mt-4 h-1 w-3/4 rounded bg-[#f0e8e9]"></div><div class="mt-2 h-1 w-1/2 rounded bg-[#f0e8e9]"></div><span class="mt-5 inline-block rounded bg-[#d58ca5] px-3 py-2 text-[9px] text-white">Explore jobs →</span></div>
-            <span class="absolute bottom-5 right-4 rounded-full bg-paper p-4 text-center font-serif text-xs italic text-[#a75f7a] shadow-soft">your future<br>looks bright ♡</span>
-          </div>
-          <div class="self-center p-7 sm:p-10 lg:p-12"><p class="flex gap-3 text-[9px] font-bold tracking-[.16em] text-muted"><span class="text-rose">01</span> WEB APP · AI</p><h2 class="my-4 font-serif text-3xl">Matchup AI</h2><p class="text-sm leading-7 text-muted">A job-search platform concept designed to help people find opportunities that fit their skills, with CV scanning and smarter job matching.</p><div class="my-5 flex flex-wrap gap-2"><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">React</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Supabase</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">UI / UX</span></div><span class="text-xs font-semibold text-rose">Hackathon project · In progress ✦</span></div>
-        </article>
-
-        <article id="store" data-category="web" class="grid overflow-hidden rounded-2xl border border-line bg-white lg:grid-cols-2">
-          <div class="relative order-1 grid min-h-72 place-items-center overflow-hidden bg-[#fbf0d1] p-8 md:order-2 lg:min-h-80 lg:p-12">
-            <div class="absolute left-[16%] top-14 grid h-14 w-12 -rotate-12 place-items-center rounded-xl bg-[#f3d3dc] text-3xl text-[#ba6e88]">✿</div><div class="absolute right-[15%] top-16 grid h-14 w-12 rotate-12 place-items-center rounded-xl bg-sage text-3xl text-[#8da17d]">✧</div><div class="absolute right-[19%] bottom-9 grid h-14 w-12 rotate-6 place-items-center rounded-xl bg-lilac text-3xl text-[#9d7bb2]">♡</div>
-            <div class="z-10 grid h-48 w-48 place-content-center rounded-full border border-[#e8d7a9] bg-[#fff8e9] text-center text-sm tracking-widest text-[#7c6a4a]">little<br><em class="font-serif text-4xl text-[#b67c76]">finds</em><span class="mt-1 text-[#cf8ca0]">♡</span></div><span class="absolute bottom-6 left-[12%] font-serif text-sm italic text-[#9a7c55]">a happy place<br>to shop</span>
-          </div>
-          <div class="order-2 self-center p-7 sm:p-10 md:order-2 lg:p-12"><p class="flex gap-3 text-[9px] font-bold tracking-[.16em] text-muted"><span class="text-rose">02</span> WEB DESIGN · CONCEPT</p><h2 class="my-4 font-serif text-3xl">Little Finds</h2><p class="text-sm leading-7 text-muted">A playful e-commerce storefront concept exploring soft colors, simple navigation, and a relaxed shopping experience.</p><div class="my-5 flex flex-wrap gap-2"><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Figma</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">HTML / CSS</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Responsive</span></div><span class="text-xs font-semibold text-rose">Design exploration · Concept ✦</span></div>
-        </article>
-
-        <article id="campus" data-category="concept" class="grid overflow-hidden rounded-2xl border border-line bg-white lg:grid-cols-2">
-          <div class="relative grid min-h-72 place-items-center overflow-hidden bg-[#e6ecdf] p-8 lg:min-h-80 lg:p-12"><div class="-rotate-2 bg-paper p-6 shadow-soft"><span class="text-[8px] tracking-[.16em] text-[#91a17e]">STUDY NOTES / 001</span><h3 class="mt-6 font-serif text-3xl leading-tight">Make room<br>for <em class="text-[#a2769b]">ideas.</em></h3><div class="mt-4 h-10 w-44 max-w-full" style="background:repeating-linear-gradient(to bottom,transparent 0,transparent 13px,#e9e3dc 14px,#e9e3dc 15px)"></div></div><span class="absolute right-[12%] top-[18%] text-4xl text-[#b28bb1]">✿</span></div>
-          <div class="self-center p-7 sm:p-10 lg:p-12"><p class="flex gap-3 text-[9px] font-bold tracking-[.16em] text-muted"><span class="text-rose">03</span> PRODUCTIVITY · CONCEPT</p><h2 class="my-4 font-serif text-3xl">Study Bloom</h2><p class="text-sm leading-7 text-muted">A gentle study-planner concept to help students organize tasks, set small goals, and celebrate steady progress.</p><div class="my-5 flex flex-wrap gap-2"><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Product thinking</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Wireframes</span></div><span class="text-xs font-semibold text-rose">Early concept · Exploring ✦</span></div>
-        </article>
-
-        <article id="personal" data-category="concept" class="grid overflow-hidden rounded-2xl border border-line bg-white lg:grid-cols-2">
-          <div class="relative order-1 grid min-h-72 place-items-center overflow-hidden bg-[#f3e6f2] p-8 md:order-2 lg:min-h-80 lg:p-12"><div class="relative w-full max-w-[220px] rotate-2 bg-paper p-7 shadow-soft"><span class="text-2xl text-[#b28bb1]">✧</span><p class="my-4 font-serif text-2xl leading-tight">little notes<br>for a <em class="text-[#a2769b]">big life</em></p><p class="text-[10px] leading-6 text-muted">✓ learn something<br>✓ take a deep breath<br>✓ keep going</p><span class="absolute bottom-3 right-4 text-2xl text-[#c88da9]">♡</span></div></div>
-          <div class="order-2 self-center p-7 sm:p-10 md:order-2 lg:p-12"><p class="flex gap-3 text-[9px] font-bold tracking-[.16em] text-muted"><span class="text-rose">04</span> VISUAL EXPLORATION</p><h2 class="my-4 font-serif text-3xl">Little Notes</h2><p class="text-sm leading-7 text-muted">A mini visual system for personal notes and reminders — calm, friendly, and intentionally uncluttered.</p><div class="my-5 flex flex-wrap gap-2"><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Visual design</span><span class="rounded-full bg-[#f7f1f2] px-3 py-1.5 text-[10px] text-[#7c6871]">Typography</span></div><span class="text-xs font-semibold text-rose">Creative exercise · Concept ✦</span></div>
-        </article>
+      <!-- Interactive Project Accordion List -->
+      <section id="accordion-container" class="mb-16 space-y-3.5 sm:mb-20">
+        <!-- Populated automatically via JavaScript -->
       </section>
 
-      <!-- Ajakan kontak -->
-      <section class="mb-14 flex flex-col items-start justify-between gap-5 rounded-2xl bg-[#f7e8ec] p-6 sm:mb-20 sm:flex-row sm:items-center sm:p-9">
-        <div><p class="text-[10px] font-bold tracking-[.16em] text-muted">MORE COLLABORATIONS, PLEASE</p><h2 class="mt-2 font-serif text-3xl">Have an idea? <em class="text-rose">I’m listening.</em></h2></div>
-        <a href="mailto:raharjiansustanadiawijayanti@gmail.com" class="rounded-full bg-[#352d32] px-5 py-3 text-xs font-bold text-white transition hover:-translate-y-0.5">Say hello <span class="ml-2 text-[#f1bdcf]">↗</span></a>
+      <!-- Contact Callout -->
+      <section class="mb-14 flex flex-col items-start justify-between gap-5 rounded-2xl bg-[#f7e8ec] p-6 sm:mb-20 sm:flex-row sm:items-center sm:p-9 dark:bg-[#2a1f25]">
+        <div>
+          <p class="text-[10px] font-bold tracking-[.16em] text-muted dark:text-[#c7b3bc]">MORE COLLABORATIONS, PLEASE</p>
+          <h2 class="mt-2 font-serif text-2xl sm:text-3xl">Have an idea? <em class="text-rose dark:text-[#e89bb4]">I’m listening.</em></h2>
+        </div>
+        <a href="mailto:raharjiansustanadiawijayanti@gmail.com" class="rounded-full bg-[#352d32] px-5 py-3 text-xs font-bold text-white transition hover:-translate-y-0.5 dark:bg-rose">
+          Say hello <span class="ml-2 text-[#f1bdcf] dark:text-white">↗</span>
+        </a>
       </section>
     </main>
 
     <!-- Footer -->
     <div id="footer-container"></div>
   </div>
+
+  <script>
+    const PROJECTS_DATA = [
+      {
+        id: "matchup-ai",
+        number: "01",
+        category: "fullstack",
+        categoryLabel: "WEB APP · AI & SUPABASE",
+        deviceLabel: "Mobile & Desktop",
+        isDesktopOnly: false,
+        title: "Matchup AI",
+        shortTagline: "AI-powered CV and job matching platform with cloud storage integration.",
+        description: "An intelligent job-matching web application that helps candidates analyze how well their CVs align with job openings. Features cloud CV file uploads powered by Supabase and a clean, responsive user interface.",
+        highlights: [
+          "Structured CV upload and analysis to match candidate profiles with relevant job roles.",
+          "Cloud file storage and database integration built with Supabase.",
+          "Modern, responsive web interface deployed on Vercel."
+        ],
+        tags: ["React", "Supabase", "AI Matching", "Vercel"],
+        githubUrl: "https://github.com/nyndaa/matchup-ai",
+        liveUrl: "https://matchup-ai-delta.vercel.app/",
+        isHttpOnly: false
+      },
+      {
+        id: "object-storage",
+        number: "02",
+        category: "fullstack",
+        categoryLabel: "CLOUD STORAGE · FULLSTACK",
+        deviceLabel: "Mobile & Desktop",
+        isDesktopOnly: false,
+        title: "InspoPic — Object Storage App",
+        shortTagline: "Pinterest-inspired visual gallery powered by S3-compatible object storage.",
+        description: "A visual gallery management web app inspired by Pinterest, enabling users to upload, store, and organize image assets via an S3-compatible Object Storage service backed by Node.js and Express.",
+        highlights: [
+          "S3-compatible Object Storage integration for scalable cloud image hosting.",
+          "Responsive visual gallery layout crafted with Tailwind CSS.",
+          "Serverless Node.js & Express backend deployed on Vercel."
+        ],
+        tags: ["Node.js", "Express", "Object Storage S3", "Tailwind CSS"],
+        githubUrl: "https://github.com/nyndaa/Tugas-Object-Storage",
+        liveUrl: "https://tugas-object-storage.vercel.app",
+        isHttpOnly: false
+      },
+      {
+        id: "cloudflare-tabungan",
+        number: "03",
+        category: "fullstack",
+        categoryLabel: "SERVERLESS · CLOUDFLARE WORKERS",
+        deviceLabel: "Mobile & Desktop",
+        isDesktopOnly: false,
+        title: "Savings Target Calculator",
+        shortTagline: "Serverless edge financial goal planner running on Cloudflare Workers.",
+        description: "A personal financial calculator web app designed to estimate timelines and regular deposit amounts needed to reach specific savings goals, powered by serverless edge computing on Cloudflare Workers.",
+        highlights: [
+          "Instant calculation of savings targets, progress milestones, and estimated timelines.",
+          "Lightweight, low-latency serverless edge architecture on Cloudflare Workers.",
+          "Clean, approachable interface tailored for everyday personal finance planning."
+        ],
+        tags: ["Cloudflare Workers", "JavaScript", "Serverless", "HTML/CSS"],
+        githubUrl: "https://github.com/nyndaa/Penerapan_CloudFlare-Website_Target_Tabungan",
+        liveUrl: "https://penerapan-cloudflare-website-target-tabungan.raharjian-sustanadia24.workers.dev/",
+        isHttpOnly: false
+      },
+      {
+        id: "input-nilai",
+        number: "04",
+        category: "fullstack",
+        categoryLabel: "WEB SYSTEM · NODE.JS & EXPRESS",
+        deviceLabel: "Mobile & Desktop",
+        isDesktopOnly: false,
+        title: "Student Grade Submission & Validation System",
+        shortTagline: "Academic grade submission portal for students and validation dashboard for lecturers.",
+        description: "A web-based academic information system streamlining student grade submissions alongside a dedicated lecturer dashboard to review, validate, and manage centralized grade records.",
+        highlights: [
+          "Role-separated workflows for student grade submissions and lecturer validation dashboards.",
+          "Data handling powered by a REST API built with Node.js and Express.js.",
+          "Dynamic storage adaptation for reliable serverless execution on Vercel."
+        ],
+        tags: ["Node.js", "Express", "JavaScript", "REST API"],
+        githubUrl: "https://github.com/nyndaa/Project-3-Input-Nilai-Mahasiswa",
+        liveUrl: "https://project-3-input-nilai-mahasiswa.vercel.app/",
+        isHttpOnly: false
+      },
+      {
+        id: "beauty-skincare",
+        number: "05",
+        category: "fullstack",
+        categoryLabel: "E-COMMERCE · PHP & MYSQL",
+        deviceLabel: "Desktop Only",
+        isDesktopOnly: true,
+        title: "Beauty Skincare Store",
+        shortTagline: "Skincare e-commerce storefront with customer catalog and CRUD admin panel.",
+        description: "A PHP and MySQL e-commerce web application for skincare products, featuring an interactive customer product catalog and an authenticated administrator dashboard for inventory and product management.",
+        highlights: [
+          "Dynamic product catalog connected directly to a relational MySQL database.",
+          "Authenticated admin panel supporting full CRUD operations for skincare listings.",
+          "Deployed live on a PHP & MySQL web hosting environment."
+        ],
+        tags: ["PHP", "MySQL", "HTML / CSS", "CRUD Admin"],
+        githubUrl: "https://github.com/nyndaa/Beauty-Skincare",
+        liveUrl: "http://nayanadia.42web.io/Beauty-Skincare/index.php",
+        isHttpOnly: true
+      },
+      {
+        id: "queenfurni",
+        number: "06",
+        category: "frontend",
+        categoryLabel: "LANDING PAGE · UI DESIGN",
+        deviceLabel: "Desktop Only",
+        isDesktopOnly: true,
+        title: "QueenFurni — Furniture Store Web",
+        shortTagline: "Multi-page furniture catalog and brand showcase website.",
+        description: "A furniture brand profile and product catalog website for QueenFurni, crafted with a warm aesthetic and intuitive multi-page navigation tailored for desktop screens.",
+        highlights: [
+          "Complete multi-page architecture covering Home, Product Catalog, About Us, and Contact.",
+          "Warm color palette and typography tailored to interior design aesthetics.",
+          "Lightweight, fast-loading layout hosted on Vercel."
+        ],
+        tags: ["HTML5", "CSS3", "JavaScript", "Desktop UI"],
+        githubUrl: "https://github.com/nyndaa/Project-4-Web-Furniture-Sederhana",
+        liveUrl: "https://project-4-web-furniture-sederhana.vercel.app/",
+        isHttpOnly: false
+      },
+      {
+        id: "porto-web",
+        number: "07",
+        category: "frontend",
+        categoryLabel: "PERSONAL BRANDING · PORTFOLIO",
+        deviceLabel: "Mobile & Desktop",
+        isDesktopOnly: false,
+        title: "Personal Portfolio Website",
+        shortTagline: "Editorial pastel personal portfolio with persistent light and dark themes.",
+        description: "A personal portfolio website built to showcase my profile, learning journey, and web development projects, featuring an editorial pastel aesthetic and seamless light/dark mode switching.",
+        highlights: [
+          "Persistent Light & Dark mode theme toggle powered by localStorage.",
+          "Modular navigation and footer components managed via vanilla JavaScript.",
+          "Automated static deployment hosted on GitHub Pages."
+        ],
+        tags: ["HTML5", "Tailwind CSS", "JavaScript", "GitHub Pages"],
+        githubUrl: "https://github.com/nyndaa/PORTO_WEB_MAGANG",
+        liveUrl: "https://nyndaa.github.io/PORTO_WEB_MAGANG/",
+        isHttpOnly: false
+      }
+    ];
+
+    let expandedId = "matchup-ai";
+    let activeIframeId = null;
+    let currentFilter = "all";
+
+    const containerEl = document.getElementById("accordion-container");
+
+    function toggleAccordion(projectId) {
+      if (expandedId === projectId) {
+        expandedId = null;
+        activeIframeId = null;
+      } else {
+        expandedId = projectId;
+        if (activeIframeId !== projectId) {
+          activeIframeId = null;
+        }
+      }
+      renderAccordion();
+    }
+
+    function toggleLivePreview(event, projectId) {
+      event.stopPropagation();
+      activeIframeId = activeIframeId === projectId ? null : projectId;
+      renderAccordion();
+    }
+
+    function renderAccordion() {
+      const list =
+        currentFilter === "all"
+          ? PROJECTS_DATA
+          : PROJECTS_DATA.filter((item) => item.category === currentFilter);
+
+      containerEl.innerHTML = list
+        .map((project) => {
+          const isOpen = project.id === expandedId;
+          const isPreviewShown = project.id === activeIframeId;
+          const isBlockedHttp = project.isHttpOnly;
+
+          const deviceBadgeClass = project.isDesktopOnly
+            ? "bg-butter/80 text-[#7a6434] dark:bg-[#362f21] dark:text-[#ebd49c]"
+            : "bg-sage/75 text-[#496342] dark:bg-[#223020] dark:text-[#b4d6ab]";
+
+          return `
+            <article class="overflow-hidden rounded-2xl border transition-colors ${
+              isOpen
+                ? "border-rose/70 bg-white shadow-soft dark:border-[#e89bb4]/60 dark:bg-[#211d23]"
+                : "border-line bg-white hover:border-rose/40 dark:border-[#2e2830] dark:bg-[#211d23]"
+            }">
+              <!-- Title Row (Click to Expand/Collapse) -->
+              <button
+                type="button"
+                onclick="toggleAccordion('${project.id}')"
+                aria-expanded="${isOpen}"
+                class="flex w-full items-center justify-between gap-4 p-5 text-left sm:px-7 sm:py-6"
+              >
+                <div class="flex min-w-0 items-baseline gap-3.5 sm:gap-5">
+                  <span class="font-serif text-sm font-semibold ${
+                    isOpen ? "text-rose dark:text-[#e89bb4]" : "text-muted dark:text-[#b2a6ae]"
+                  }">
+                    ${project.number}
+                  </span>
+                  <div class="min-w-0">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <p class="text-[9px] font-bold tracking-[.16em] text-muted dark:text-[#b2a6ae]">
+                        ${project.categoryLabel}
+                      </p>
+                      <span class="rounded-full px-2 py-0.5 text-[9px] font-semibold tracking-wide ${deviceBadgeClass}">
+                        ${project.deviceLabel}
+                      </span>
+                    </div>
+                    <h2 class="mt-1 truncate font-serif text-xl font-semibold text-ink sm:text-2xl dark:text-[#f5eff2]">
+                      ${project.title}
+                    </h2>
+                    ${
+                      !isOpen
+                        ? `<p class="mt-1 truncate text-xs text-muted dark:text-[#b2a6ae]">${project.shortTagline}</p>`
+                        : ""
+                    }
+                  </div>
+                </div>
+
+                <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border transition ${
+                  isOpen
+                    ? "rotate-45 border-rose bg-pink text-rose dark:border-[#e89bb4] dark:bg-[#3d2932] dark:text-[#e89bb4]"
+                    : "border-line bg-paper text-muted dark:border-[#38303b] dark:bg-[#19161a] dark:text-[#b2a6ae]"
+                }">
+                  +
+                </span>
+              </button>
+
+              <!-- Full Project Details (Visible when expanded) -->
+              ${
+                isOpen
+                  ? `
+                <div class="border-t border-line px-5 pb-6 pt-5 sm:px-7 sm:pb-8 sm:pt-6 dark:border-[#2e2830]">
+                  <p class="max-w-3xl text-xs leading-6 text-muted sm:text-sm sm:leading-7 dark:text-[#c7bcc2]">
+                    ${project.description}
+                  </p>
+
+                  <!-- Feature Highlights -->
+                  <div class="mt-5 rounded-2xl bg-[#fcf7f8] p-4 sm:p-5 dark:bg-[#19161a]">
+                    <p class="text-[10px] font-bold tracking-[.15em] text-rose dark:text-[#e89bb4]">KEY HIGHLIGHTS</p>
+                    <ul class="mt-2.5 space-y-2 text-xs leading-6 text-ink/90 sm:text-[13px] dark:text-[#dfd5da]">
+                      ${project.highlights
+                        .map(
+                          (point) =>
+                            `<li class="flex items-start gap-2"><span class="mt-0.5 text-rose dark:text-[#e89bb4]">✦</span><span>${point}</span></li>`
+                        )
+                        .join("")}
+                    </ul>
+                  </div>
+
+                  <!-- Tech Stack & Device Compatibility -->
+                  <div class="mt-5 flex flex-wrap items-center gap-1.5">
+                    <span class="rounded-full px-3 py-1 text-[11px] font-semibold ${deviceBadgeClass}">
+                      ${project.isDesktopOnly ? "Best viewed on Desktop" : "Responsive · Mobile & Desktop"}
+                    </span>
+                    ${project.tags
+                      .map(
+                        (tag) =>
+                          `<span class="rounded-full bg-[#f7f1f2] px-3 py-1 text-[11px] font-medium text-[#7c6871] dark:bg-[#2d262f] dark:text-[#d8ccd2]">${tag}</span>`
+                      )
+                      .join("")}
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <div class="mt-6 flex flex-col gap-2.5 border-t border-line pt-5 sm:flex-row sm:flex-wrap sm:items-center dark:border-[#2e2830]">
+                    <button
+                      type="button"
+                      onclick="toggleLivePreview(event, '${project.id}')"
+                      class="inline-flex items-center justify-center gap-2 rounded-full bg-rose px-5 py-2.5 text-xs font-bold text-white transition hover:opacity-90 dark:bg-[#d87c9a]"
+                    >
+                      <span>${isPreviewShown ? "✕ Close Live Preview" : "▶ Try Live Preview"}</span>
+                    </button>
+
+                    <a
+                      href="${project.liveUrl}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center justify-center gap-1.5 rounded-full bg-[#352d32] px-5 py-2.5 text-xs font-bold text-white transition hover:-translate-y-0.5 dark:bg-[#2d262f]"
+                    >
+                      Open in New Tab <span class="text-[#f1bdcf]">↗</span>
+                    </a>
+
+                    <a
+                      href="${project.githubUrl}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center justify-center gap-1.5 rounded-full border border-line bg-paper px-5 py-2.5 text-xs font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#38303b] dark:bg-[#19161a] dark:text-[#f5eff2]"
+                    >
+                      GitHub Source Code
+                    </a>
+                  </div>
+
+                  <!-- Inline Live Preview Window -->
+                  ${
+                    isPreviewShown
+                      ? `
+                    <div class="mt-5 overflow-hidden rounded-2xl border border-line bg-[#fcf7f8] dark:border-[#2e2830] dark:bg-[#19161a]">
+                      <div class="flex items-center justify-between gap-2 border-b border-line px-4 py-2 dark:border-[#2e2830]">
+                        <span class="truncate text-[11px] text-muted dark:text-[#b2a6ae]">${project.liveUrl}</span>
+                        <button
+                          type="button"
+                          onclick="toggleLivePreview(event, '${project.id}')"
+                          class="shrink-0 text-[11px] font-semibold text-rose hover:underline dark:text-[#e89bb4]"
+                        >
+                          Close ✕
+                        </button>
+                      </div>
+
+                      ${
+                        isBlockedHttp
+                          ? `
+                        <div class="flex flex-col items-center justify-center p-8 text-center">
+                          <span class="mb-2 text-2xl text-rose">✿</span>
+                          <p class="font-serif text-lg font-semibold">External Preview Only</p>
+                          <p class="mt-1.5 max-w-sm text-xs leading-6 text-muted dark:text-[#b2a6ae]">
+                            This PHP &amp; MySQL hosting requires direct browser access for security verification. Click below to open the live store in a new tab.
+                          </p>
+                          <a
+                            href="${project.liveUrl}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-4 rounded-full bg-rose px-5 py-2 text-xs font-bold text-white"
+                          >
+                            Open Beauty Skincare Store ↗
+                          </a>
+                        </div>
+                      `
+                          : `
+                        <div class="h-[380px] w-full bg-white sm:h-[480px] dark:bg-[#121013]">
+                          <iframe
+                            src="${project.liveUrl}"
+                            title="Preview of ${project.title}"
+                            class="h-full w-full border-0"
+                            loading="lazy"
+                            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                          ></iframe>
+                        </div>
+                      `
+                      }
+                    </div>
+                  `
+                      : ""
+                  }
+                </div>
+              `
+                  : ""
+              }
+            </article>
+          `;
+        })
+        .join("");
+    }
+
+    // Category filter
+    document.querySelectorAll(".filter-chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        currentFilter = chip.dataset.filter;
+
+        document.querySelectorAll(".filter-chip").forEach((c) => {
+          const active = c === chip;
+          c.className = active
+            ? "filter-chip rounded-full border border-rose bg-pink px-3.5 py-1.5 text-[11px] font-semibold text-[#70485a] transition"
+            : "filter-chip rounded-full border border-line bg-white px-3.5 py-1.5 text-[11px] font-medium text-muted transition hover:border-rose/50 dark:border-[#2e2830] dark:bg-[#211d23] dark:text-[#b2a6ae]";
+        });
+
+        const visibleItems =
+          currentFilter === "all"
+            ? PROJECTS_DATA
+            : PROJECTS_DATA.filter((item) => item.category === currentFilter);
+
+        if (visibleItems.length > 0 && !visibleItems.some((i) => i.id === expandedId)) {
+          expandedId = visibleItems[0].id;
+          activeIframeId = null;
+        }
+
+        renderAccordion();
+      });
+    });
+
+    renderAccordion();
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
