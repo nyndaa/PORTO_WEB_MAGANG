@@ -1,48 +1,113 @@
-# ✿ Nadia's Portfolio — Junior Frontend Developer
+# Nadia's Portfolio — Web Portofolio Magang (Junior Frontend & Web Developer)
 
-Sebuah portofolio web statis yang dirancang dengan estetika pastel yang lembut, tipografi yang elegan, dan antarmuka yang bersih. Proyek ini dibuat khusus untuk memamerkan proyek-proyek frontend, latihan desain, dan untuk mencari peluang magang (internship) di bidang Frontend Development.
+Sebuah situs web portofolio pribadi yang dirancang dengan estetika pastel yang lembut, tipografi klasik yang elegan, dan antarmuka yang bersih. Proyek ini dibangun untuk menampilkan profil akademik, kumpulan proyek pengembangan web, sertifikat kompetensi, serta menyediakan akses unduh CV untuk keperluan melamar program **Magang (Internship)**.
 
-## ✦ Fitur Utama
+**Live Website:** <https://nyndaa.github.io/PORTO_WEB_MAGANG/>  
+**Repository GitHub:** <https://github.com/nyndaa/PORTO_WEB_MAGANG>
 
-- **Desain Estetik & Personal:** Menggunakan palet warna pastel khusus, font serif yang elegan (Playfair Display), dan elemen dekoratif berbasis murni HTML/CSS (tanpa mengandalkan banyak aset gambar eksternal).
-- **Responsive & Mobile-First:** Tampilan yang menyesuaikan dengan mulus dari layar HP hingga Desktop.
-- **Konfigurasi Tema Terpusat:** Menggunakan Tailwind CSS CDN dengan konfigurasi tema warna dan font kustom langsung di dalam file HTML sehingga mudah dimodifikasi.
-- **Struktur Multi-Halaman:** 
-  - `index.html` - Halaman utama dengan hero section dan sorotan proyek.
-  - `about.html` - Halaman profil, prinsip kerja, dan pengenalan diri.
-  - `projects.html` - Halaman galeri proyek dengan fitur filter kategori.
+---
 
-## 🛠️ Teknologi yang Digunakan
+## Fitur Utama
 
-- **HTML5** untuk kerangka dan semantik halaman.
-- **Tailwind CSS (via CDN)** untuk styling yang cepat dan responsif tanpa proses build (cocok untuk prototipe statis).
-- **Google Fonts:**
-  - *DM Sans* (Font sans-serif untuk teks paragraf)
-  - *Playfair Display* (Font serif elegan untuk heading)
-- **Vanilla JavaScript** (pada `script.js` - *opsional, untuk logika interaksi seperti filter proyek atau mobile menu*).
+* **Desain Estetik & Responsif:** Mengusung palet warna pastel hangat yang nyaman dipandang, tata letak *mobile-first* yang menyesuaikan layar ponsel hingga desktop, serta tipografi editorial.
+* **Arsitektur Komponen Modular:** Memisahkan elemen navigasi (`components/navbar.html`) dan bagian bawah (`components/footer.html`) yang dimuat secara dinamis melalui `script.js` agar pemeliharaan kode lebih rapi dan konsisten di seluruh halaman.
+* **Struktur Multi-Halaman Lengkap:**
+  * `index.html` — Halaman beranda utama berisi perkenalan singkat, sorotan keahlian, dan pratinjau proyek unggulan.
+  * `about.html` — Halaman profil lengkap, latar belakang pendidikan Informatika, prinsip kerja, serta daftar sertifikat pelatihan/kompetensi.
+  * `projects.html` — Galeri proyek dengan filter kategori interaktif (*Frontend*, *Backend*, *Cloud Computing*, dll.) beserta tautan ke repositori GitHub dan *live demo* masing-masing proyek.
+  * `contact.html` — Halaman kontak langsung dan tautan media sosial profesional.
+* **Akses CV & Sertifikat Terintegrasi:** Dilengkapi dokumen CV terbaru (`assets/CV-Raharjian_Sustanadia_Wijayanti_2.pdf`) dan arsip sertifikat resmi dalam format PDF yang dapat diakses langsung oleh rekruter.
 
-## 🚀 Cara Menjalankan (Local Development)
+---
 
-Karena proyek ini menggunakan pendekatan web statis murni tanpa bundler (seperti Vite atau Webpack) dan mengambil Tailwind melalui CDN, cara menjalankannya sangat mudah:
+## Teknologi yang Digunakan
 
-1. Clone atau unduh repositori/file ini ke komputer Anda.
-2. Pastikan Anda memiliki koneksi internet (untuk memuat Tailwind CSS dari CDN dan Google Fonts).
-3. Buka file `index.html` langsung dengan cara double-click, ATAU seret (drag & drop) file tersebut ke browser pilihan Anda (Chrome, Firefox, Safari, Edge).
-4. *(Opsional)* Jika Anda menggunakan VS Code, Anda bisa menggunakan ekstensi **Live Server** untuk mendapatkan fitur *hot-reload*.
+* **HTML5:** Struktur semantik halaman web.
+* **Tailwind CSS (via CDN):** Framework CSS *utility-first* dengan konfigurasi tema warna dan font kustom tanpa proses kompilasi (*build step*).
+* **Vanilla JavaScript (`script.js`):** Menangani pemuatan komponen modular (`navbar.html` & `footer.html`), menu navigasi responsif, serta filter proyek interaktif.
+* **Google Fonts:**
+  * *Playfair Display* — Font *serif* elegan untuk judul (*heading*).
+  * *DM Sans* — Font *sans-serif* modern untuk keterbacaan paragraf dan antarmuka.
+* **GitHub Pages:** Layanan *hosting* statis untuk publikasi situs secara langsung dari repositori GitHub.
 
-## 📝 Panduan Kustomisasi (Penting sebelum Publish)
+---
 
-Sebelum mempublikasikan portofolio ini, pastikan Anda mengubah beberapa *placeholder* berikut:
+## Struktur Proyek
 
-1. **Alamat Email:** 
-   Cari teks `mailto:your.email@example.com` di seluruh file HTML (biasanya ada di Header dan Footer) dan ganti dengan email asli Anda (contoh: `raharjiansustanadiawijayanti@gmail.com`).
-2. **File `script.js`:**
-   Tag `<script src="script.js"></script>` sudah disematkan di bagian bawah setiap halaman. Pastikan Anda membuat file ini jika ingin menambahkan logika JavaScript (misalnya, untuk menghidupkan fitur filter tombol kategori di halaman `projects.html`). Jika tidak digunakan, Anda dapat menghapus baris tersebut.
-3. **Link Proyek Asli:**
-   Ganti tautan pada tombol-tombol studi kasus (seperti Matchup AI atau Little Finds) untuk mengarah ke repositori GitHub Anda atau *live demo* proyek tersebut.
+```text
+PORTO_WEB_MAGANG/
+├── assets/
+│   ├── CV-Raharjian_Sustanadia_Wijayanti_2.pdf   # Dokumen CV siap unduh
+│   ├── profil-nadia.png                          # Foto profil utama
+│   └── profil-nadia2.png                         # Foto profil pendukung
+├── components/
+│   ├── footer.html                               # Komponen footer modular
+│   └── navbar.html                               # Komponen navigasi modular
+├── sertifikat/                                   # Kumpulan sertifikat pelatihan & kompetensi (PDF)
+│   ├── Achievements-raharjiansustanadiawijayanti-892...pdf
+│   ├── Ai_engginer_for_milenial.pdf
+│   ├── BASIC_HARDWARE.pdf
+│   ├── Certificate_of_Completion.pdf
+│   ├── Dampak_teknologi_digital_bagi_umkm.pdf
+│   ├── Ethical_hacker_for_dummies.pdf
+│   ├── Internet_of_Things_(IoT)_Introduction.pdf
+│   ├── Introduction_to_cloud_computing.pdf
+│   ├── Konsep_pemrograman.pdf
+│   ├── Mengubah-masa-depan-dengan-pola-pikir-digi...pdf
+│   ├── Pola-pikir-bertumbuh_(growth mindset).pdf
+│   ├── sertifikat_course_653_4290008_160125222600.pdf
+│   └── Sertifikat_RAHARJIAN_SUSTANADIA_WIJAYANTI_...pdf
+├── about.html                                    # Halaman profil, keahlian, & sertifikasi
+├── contact.html                                  # Halaman kontak & informasi komunikasi
+├── index.html                                    # Halaman utama (Beranda)
+├── projects.html                                 # Halaman galeri & filter proyek
+├── script.js                                     # Logika JS (load komponen, filter, interaksi UI)
+└── README.md                                     # Dokumentasi proyek
+```
 
-## ♡ Author
+---
 
-Dibuat dengan perlahan dan penuh cinta oleh **Nadia**. 
-- Mahasiswi Informatika
-- Calon Junior Frontend Developer
+## Cara Mengakses & Menjalankan Proyek
+
+### 1. Akses Langsung (Online)
+Kunjungi tautan situs portofolio yang telah dipublikasikan melalui GitHub Pages:
+> <https://nyndaa.github.io/PORTO_WEB_MAGANG/>
+
+### 2. Menjalankan di Komputer Lokal (Local Development)
+Karena komponen `navbar.html` dan `footer.html` dimuat menggunakan JavaScript (`fetch`), **disarankan menjalankannya melalui local web server** (seperti *Live Server* di VS Code) agar komponen navigasi tampil sempurna dan tidak terblokir kebijakan CORS browser (`file://`).
+
+1. **Clone repositori ini:**
+   ```bash
+   git clone https://github.com/nyndaa/PORTO_WEB_MAGANG.git
+   ```
+2. **Buka folder proyek di Visual Studio Code.**
+3. **Jalankan menggunakan Live Server:**
+   * Pastikan ekstensi **Live Server** sudah terpasang di VS Code.
+   * Klik kanan pada file `index.html`, lalu pilih **Open with Live Server** (atau klik tombol **Go Live** di pojok kanan bawah VS Code).
+   * Pastikan koneksi internet aktif agar Tailwind CSS CDN dan Google Fonts termuat dengan baik.
+4. **Alternatif tanpa ekstensi VS Code (menggunakan Node.js / Python):**
+   ```bash
+   npx serve .
+   ```
+   atau
+   ```bash
+   python -m http.server 8000
+   ```
+   Lalu buka `http://localhost:8000` di browser.
+
+---
+
+## Deployment (GitHub Pages)
+
+Proyek ini di-deploy secara otomatis menggunakan **GitHub Pages**:
+1. Setiap perubahan kode di-push ke branch `main` pada repositori [`nyndaa/PORTO_WEB_MAGANG`](https://github.com/nyndaa/PORTO_WEB_MAGANG).
+2. GitHub Pages secara otomatis memperbarui tampilan situs pada alamat [`https://nyndaa.github.io/PORTO_WEB_MAGANG/`](https://nyndaa.github.io/PORTO_WEB_MAGANG/) dalam 1–2 menit.
+
+---
+
+## Author
+
+Dikembangkan oleh **Raharjian Sustanadia Wijayanti (Nadia)**
+* Mahasiswi Program Studi Informatika — Universitas Teknologi Digital Indonesia, Yogyakarta
+* Bidang Minat: Frontend Web Development, Full-Stack Web Development, & Cloud Computing
+* GitHub: [@nyndaa](https://github.com/nyndaa)
