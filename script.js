@@ -472,3 +472,76 @@ document.addEventListener("DOMContentLoaded", async () => {
     initializeProjectFilter();
 
 });
+
+// ==========================================
+// INTERACTIVE ARCHITECTURAL INTRO REVEAL
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.getElementById("intro-overlay");
+  const spotlight = document.getElementById("intro-spotlight");
+  const card = document.getElementById("intro-card");
+  const sub = document.getElementById("intro-sub");
+  const nameEl = document.getElementById("intro-name");
+  const role = document.getElementById("intro-role");
+  const line = document.getElementById("intro-line");
+  const percentEl = document.getElementById("intro-percent");
+  const skipBtn = document.getElementById("intro-skip");
+
+  if (!overlay) return;
+
+  document.body.style.overflow = "hidden";
+  let isClosing = false;
+
+  // Fungsi menutup intro dengan mulus
+  const closeIntro = () => {
+    if (isClosing) return;
+    isClosing = true;
+    overlay.classList.add("opacity-0", "scale-[1.03]", "pointer-events-none");
+    document.body.style.overflow = "";
+    setTimeout(() => overlay.remove(), 1000);
+  };
+
+  // 1. Animasi teks muncul bertahap
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      if (sub) sub.classList.remove("translate-y-full");
+      if (nameEl) nameEl.classList.remove("translate-y-full");
+      if (role) role.classList.remove("translate-y-full");
+    }, 80);
+  });
+
+  // 2. Efek interaktif mouse (Spotlight mengikuti kursor + Kartu parallax)
+  overlay.addEventListener("mousemove", (e) => {
+    if (spotlight) {
+      spotlight.style.background = `radial-gradient(450px circle at ${e.clientX}px ${e.clientY}px, rgba(247, 220, 229, 0.65), transparent 70%)`;
+    }
+    if (card) {
+      const moveX = (e.clientX - window.innerWidth / 2) * -0.015;
+      const moveY = (e.clientY - window.innerHeight / 2) * -0.015;
+      card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    }
+  });
+
+  // 3. Progress bar halus (0% -> 100%)
+  let progress = 0;
+  const timer = setInterval(() => {
+    progress += Math.floor(Math.random() * 5) + 2;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(timer);
+      setTimeout(closeIntro, 450);
+    }
+    if (line) line.style.width = `${progress}%`;
+    if (percentEl) percentEl.textContent = `${progress}%`;
+  }, 40);
+
+  // 4. Tombol klik langsung masuk kalau tidak mau menunggu
+  if (skipBtn) {
+    skipBtn.addEventListener("click", () => {
+      clearInterval(timer);
+      if (line) line.style.width = "100%";
+      if (percentEl) percentEl.textContent = "100%";
+      closeIntro();
+    });
+  }
+});
