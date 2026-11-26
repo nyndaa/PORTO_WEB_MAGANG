@@ -107,6 +107,29 @@
     .dark .record-scroll::-webkit-scrollbar-thumb {
       background-color: #3d2d35;
     }
+
+  /* Animasi Kaki & Ekor Kucing Lari */
+    @keyframes cat-leg-a {
+      0%, 100% { transform: rotate(-22deg); }
+      50% { transform: rotate(22deg); }
+    }
+    @keyframes cat-leg-b {
+      0%, 100% { transform: rotate(22deg); }
+      50% { transform: rotate(-22deg); }
+    }
+    @keyframes cat-tail-wag {
+      0%, 100% { transform: rotate(-6deg); }
+      50% { transform: rotate(10deg); }
+    }
+    @keyframes cloud-drift {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-850px); }
+    }
+
+    .cat-running .leg-front { transform-origin: 42px 50px; animation: cat-leg-a 0.28s infinite ease-in-out; }
+    .cat-running .leg-back  { transform-origin: 26px 50px; animation: cat-leg-b 0.28s infinite ease-in-out; }
+    .cat-tail { transform-origin: 18px 44px; animation: cat-tail-wag 0.6s infinite ease-in-out; }
+    .animate-clouds { animation: cloud-drift 28s linear infinite; }  
 </style>
 
   <script>
@@ -872,7 +895,455 @@
         </div>
       </section>
 
-      <!-- 6. CLOSING CTA BANNER -->
+<!-- 6. SOCIAL IMPACT & VOLUNTEERING -->
+      <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-float-gentle absolute right-8 top-10 text-xl text-[#9db78f]/60" aria-hidden="true">❀</span>
+        <span class="pointer-events-none animate-sparkle-pulse absolute left-6 top-16 text-lg text-rose/45" aria-hidden="true">✦</span>
+
+        <!-- Header & Penjelasan Inti -->
+        <div class="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div class="max-w-2xl">
+            <p class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.18em] text-rose">Social Impact &amp; Volunteering</p>
+            <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl lg:text-[2rem]">
+              Beyond academics, creating <em class="font-medium text-rose">meaningful social impact.</em>
+            </h2>
+            <p class="mt-3 text-xs leading-6 text-muted sm:text-sm sm:leading-7 dark:text-[#b5a8b0]">
+              Alongside focusing on my Informatics studies and web development projects, I actively dedicate time to community volunteering—contributing to children’s education, creative workshops, inclusive learning, and environmental initiatives across Yogyakarta.
+            </p>
+          </div>
+          <div class="shrink-0">
+            <span class="inline-flex items-center gap-2 rounded-full border border-pink bg-[#fdf2f5] px-4 py-1.5 text-[11px] font-bold text-rose dark:border-[#3c2d34] dark:bg-[#261e23] dark:text-[#e3b8c7]">
+              <span class="h-1.5 w-1.5 rounded-full bg-rose"></span>
+              8 Volunteering Records
+            </span>
+          </div>
+        </div>
+
+        <!-- Container Split-Panel: Kiri (List Kegiatan) & Kanan (Sertifikat + Rincian Kegiatan) -->
+        <div class="overflow-hidden rounded-3xl border border-line bg-white shadow-soft dark:border-[#2e262b] dark:bg-[#221c20]">
+          
+          <!-- Top Bar -->
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-[#fcf8f6] px-5 py-3.5 sm:px-8 dark:border-[#2e262b] dark:bg-[#1c171b]">
+            <div class="flex items-center gap-2">
+              <span class="h-2.5 w-2.5 rounded-full bg-[#ea9ab2]"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-[#ebd084]"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-[#9ec489]"></span>
+              <span class="ml-1.5 text-xs font-bold tracking-wider text-ink dark:text-white">COMMUNITY &amp; VOLUNTEER ARCHIVE</span>
+            </div>
+            <span id="impact-file-indicator" class="text-[11px] text-muted dark:text-[#b5a8b0]">
+              sertifikat_kegiatan / Peduly-1.pdf
+            </span>
+          </div>
+
+          <!-- Split Grid -->
+          <div class="grid lg:grid-cols-[340px_1fr]">
+            
+            <!-- KOLOM KIRI: List Nama Kegiatan -->
+            <div class="border-b border-line bg-paper/50 p-4 sm:p-5 lg:border-b-0 lg:border-r dark:border-[#2e262b] dark:bg-[#191518]/50">
+              <div class="mb-3 flex items-center justify-between px-1">
+                <span class="text-[10px] font-bold uppercase tracking-[0.16em] text-muted dark:text-[#b5a8b0]">Activity List</span>
+                <span class="text-[10px] font-semibold text-rose">2024</span>
+              </div>
+
+              <div id="impact-list" class="record-scroll max-h-[620px] space-y-2.5 overflow-y-auto pr-1" role="tablist" aria-label="Social Impact Activities">
+                <!-- Daftar kegiatan dirender otomatis oleh JavaScript -->
+              </div>
+            </div>
+
+            <!-- KOLOM KANAN: Sertifikat + Keterangan Rincian Kegiatan -->
+            <div class="flex flex-col justify-between gap-6 p-5 sm:p-7 lg:p-8">
+              
+              <!-- Header Judul Kegiatan & Tombol Full File -->
+              <div class="flex flex-wrap items-start justify-between gap-3 border-b border-line pb-4 dark:border-[#2e262b]">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span id="impact-org" class="text-[11px] font-bold uppercase tracking-wider text-rose">
+                      Peduly Yogyakarta
+                    </span>
+                    <span class="text-muted/40">•</span>
+                    <span id="impact-date" class="text-[11px] font-medium text-muted dark:text-[#b5a8b0]">
+                      5 October 2024
+                    </span>
+                    <span class="text-muted/40">•</span>
+                    <span id="impact-tag" class="rounded-full bg-pink/60 px-2.5 py-0.5 text-[10px] font-bold text-rose dark:bg-rose/20">
+                      Creative &amp; Youth
+                    </span>
+                  </div>
+                  <h3 id="impact-title" class="mt-1.5 font-serif text-xl font-semibold text-ink sm:text-2xl dark:text-white">
+                    Satur-Date: Making Clay Keychain with Orphanage Children
+                  </h3>
+                </div>
+
+                <a
+                  id="impact-open-link"
+                  href="sertifikat_kegiatan/Peduly-1.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-pink bg-[#fdf2f5] px-4 py-1.5 text-[11px] font-bold text-rose transition hover:bg-rose hover:text-white dark:border-[#3c2d34] dark:bg-[#261e23] dark:text-[#e3b8c7] dark:hover:bg-rose dark:hover:text-white"
+                >
+                  <span>Open Full Certificate</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+
+              <!-- 1. Preview Sertifikat -->
+              <div class="overflow-hidden rounded-2xl border border-line bg-[#fcf8f6] dark:border-[#33292f] dark:bg-[#191518]">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-white/80 px-4 py-2 text-[11px] text-muted dark:border-[#2e262b] dark:bg-[#221c20] dark:text-[#b5a8b0]">
+                  <span id="impact-location">📍 Special Region of Yogyakarta</span>
+                  <span class="rounded-full bg-sage/70 px-2.5 py-0.5 text-[10px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">
+                    Verified Volunteer Certificate
+                  </span>
+                </div>
+
+                <div class="relative aspect-[16/10] w-full bg-paper dark:bg-[#141113]">
+                  <iframe
+                    id="impact-pdf-viewer"
+                    src="sertifikat_kegiatan/Peduly-1.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                    title="Certificate Preview"
+                    class="h-full w-full border-0"
+                  ></iframe>
+
+                  <img
+                    id="impact-img-viewer"
+                    src=""
+                    alt="Certificate Preview"
+                    hidden
+                    class="h-full w-full object-contain p-3"
+                  />
+                </div>
+              </div>
+
+              <!-- 2. Keterangan Rincian Kegiatan (Ngapain Aja) -->
+              <div class="rounded-2xl border border-line bg-paper/75 p-5 dark:border-[#33292f] dark:bg-[#191518]/80">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-[11px] font-bold uppercase tracking-[0.15em] text-rose">
+                    ✦ What I Did &amp; Activity Highlights
+                  </p>
+                  <span id="impact-role" class="text-[11px] font-semibold text-muted dark:text-[#b5a8b0]">
+                    Role: Event Volunteer
+                  </span>
+                </div>
+
+                <p id="impact-desc" class="mt-2.5 text-xs leading-6 text-ink/85 sm:text-[13px] dark:text-[#e8dfe4]">
+                  Joined Peduly Yogyakarta’s weekend social program dedicated to bringing creative play and emotional companionship to orphanage children.
+                </p>
+
+                <!-- Poin-poin rincian aktivitas -->
+                <ul id="impact-highlights" class="mt-3.5 space-y-2 border-t border-dashed border-line pt-3.5 text-xs text-muted dark:border-[#2e262b] dark:text-[#b5a8b0]">
+                  <!-- Poin aktivitas dirender otomatis oleh JavaScript -->
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+<!-- <!-- 7. INTERNSHIP & WORK EXPERIENCE (INTERACTIVE DOCUMENT DECK) -->
+      <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-sparkle-pulse absolute right-10 top-12 text-lg text-[#c7a858]/55" aria-hidden="true">✦</span>
+        <span class="pointer-events-none animate-float-gentle absolute bottom-12 left-6 text-xl text-rose/45" aria-hidden="true">✧</span>
+
+        <!-- Header Section -->
+        <div class="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div class="max-w-2xl">
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Internship &amp; Work Experience</p>
+            <h2 class="mt-3 font-serif text-2xl font-semibold sm:text-3xl lg:text-[2.15rem]">
+              Practical experience in <em class="font-medium text-rose">digital storytelling &amp; teamwork.</em>
+            </h2>
+            <p class="mt-3 text-xs leading-6 text-muted sm:text-sm sm:leading-7 dark:text-[#b5a8b0]">
+              Before applying for software engineering internships, I completed a 3-month Social Media Specialist term at <strong class="font-semibold text-ink dark:text-white">Peduly Yogyakarta</strong>—building discipline, cross-functional collaboration, and audience-focused communication skills.
+            </p>
+          </div>
+
+          <span class="inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-pink bg-[#fdf2f5] px-4 py-1.5 text-[11px] font-bold text-rose dark:border-[#3c2d34] dark:bg-[#261e23] dark:text-[#e3b8c7]">
+            <span class="h-1.5 w-1.5 rounded-full bg-rose"></span>
+            5 Oct 2024 – 5 Jan 2025 • 3 Months
+          </span>
+        </div>
+
+        <!-- Grid 2 Kolom Asimetris -->
+        <div class="grid items-stretch gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          
+          <!-- KOLOM KIRI: Kartu Cerita Pengalaman + Kutipan CEO -->
+          <div class="flex flex-col justify-between rounded-3xl border border-line bg-white p-6 shadow-soft sm:p-8 dark:border-[#2e262b] dark:bg-[#221c20]">
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[11px] font-bold uppercase tracking-[0.16em] text-rose">
+                  Yayasan Peduly Gotong Royong
+                </span>
+                <span class="rounded-full border border-pink bg-[#fdf2f5] px-2.5 py-0.5 text-[10px] font-bold text-rose dark:border-[#3c2d34] dark:bg-[#261e23]">
+                  Completed
+                </span>
+              </div>
+
+              <h3 class="mt-2 font-serif text-2xl font-semibold text-ink dark:text-white">
+                Social Media Specialist
+              </h3>
+              <p class="mt-0.5 text-xs font-medium text-muted dark:text-[#b5a8b0]">
+                Internship • Special Region of Yogyakarta
+              </p>
+
+              <!-- Pill Skill yang Terasah -->
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Content Production</span>
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Visual Branding</span>
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Team Coordination</span>
+              </div>
+
+              <!-- Rincian Aktivitas Magang -->
+              <ul class="mt-5 space-y-2.5 border-t border-line pt-5 text-xs leading-relaxed text-muted dark:border-[#2e262b] dark:text-[#b5a8b0]">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Produced visual and short-form video content to highlight Peduly Yogyakarta’s community volunteering programs.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Collaborated with event committees on-site to document activities and maintain consistent social media aesthetics.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Maintained structured posting schedules, clear copywriting, and responsive audience engagement.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Kutipan Evaluasi dari Surat Rekomendasi CEO Peduly -->
+            <blockquote class="mt-6 rounded-2xl border border-lilac/80 bg-[#f7f4fc] p-4 dark:border-[#3b314a] dark:bg-[#262030]">
+              <p class="font-serif text-xs italic leading-relaxed text-[#4f4063] sm:text-[13px] dark:text-[#d8cceb]">
+                “Recognized for strong work performance, discipline, positive attitude, and dedication during 3 months as Social Media Specialist at Peduly.”
+              </p>
+              <footer class="mt-2.5 flex items-center justify-between text-[11px] font-semibold text-[#6e598a] dark:text-[#b7a5d1]">
+                <span>— Zain Al Multazam, CEO of Peduly.com</span>
+                <span>24 Jan 2025</span>
+              </footer>
+            </blockquote>
+          </div>
+
+          <!-- KOLOM KANAN: Layered Document Deck (Bisa Switch antara Sertifikat & Surat Rekomendasi) -->
+          <div class="relative flex flex-col">
+            <!-- Efek Tumpukan Kartu Pastel di Belakang -->
+            <div class="pointer-events-none absolute -inset-1.5 -rotate-1 rounded-[28px] border border-lilac bg-lilac/35 dark:border-[#32293b] dark:bg-[#231d29]/60"></div>
+            <div class="pointer-events-none absolute -inset-1 rotate-1 rounded-[28px] border border-pink bg-pink/35 dark:border-[#3d2933] dark:bg-[#291d23]/60"></div>
+
+            <div class="relative z-10 flex flex-1 flex-col justify-between rounded-3xl border border-line bg-white p-5 shadow-soft sm:p-7 dark:border-[#2e262b] dark:bg-[#221c20]">
+              <div>
+                <!-- Pill Switcher di Atas Frame -->
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4 dark:border-[#2e262b]">
+                  <div class="inline-flex rounded-full border border-line bg-paper p-1 dark:border-[#33292f] dark:bg-[#191518]" role="tablist">
+                    <button
+                      type="button"
+                      data-intern-index="0"
+                      class="intern-pill-tab rounded-full bg-rose px-4 py-1.5 text-xs font-bold text-white transition"
+                    >
+                      01. Internship Certificate
+                    </button>
+                    <button
+                      type="button"
+                      data-intern-index="1"
+                      class="intern-pill-tab rounded-full px-4 py-1.5 text-xs font-semibold text-muted transition hover:text-ink dark:text-[#b5a8b0] dark:hover:text-white"
+                    >
+                      02. Recommendation Letter
+                    </button>
+                  </div>
+
+                  <a
+                    id="intern-open-link"
+                    href="sertifikat_magang/Sertifikat-Magang.png"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-pink bg-[#fdf2f5] px-3.5 py-1.5 text-[11px] font-bold text-rose transition hover:bg-rose hover:text-white dark:border-[#3c2d34] dark:bg-[#261e23] dark:text-[#e3b8c7]"
+                  >
+                    <span>Open Full File</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+
+                <!-- Judul & Nomor Dokumen -->
+                <div class="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <span id="intern-doc-title" class="font-serif font-semibold text-ink sm:text-base dark:text-white">
+                    Certificate of Appreciation — Social Media Specialist
+                  </span>
+                  <span id="intern-doc-number" class="rounded-full bg-paper px-3 py-0.5 text-[10.5px] font-medium text-muted dark:bg-[#191518] dark:text-[#b5a8b0]">
+                    13.240/PDLY/INT/P-VLTR/XI/2024
+                  </span>
+                </div>
+
+                <!-- Preview Dokumen (PNG / PDF) -->
+                <div class="mt-4 overflow-hidden rounded-2xl border border-line bg-[#fcf8f6] p-2 sm:p-3 dark:border-[#33292f] dark:bg-[#191518]">
+                  <div class="relative aspect-[16/10.5] w-full overflow-hidden rounded-xl bg-white dark:bg-[#141113]">
+                    <img
+                      id="intern-img-viewer"
+                      src="sertifikat_magang/Sertifikat-Magang.png"
+                      alt="Sertifikat Magang Peduly"
+                      class="h-full w-full object-contain p-2"
+                    />
+
+                    <iframe
+                      id="intern-pdf-viewer"
+                      src=""
+                      title="Surat Rekomendasi Kerja Preview"
+                      hidden
+                      class="h-full w-full border-0"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Caption Bawah -->
+              <p id="intern-doc-caption" class="mt-4 text-xs leading-relaxed text-muted dark:text-[#b5a8b0]">
+                Official certificate awarded by Yayasan Peduly Gotong Royong (Yogyakarta) recognizing 3 months of contribution as a Social Media Specialist.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      
+<!-- MINI GAME: COZY CAT RUNNER -->
+      <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-sparkle-pulse absolute right-8 top-12 text-lg text-rose/45" aria-hidden="true">✦</span>
+        <span class="pointer-events-none animate-float-gentle absolute bottom-10 left-6 text-xl text-[#c7a858]/55" aria-hidden="true">✧</span>
+
+        <!-- Header Game -->
+        <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div class="max-w-xl">
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Interactive Mini-Game</p>
+            <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl">
+              Cozy <em class="font-medium text-rose">Cat Runner</em> Break.
+            </h2>
+            <p class="mt-2 text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
+              Press Space / ↑ or Tap / Click directly on the garden track to start running and jump!
+            </p>
+          </div>
+
+          <!-- Scoreboard -->
+          <div class="flex flex-wrap items-center gap-2.5">
+            <div class="inline-flex items-center gap-3 rounded-full border border-line bg-white px-4 py-2 text-xs font-semibold shadow-card dark:border-[#2e262b] dark:bg-[#221c20]">
+              <span class="text-muted dark:text-[#b5a8b0]">Score: <strong id="runner-score" class="text-rose">0000</strong></span>
+              <span class="text-line dark:text-[#2e262b]">|</span>
+              <span class="text-muted dark:text-[#b5a8b0]">Best: <strong id="runner-best" class="text-ink dark:text-white">0000</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arena Lintasan -->
+        <div class="overflow-hidden rounded-3xl border border-line bg-white p-4 shadow-soft sm:p-6 dark:border-[#2e262b] dark:bg-[#221c20]">
+          <div
+            id="runner-arena"
+            tabindex="0"
+            role="button"
+            aria-label="Cozy Cat Runner Game. Press Space or Click to start and jump."
+            class="relative mx-auto h-[270px] w-full max-w-3xl cursor-pointer select-none overflow-hidden rounded-2xl border border-pink/70 bg-gradient-to-b from-[#fffaf6] via-[#fdf3f6] to-[#fae7ed] outline-none focus:ring-2 focus:ring-rose/40 dark:border-[#3c2d34] dark:from-[#1b1619] dark:via-[#21191e] dark:to-[#291e24]"
+          >
+            <!-- Awan Pastel Bergerak -->
+            <svg class="animate-clouds pointer-events-none absolute left-0 top-4 h-16 w-[1700px] opacity-75 dark:opacity-25" viewBox="0 0 1700 64" fill="none">
+              <path d="M90 42h52a14 14 0 0 0 2-27.8A20 20 0 0 0 106 12a16 16 0 0 0-16 30Z" fill="#ffffff"/>
+              <path d="M360 34h44a12 12 0 0 0 2-23.8A17 17 0 0 0 374 8a14 14 0 0 0-14 26Z" fill="#ffffff"/>
+              <path d="M650 46h58a15 15 0 0 0 2-29.8A22 22 0 0 0 668 14a17 17 0 0 0-18 32Z" fill="#ffffff"/>
+              <path d="M940 42h52a14 14 0 0 0 2-27.8A20 20 0 0 0 956 12a16 16 0 0 0-16 30Z" fill="#ffffff"/>
+              <path d="M1210 34h44a12 12 0 0 0 2-23.8A17 17 0 0 0 1224 8a14 14 0 0 0-14 26Z" fill="#ffffff"/>
+              <path d="M1500 46h58a15 15 0 0 0 2-29.8A22 22 0 0 0 1518 14a17 17 0 0 0-18 32Z" fill="#ffffff"/>
+            </svg>
+
+            <!-- Bukit Pastel Lembut di Kejauhan -->
+            <svg class="pointer-events-none absolute inset-x-0 bottom-11 h-20 w-full opacity-55 dark:opacity-20" viewBox="0 0 800 80" preserveAspectRatio="none">
+              <path d="M0 80 Q 140 20, 310 65 T 620 50 T 800 65 L 800 80 Z" fill="#f3dce4"/>
+              <path d="M0 80 Q 220 35, 440 70 T 800 48 L 800 80 Z" fill="#e6eee0"/>
+            </svg>
+
+            <!-- Tanah & Rumput Pastel -->
+            <div class="pointer-events-none absolute inset-x-0 bottom-0 h-11 border-t-2 border-[#b8cca9] bg-[#e6efe0] dark:border-[#394a33] dark:bg-[#222b20]">
+              <div class="mt-2 flex justify-around text-[10px] font-bold tracking-widest text-[#8ba67b]/70">
+                <span>• •</span>
+                <span>~</span>
+                <span>•</span>
+                <span>~ ~</span>
+                <span>• •</span>
+              </div>
+            </div>
+
+            <!-- KARAKTER KUCING SVG (Mochi the Cat) -->
+            <div
+              id="runner-player"
+              style="bottom: 44px;"
+              class="pointer-events-none absolute left-10 z-10 h-14 w-14 sm:left-14"
+            >
+              <svg id="cat-svg" viewBox="0 0 64 64" class="h-full w-full overflow-visible drop-shadow-sm" fill="none">
+                <!-- Ekor Kucing -->
+                <path class="cat-tail" d="M18 45 C 8 43, 6 31, 13 28 C 17 26, 19 31, 15 34" stroke="#e59a6c" stroke-width="5" stroke-linecap="round"/>
+                <!-- Kaki Belakang -->
+                <rect class="leg-back" x="23" y="47" width="6" height="12" rx="3" fill="#d98757"/>
+                <!-- Badan & Hoodie Pink -->
+                <rect x="19" y="30" width="26" height="21" rx="10.5" fill="#b96782"/>
+                <path d="M25 31 Q 32 36 39 31" stroke="#f7dce5" stroke-width="2.2" stroke-linecap="round"/>
+                <!-- Kaki Depan -->
+                <rect class="leg-front" x="38" y="47" width="6" height="12" rx="3" fill="#f2ad80"/>
+                <!-- Telinga Kiri & Kanan -->
+                <path d="M21 21 L 19 9 L 30 16 Z" fill="#f2ad80" stroke="#302b31" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M22 19 L 21 12 L 28 16 Z" fill="#f7dce5"/>
+                <path d="M43 21 L 45 9 L 34 16 Z" fill="#f2ad80" stroke="#302b31" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M42 19 L 43 12 L 36 16 Z" fill="#f7dce5"/>
+                <!-- Kepala Kucing -->
+                <ellipse cx="32" cy="23" rx="14.5" ry="12" fill="#f7be94" stroke="#302b31" stroke-width="1.8"/>
+                <!-- Garis Belang Dahi -->
+                <path d="M32 11.5 V 15 M28.5 12.2 V 14.8 M35.5 12.2 V 14.8" stroke="#d98757" stroke-width="1.8" stroke-linecap="round"/>
+                <!-- Mata Normal -->
+                <g id="cat-eyes-normal">
+                  <circle cx="27" cy="22.5" r="2.2" fill="#302b31"/>
+                  <circle cx="26.3" cy="21.8" r="0.7" fill="#ffffff"/>
+                  <circle cx="38" cy="22.5" r="2.2" fill="#302b31"/>
+                  <circle cx="37.3" cy="21.8" r="0.7" fill="#ffffff"/>
+                </g>
+                <!-- Mata Kaget Saat Nabrak -->
+                <g id="cat-eyes-hit" hidden>
+                  <path d="M25 20.5 L 29 24.5 M29 20.5 L 25 24.5" stroke="#302b31" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M36 20.5 L 40 24.5 M40 20.5 L 36 24.5" stroke="#302b31" stroke-width="2" stroke-linecap="round"/>
+                </g>
+                <!-- Pipi Merona -->
+                <ellipse cx="23.5" cy="25.5" rx="2.4" ry="1.4" fill="#f29cb4" opacity="0.75"/>
+                <ellipse cx="41" cy="25.5" rx="2.4" ry="1.4" fill="#f29cb4" opacity="0.75"/>
+                <!-- Hidung & Mulut Mungil -->
+                <path d="M31.2 24.8 L 33.8 24.8 L 32.5 26.3 Z" fill="#b96782"/>
+                <path d="M30 27.5 Q 31.3 29 32.5 27.5 Q 33.7 29 35 27.5" stroke="#302b31" stroke-width="1.5" stroke-linecap="round"/>
+                <!-- Kumis -->
+                <path d="M16 23 L 20.5 23.8 M16 26 L 20.5 25.8 M48.5 23 L 44 23.8 M48.5 26 L 44 25.8" stroke="#302b31" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <!-- Layer Rintangan Pohon / Batu / Jamur -->
+            <div id="runner-obstacles-layer" class="pointer-events-none absolute inset-0"></div>
+
+            <!-- Petunjuk Ringan Mengambang (Tanpa Menutupi Arena & Tanpa Tombol Start) -->
+            <div
+              id="runner-prompt"
+              class="pointer-events-none absolute inset-x-0 top-7 z-20 flex flex-col items-center px-4 text-center transition-opacity duration-200"
+            >
+              <span
+                id="runner-prompt-badge"
+                class="rounded-full border border-pink bg-white/90 px-4 py-1.5 text-[11px] font-bold tracking-wide text-rose shadow-card backdrop-blur-sm dark:border-[#3c2d34] dark:bg-[#221c20]/90 dark:text-[#f4abbf]"
+              >
+                Tap / Click Track or Press Space to Jump &amp; Start ✦
+              </span>
+              <p
+                id="runner-prompt-sub"
+                hidden
+                class="mt-1.5 rounded-full bg-paper/85 px-3 py-0.5 text-[11px] font-medium text-muted dark:bg-[#191518]/85 dark:text-[#b5a8b0]"
+              >
+                Mochi ran 0000 m — Tap anywhere to run again!
+              </p>
+            </div>
+          </div>
+
+          <div class="mx-auto mt-3 flex max-w-3xl flex-wrap items-center justify-between gap-2 text-[11px] text-muted dark:text-[#b5a8b0]">
+            <span>Controls: Press Space / Up Arrow or Tap anywhere on the track to jump.</span>
+            <span>Watch out for trees, rocks &amp; mushrooms!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. CLOSING CTA BANNER -->
       <section class="relative mb-16 overflow-hidden rounded-3xl border border-pink/70 bg-[#f7e8ec] p-7 sm:mb-20 sm:flex sm:items-center sm:justify-between sm:p-10 dark:border-[#382730] dark:bg-[#261c21]">
         <span class="pointer-events-none animate-float-gentle absolute right-48 top-4 text-lg text-rose/45" aria-hidden="true">✧</span>
         <span class="pointer-events-none animate-sparkle-pulse absolute bottom-3 right-6 text-base text-[#c7a858]/55" aria-hidden="true">♡</span>
@@ -1000,6 +1471,551 @@
         }
       });
     });
-  </script>
+
+    // 3. Social Impact & Volunteering Interactive Viewer
+    const socialImpactData = [
+      {
+        id: "01",
+        title: "Satur-Date: Making Clay Keychain with Orphanage Children",
+        org: "Peduly Yogyakarta",
+        role: "Volunteer Facilitator",
+        date: "5 October 2024",
+        location: "Special Region of Yogyakarta",
+        tag: "Creative & Youth",
+        badgeBg: "bg-pink/70 text-rose dark:bg-rose/20",
+        file: "sertifikat_kegiatan/Peduly-1.pdf",
+        type: "pdf",
+        desc: "Joined Peduly Yogyakarta’s weekend social program focused on fostering creativity and warm companionship for orphanage children.",
+        highlights: [
+          "Guided orphanage children step-by-step in shaping and designing handmade clay keychains.",
+          "Encouraged self-expression, patience, and fine-motor creativity through interactive art play.",
+          "Built a supportive, joyful group atmosphere alongside fellow Peduly volunteers."
+        ]
+      },
+      {
+        id: "02",
+        title: "Peduly Goes to School: Building Brighter Future",
+        org: "Peduly Yogyakarta",
+        role: "Education Volunteer",
+        date: "6 September 2024",
+        location: "Special Region of Yogyakarta",
+        tag: "Education Support",
+        badgeBg: "bg-lilac/80 text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]",
+        file: "sertifikat_kegiatan/Peduly-2.pdf",
+        type: "pdf",
+        desc: "Participated in a school outreach initiative aimed at inspiring students and strengthening their motivation to learn.",
+        highlights: [
+          "Delivered interactive educational sharing sessions to encourage students’ future aspirations.",
+          "Facilitated group discussions and fun ice-breaking games to boost classroom engagement.",
+          "Collaborated with the committee to ensure smooth session flow throughout the school visit."
+        ]
+      },
+      {
+        id: "03",
+        title: "Creative Day: Berkreasi dengan Pipecleaners",
+        org: "Peduly Yogyakarta",
+        role: "Workshop Volunteer",
+        date: "20 July 2024",
+        location: "Panti Asuhan Yauma Bantul, Yogyakarta",
+        tag: "Community Workshop",
+        badgeBg: "bg-sage/80 text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]",
+        file: "sertifikat_kegiatan/Peduly-3.pdf",
+        type: "pdf",
+        desc: "Hosted a hands-on craft day with children at Panti Asuhan Yauma Bantul using colorful pipecleaners.",
+        highlights: [
+          "Assisted children in twisting and assembling colorful pipecleaners into flowers and creative shapes.",
+          "Provided one-on-one encouragement so every child could complete their own craft piece.",
+          "Shared quality recreational time and positive interactions with the orphanage community."
+        ]
+      },
+      {
+        id: "04",
+        title: "Fun Learning: Cooking Class with Adik Panti",
+        org: "Pemuda Peduli Yogyakarta",
+        role: "Activity Volunteer",
+        date: "29 September 2024",
+        location: "Panti Madania Yogyakarta",
+        tag: "Life Skills & Care",
+        badgeBg: "bg-butter/80 text-[#8a6d2b] dark:bg-[#332b19] dark:text-[#e3c681]",
+        file: "sertifikat_kegiatan/Pemuda-Peduli-1.png",
+        type: "image",
+        desc: "Collaborated with Pemuda Peduli Yogyakarta to organize an interactive cooking class and fun learning session at Panti Madania.",
+        highlights: [
+          "Accompanied children in preparing simple, kid-friendly dishes while teaching basic food hygiene.",
+          "Promoted teamwork, sharing, and practical everyday life skills in a fun environment.",
+          "Helped coordinate ingredients, group stations, and interactive games during the event."
+        ]
+      },
+      {
+        id: "05",
+        title: "Semua Bisa Merdeka",
+        org: "Pemuda Peduli Yogyakarta",
+        role: "Event Volunteer",
+        date: "18 August 2024",
+        location: "Panti Asuhan Madania Yogyakarta",
+        tag: "Independence Day Social",
+        badgeBg: "bg-pink/70 text-rose dark:bg-rose/20",
+        file: "sertifikat_kegiatan/Pemuda-Peduli-2.png",
+        type: "image",
+        desc: "Celebrated Indonesia’s Independence Day alongside orphanage children at Panti Asuhan Madania Yogyakarta.",
+        highlights: [
+          "Organized traditional Independence Day competitions and inclusive team games for all ages.",
+          "Fostered sportsmanship, confidence, and togetherness among the children.",
+          "Supported event logistics and prize distribution to make the celebration memorable."
+        ]
+      },
+      {
+        id: "06",
+        title: "OFVDAY (One Fine Volunteer Day) #2",
+        org: "Project Child Indonesia",
+        role: "Community Volunteer",
+        date: "2 June 2024",
+        location: "Sekolah Sungai Code, Jetisharjo, Yogyakarta",
+        tag: "Child Empowerment",
+        badgeBg: "bg-lilac/80 text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]",
+        file: "sertifikat_kegiatan/Project-Child.pdf",
+        type: "pdf",
+        desc: "Contributed time and energy to Project Child Indonesia’s volunteer day supporting riverside community children at Sekolah Sungai Code.",
+        highlights: [
+          "Engaged with children living along the Code River area through creative learning and play.",
+          "Supported Project Child Indonesia’s mission to provide safe, inspiring educational spaces.",
+          "Collaborated with fellow volunteers in running structured recreational activities."
+        ]
+      },
+      {
+        id: "07",
+        title: "Skolagama × PKWD 4 UNY Goes to SLB Wiyata Dharma 4",
+        org: "Skolagama & PKWD 4 UNY",
+        role: "Inclusive Program Volunteer",
+        date: "11 September 2024",
+        location: "SLB Wiyata Dharma 4, Yogyakarta",
+        tag: "Inclusive Education",
+        badgeBg: "bg-sage/80 text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]",
+        file: "sertifikat_kegiatan/Skolagama.pdf",
+        type: "pdf",
+        desc: "Participated in an inclusive creativity project implementing Profil Pelajar Pancasila values through recycled planting media.",
+        highlights: [
+          "Assisted students with special needs (SLB) in creating eco-friendly planting media from recycled materials.",
+          "Practiced patient, adaptive communication to ensure every student felt included and supported.",
+          "Combined environmental sustainability awareness with hands-on inclusive learning."
+        ]
+      },
+      {
+        id: "08",
+        title: "YOT Plogging (#YOT15TAHUN)",
+        org: "Young On Top",
+        role: "Environmental Volunteer",
+        date: "2024",
+        location: "Yogyakarta (National Simultaneous Action)",
+        tag: "Environment",
+        badgeBg: "bg-butter/80 text-[#8a6d2b] dark:bg-[#332b19] dark:text-[#e3c681]",
+        file: "sertifikat_kegiatan/YOT.pdf",
+        type: "pdf",
+        desc: "Took part in Young On Top’s nationwide simultaneous plogging action held across multiple cities in Indonesia.",
+        highlights: [
+          "Combined jogging with picking up litter along public routes to promote cleaner urban spaces.",
+          "Campaigned for everyday environmental responsibility alongside local youth communities.",
+          "Contributed to a coordinated national youth movement celebrating YOT’s 15th anniversary."
+        ]
+      }
+    ];
+
+    const impactListEl = document.getElementById("impact-list");
+    const impactOrgEl = document.getElementById("impact-org");
+    const impactRoleEl = document.getElementById("impact-role");
+    const impactDateEl = document.getElementById("impact-date");
+    const impactTitleEl = document.getElementById("impact-title");
+    const impactLocationEl = document.getElementById("impact-location");
+    const impactDescEl = document.getElementById("impact-desc");
+    const impactHighlightsEl = document.getElementById("impact-highlights");
+    const impactTagEl = document.getElementById("impact-tag");
+    const impactOpenLinkEl = document.getElementById("impact-open-link");
+    const impactFileIndicatorEl = document.getElementById("impact-file-indicator");
+    const impactPdfViewerEl = document.getElementById("impact-pdf-viewer");
+    const impactImgViewerEl = document.getElementById("impact-img-viewer");
+
+    function renderImpactList(activeIndex = 0) {
+      impactListEl.innerHTML = socialImpactData.map((item, idx) => {
+        const isActive = idx === activeIndex;
+        const cardClass = isActive
+          ? "border-rose bg-white shadow-card dark:border-rose dark:bg-[#221c20]"
+          : "border-line bg-white/60 hover:border-pink hover:bg-white dark:border-[#2e262b] dark:bg-[#221c20]/50 dark:hover:border-[#47353e] dark:hover:bg-[#221c20]";
+
+        return `
+          <button
+            type="button"
+            data-impact-index="${idx}"
+            class="impact-item group flex w-full items-start gap-3 rounded-2xl border p-3.5 text-left transition-all duration-200 ${cardClass}"
+          >
+            <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-xl font-serif text-xs font-bold ${item.badgeBg}">
+              ${item.id}
+            </span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-[10px] font-bold uppercase tracking-wider text-rose">
+                ${item.org}
+              </p>
+              <h4 class="mt-0.5 line-clamp-2 font-serif text-sm font-semibold leading-snug text-ink dark:text-white">
+                ${item.title}
+              </h4>
+              <p class="mt-1 text-[10.5px] text-muted dark:text-[#b5a8b0]">
+                ${item.date}
+              </p>
+            </div>
+            <span class="mt-1 text-xs font-bold transition-transform duration-200 ${isActive ? 'text-rose translate-x-0.5' : 'text-muted/50 group-hover:text-rose'}">
+              →
+            </span>
+          </button>
+        `;
+      }).join("");
+
+      document.querySelectorAll(".impact-item").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const index = Number(btn.getAttribute("data-impact-index"));
+          selectImpactActivity(index);
+        });
+      });
+    }
+
+    function selectImpactActivity(index) {
+      const item = socialImpactData[index];
+      if (!item) return;
+
+      impactOrgEl.textContent = item.org;
+      impactRoleEl.textContent = `Role: ${item.role}`;
+      impactDateEl.textContent = item.date;
+      impactTitleEl.textContent = item.title;
+      impactLocationEl.textContent = `📍 ${item.location}`;
+      impactDescEl.textContent = item.desc;
+      impactTagEl.textContent = item.tag;
+      impactOpenLinkEl.href = item.file;
+      impactFileIndicatorEl.textContent = item.file.replace("/", " / ");
+
+      impactHighlightsEl.innerHTML = item.highlights.map((point) => `
+        <li class="flex items-start gap-2">
+          <span class="mt-0.5 text-rose">✓</span>
+          <span>${point}</span>
+        </li>
+      `).join("");
+
+      if (item.type === "image") {
+        impactPdfViewerEl.hidden = true;
+        impactImgViewerEl.hidden = false;
+        impactImgViewerEl.src = item.file;
+        impactImgViewerEl.alt = `${item.title} Certificate`;
+      } else {
+        impactImgViewerEl.hidden = true;
+        impactPdfViewerEl.hidden = false;
+        impactPdfViewerEl.src = `${item.file}#toolbar=0&navpanes=0&scrollbar=0`;
+      }
+
+      renderImpactList(index);
+    }
+
+    selectImpactActivity(0);
+
+  // 4. Internship Document Pill Switcher
+    const internshipDocs = [
+      {
+        title: "Certificate of Appreciation — Social Media Specialist",
+        number: "13.240/PDLY/INT/P-VLTR/XI/2024",
+        file: "sertifikat_magang/Sertifikat-Magang.png",
+        type: "image",
+        caption: "Official certificate awarded by Yayasan Peduly Gotong Royong (Yogyakarta) recognizing 3 months of contribution as a Social Media Specialist."
+      },
+      {
+        title: "Surat Rekomendasi Kerja — Peduly.com",
+        number: "10.259/PDLY/SR/VLTR/XII/2024",
+        file: "sertifikat_magang/Surat-Rekomedasi-Kerja.pdf",
+        type: "pdf",
+        caption: "Official recommendation letter signed by Zain Al Multazam (CEO of Peduly.com) in Surabaya on 24 January 2025 endorsing Nadia’s performance and work ethic."
+      }
+    ];
+
+    const internPillTabs = document.querySelectorAll(".intern-pill-tab");
+    const internDocTitleEl = document.getElementById("intern-doc-title");
+    const internDocNumberEl = document.getElementById("intern-doc-number");
+    const internOpenLinkEl = document.getElementById("intern-open-link");
+    const internImgViewerEl = document.getElementById("intern-img-viewer");
+    const internPdfViewerEl = document.getElementById("intern-pdf-viewer");
+    const internDocCaptionEl = document.getElementById("intern-doc-caption");
+
+    internPillTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const idx = Number(tab.getAttribute("data-intern-index"));
+        const doc = internshipDocs[idx];
+        if (!doc) return;
+
+        internPillTabs.forEach((t) => {
+          t.className = "intern-pill-tab rounded-full px-4 py-1.5 text-xs font-semibold text-muted transition hover:text-ink dark:text-[#b5a8b0] dark:hover:text-white";
+        });
+        tab.className = "intern-pill-tab rounded-full bg-rose px-4 py-1.5 text-xs font-bold text-white transition";
+
+        internDocTitleEl.textContent = doc.title;
+        internDocNumberEl.textContent = doc.number;
+        internOpenLinkEl.href = doc.file;
+        internDocCaptionEl.textContent = doc.caption;
+
+        if (doc.type === "image") {
+          internPdfViewerEl.hidden = true;
+          internImgViewerEl.hidden = false;
+          internImgViewerEl.src = doc.file;
+        } else {
+          internImgViewerEl.hidden = true;
+          internPdfViewerEl.hidden = false;
+          internPdfViewerEl.src = `${doc.file}#toolbar=0&navpanes=0&scrollbar=0`;
+        }
+      });
+    });
+
+// 5. Mini Game: Cozy Cat Runner (Instant Play & Clean Restart)
+    const runnerArena = document.getElementById("runner-arena");
+    const runnerPlayer = document.getElementById("runner-player");
+    const catSvg = document.getElementById("cat-svg");
+    const catEyesNormal = document.getElementById("cat-eyes-normal");
+    const catEyesHit = document.getElementById("cat-eyes-hit");
+    const runnerObstaclesLayer = document.getElementById("runner-obstacles-layer");
+    const runnerPrompt = document.getElementById("runner-prompt");
+    const runnerPromptBadge = document.getElementById("runner-prompt-badge");
+    const runnerPromptSub = document.getElementById("runner-prompt-sub");
+    const runnerScoreEl = document.getElementById("runner-score");
+    const runnerBestEl = document.getElementById("runner-best");
+
+    const svgObstacles = [
+      {
+        width: 44,
+        height: 54,
+        svg: `
+          <svg viewBox="0 0 44 54" class="h-full w-full drop-shadow-sm" fill="none">
+            <rect x="18" y="40" width="8" height="14" rx="2" fill="#9c7356"/>
+            <path d="M22 4 L 38 24 H 29 L 41 41 H 3 L 15 24 H 6 Z" fill="#6f965c" stroke="#302b31" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="18" cy="20" r="2" fill="#f7dce5"/>
+            <circle cx="26" cy="31" r="2.2" fill="#f9edc9"/>
+          </svg>
+        `
+      },
+      {
+        width: 48,
+        height: 36,
+        svg: `
+          <svg viewBox="0 0 48 36" class="h-full w-full drop-shadow-sm" fill="none">
+            <path d="M5 34 C 4 20, 14 10, 25 12 C 36 13, 44 21, 43 34 Z" fill="#b8b0b6" stroke="#302b31" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M12 22 Q 18 16 25 18" stroke="#ded8dc" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="34" cy="27" r="2" fill="#968d94"/>
+          </svg>
+        `
+      },
+      {
+        width: 42,
+        height: 44,
+        svg: `
+          <svg viewBox="0 0 42 44" class="h-full w-full drop-shadow-sm" fill="none">
+            <rect x="15" y="24" width="12" height="18" rx="5" fill="#fff6eb" stroke="#302b31" stroke-width="1.8"/>
+            <path d="M4 25 C 4 10, 38 10, 38 25 Z" fill="#b96782" stroke="#302b31" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="15" cy="17" r="2.5" fill="#fffdf9"/>
+            <circle cx="27" cy="18" r="2.2" fill="#fffdf9"/>
+            <circle cx="21" cy="12" r="1.8" fill="#fffdf9"/>
+          </svg>
+        `
+      }
+    ];
+
+    const GROUND_Y = 44;
+    let runnerRunning = false;
+    let gameOverCooldown = false;
+    let playerBottom = GROUND_Y;
+    let velocityY = 0;
+    const gravity = -0.68;
+    const jumpStrength = 13.4;
+
+    let gameSpeed = 5.4;
+    let runnerDistance = 0;
+    let runnerBest = Number(localStorage.getItem("nadia-cat-runner-best") || 0);
+    let obstacles = [];
+    let nextSpawnFrames = 65;
+    let runnerFrameId = null;
+
+    function formatPadScore(num) {
+      return String(Math.floor(num)).padStart(4, "0");
+    }
+
+    runnerBestEl.textContent = formatPadScore(runnerBest);
+
+    // Tampilkan 1 pohon preview di layar awal supaya langsung terlihat estetik
+    function renderIdlePreview() {
+      runnerObstaclesLayer.innerHTML = "";
+      const previewTree = document.createElement("div");
+      previewTree.style.right = "16%";
+      previewTree.style.bottom = `${GROUND_Y - 2}px`;
+      previewTree.style.width = `${svgObstacles[0].width}px`;
+      previewTree.style.height = `${svgObstacles[0].height}px`;
+      previewTree.className = "absolute";
+      previewTree.innerHTML = svgObstacles[0].svg;
+      runnerObstaclesLayer.appendChild(previewTree);
+    }
+
+    renderIdlePreview();
+
+    function triggerJump() {
+      if (playerBottom <= GROUND_Y + 2) {
+        velocityY = jumpStrength;
+      }
+    }
+
+    function handleRunnerAction() {
+      if (gameOverCooldown) return;
+
+      if (!runnerRunning) {
+        startRunnerGame();
+        triggerJump();
+      } else {
+        triggerJump();
+      }
+    }
+
+    runnerArena.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      handleRunnerAction();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "Space" || e.code === "ArrowUp") {
+        // Aktif jika arena sedang difokuskan atau game sedang berjalan
+        if (runnerRunning || document.activeElement === runnerArena) {
+          e.preventDefault();
+          handleRunnerAction();
+        }
+      }
+    });
+
+    function createRunnerObstacle() {
+      const template = svgObstacles[Math.floor(Math.random() * svgObstacles.length)];
+      const arenaWidth = runnerArena.clientWidth;
+      const el = document.createElement("div");
+
+      el.style.left = `${arenaWidth + 20}px`;
+      el.style.bottom = `${GROUND_Y - 2}px`;
+      el.style.width = `${template.width}px`;
+      el.style.height = `${template.height}px`;
+      el.className = "absolute";
+      el.innerHTML = template.svg;
+
+      runnerObstaclesLayer.appendChild(el);
+      obstacles.push({
+        el,
+        x: arenaWidth + 20,
+        width: template.width,
+        height: template.height
+      });
+    }
+
+    function endRunnerGame() {
+      runnerRunning = false;
+      cancelAnimationFrame(runnerFrameId);
+
+      // Jeda 350ms supaya klik panik saat tabrakan tidak langsung me-restart tanpa sengaja
+      gameOverCooldown = true;
+      setTimeout(() => {
+        gameOverCooldown = false;
+      }, 350);
+
+      catSvg.classList.remove("cat-running");
+      catEyesNormal.setAttribute("hidden", "");
+      catEyesHit.removeAttribute("hidden");
+
+      const finalScore = Math.floor(runnerDistance);
+      if (finalScore > runnerBest) {
+        runnerBest = finalScore;
+        localStorage.setItem("nadia-cat-runner-best", String(runnerBest));
+        runnerBestEl.textContent = formatPadScore(runnerBest);
+      }
+
+      runnerPromptBadge.textContent = "Oops, Bonk! Tap or Press Space to Restart ↻";
+      runnerPromptSub.textContent = `Mochi ran ${formatPadScore(finalScore)} meters!`;
+      runnerPromptSub.hidden = false;
+      runnerPrompt.hidden = false;
+    }
+
+    function updateRunnerLoop() {
+      if (!runnerRunning) return;
+
+      playerBottom += velocityY;
+      velocityY += gravity;
+      if (playerBottom <= GROUND_Y) {
+        playerBottom = GROUND_Y;
+        velocityY = 0;
+        catSvg.classList.add("cat-running");
+      } else {
+        catSvg.classList.remove("cat-running");
+      }
+      runnerPlayer.style.bottom = `${playerBottom}px`;
+
+      runnerDistance += 0.22;
+      gameSpeed = Math.min(11.5, 5.4 + runnerDistance * 0.0045);
+      runnerScoreEl.textContent = formatPadScore(runnerDistance);
+
+      nextSpawnFrames--;
+      if (nextSpawnFrames <= 0) {
+        createRunnerObstacle();
+        nextSpawnFrames = Math.floor(55 + Math.random() * 55 - Math.min(22, runnerDistance * 0.02));
+      }
+
+      const pLeft = runnerPlayer.offsetLeft + 12;
+      const pRight = runnerPlayer.offsetLeft + runnerPlayer.offsetWidth - 12;
+      const pBottom = playerBottom + 6;
+
+      obstacles = obstacles.filter((obs) => {
+        obs.x -= gameSpeed;
+        obs.el.style.left = `${obs.x}px`;
+
+        const oLeft = obs.x + 8;
+        const oRight = obs.x + obs.width - 8;
+        const oTop = GROUND_Y + obs.height - 8;
+
+        const collided = pRight > oLeft && pLeft < oRight && pBottom < oTop;
+        if (collided) {
+          endRunnerGame();
+          return false;
+        }
+
+        if (obs.x + obs.width < -25) {
+          obs.el.remove();
+          return false;
+        }
+
+        return true;
+      });
+
+      if (runnerRunning) {
+        runnerFrameId = requestAnimationFrame(updateRunnerLoop);
+      }
+    }
+
+    function startRunnerGame() {
+      cancelAnimationFrame(runnerFrameId);
+
+      // Bersihkan total semua rintangan lama (termasuk yang baru ditabrak & preview awal)
+      runnerObstaclesLayer.innerHTML = "";
+      obstacles = [];
+
+      runnerRunning = true;
+      runnerDistance = 0;
+      gameSpeed = 5.4;
+      playerBottom = GROUND_Y;
+      velocityY = 0;
+      nextSpawnFrames = 55;
+
+      catEyesHit.setAttribute("hidden", "");
+      catEyesNormal.removeAttribute("hidden");
+      catSvg.classList.add("cat-running");
+
+      runnerPlayer.style.bottom = `${GROUND_Y}px`;
+      runnerScoreEl.textContent = "0000";
+      runnerPrompt.hidden = true;
+      runnerPromptSub.hidden = true;
+      runnerArena.focus();
+
+      runnerFrameId = requestAnimationFrame(updateRunnerLoop);
+    }
+  </script>  
 </body>
 </html>
