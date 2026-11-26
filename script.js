@@ -445,38 +445,42 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 // ==========================================
-// INTERACTIVE ARCHITECTURAL INTRO REVEAL (FAST)
+// INTERACTIVE ARCHITECTURAL INTRO + WALKING CHERRY
 // ==========================================
-document.addEventListener("DOMContentLoaded", () => {
+(function () {
   const overlay = document.getElementById("intro-overlay");
+  if (!overlay) return;
+
   const spotlight = document.getElementById("intro-spotlight");
   const card = document.getElementById("intro-card");
   const sub = document.getElementById("intro-sub");
   const nameEl = document.getElementById("intro-name");
   const role = document.getElementById("intro-role");
   const line = document.getElementById("intro-line");
+  const cherry = document.getElementById("intro-cherry");
   const percentEl = document.getElementById("intro-percent");
   const skipBtn = document.getElementById("intro-skip");
-
-  if (!overlay) return;
 
   document.body.style.overflow = "hidden";
   let isClosing = false;
 
-  const closeIntro = (instant = false) => {
+  const closeIntro = () => {
     if (isClosing) return;
     isClosing = true;
 
-    if (instant) {
-      overlay.style.transitionDuration = "300ms";
+    // Efek transisi keluar: kartu mengecil lembut sementara tirai memudar
+    if (card) {
+      card.style.transition = "all 550ms cubic-bezier(0.22, 1, 0.36, 1)";
+      card.style.opacity = "0";
+      card.style.transform = "translateY(-16px) scale(0.96)";
     }
 
-    overlay.classList.add("opacity-0", "scale-[1.02]", "pointer-events-none");
+    overlay.classList.add("opacity-0", "pointer-events-none");
     document.body.style.overflow = "";
-    setTimeout(() => overlay.remove(), instant ? 320 : 650);
+    setTimeout(() => overlay.remove(), 650);
   };
 
-  // 1. Animasi teks muncul langsung
+  // 1. Animasi teks muncul bertahap
   requestAnimationFrame(() => {
     if (sub) sub.classList.remove("translate-y-full");
     if (nameEl) nameEl.classList.remove("translate-y-full");
@@ -485,6 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 2. Efek interaktif mouse
   overlay.addEventListener("mousemove", (e) => {
+    if (isClosing) return;
     if (spotlight) {
       spotlight.style.background = `radial-gradient(450px circle at ${e.clientX}px ${e.clientY}px, rgba(247, 220, 229, 0.65), transparent 70%)`;
     }
@@ -495,26 +500,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 3. Progress bar cepat & mulus (selesai dalam ~900ms)
-  let progress = 0;
-  const timer = setInterval(() => {
-    progress += 8; // Naik cepat & konsisten
-    if (progress >= 100) {
-      progress = 100;
-      clearInterval(timer);
-      setTimeout(() => closeIntro(false), 180);
-    }
-    if (line) line.style.width = `${progress}%`;
-    if (percentEl) percentEl.textContent = `${progress}%`;
-  }, 55);
+  // 3. Animasi ceri berjalan + progress bar mulus (60fps dengan requestAnimationFrame)
+  const duration = 1200; // Total durasi 1.2 detik (pas & tidak kelamaan)
+  const startTime = performance.now();
 
-  // 4. Klik tombol -> langsung kebuka dalam 0.3 detik
+  function animateProgress(currentTime) {
+    if (isClosing) return;
+    const elapsed = currentTime - startTime;
+    const rawProgress = Math.min(elapsed / duration, 1);
+    
+    // Easing halus (melambat sedikit di akhir sebelum 100%)
+    const eased = 1 - Math.pow(1 - rawProgress, 3);
+    const percent = Math.round(eased * 100);
+
+    if (line) line.style.width = `${percent}%`;
+    if (percentEl) percentEl.textContent = `${percent}%`;
+    
+    // Gerakkan ceri + sedikit efek goyang lucu saat berjalan
+    if (cherry) {
+      const wobble = Math.sin(elapsed * 0.025) * 14;
+      cherry.style.left = `${percent}%`;
+      cherry.style.transform = `translate(-50%, -50%) rotate(${wobble}deg)`;
+    }
+
+    if (rawProgress < 1) {
+      requestAnimationFrame(animateProgress);
+    } else {
+      setTimeout(closeIntro, 200);
+    }
+  }
+
+  requestAnimationFrame(animateProgress);
+
+  // 4. Klik tombol -> langsung lompat ke 100% dan transisi keluar
   if (skipBtn) {
     skipBtn.addEventListener("click", () => {
-      clearInterval(timer);
       if (line) line.style.width = "100%";
+      if (cherry) cherry.style.left = "100%";
       if (percentEl) percentEl.textContent = "100%";
-      closeIntro(true);
+      closeIntro();
     });
   }
-});
+})();

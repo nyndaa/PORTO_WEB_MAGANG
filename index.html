@@ -63,7 +63,7 @@
 </head>
 <body class="overflow-x-clip bg-paper font-sans text-ink antialiased">
 <!-- INTRO OVERLAY: INTERACTIVE ARCHITECTURAL & BOTANICAL REVEAL -->
-<div id="intro-overlay" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-paper dark:bg-[#201a1e] px-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
+<div id="intro-overlay" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-paper/95 dark:bg-[#201a1e]/95 backdrop-blur-md px-6 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
   
   <!-- Garis Grid Arsitektural -->
   <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#eee7e4_1px,transparent_1px),linear-gradient(to_bottom,#eee7e4_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#2e252a_1px,transparent_1px),linear-gradient(to_bottom,#2e252a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-50"></div>
@@ -109,24 +109,27 @@
       </p>
     </div>
 
-    <!-- Progress Bar Interaktif + Persentase Mini -->
-    <div class="mt-7 w-56 sm:w-72">
-      <div class="flex justify-between text-[10px] font-medium tracking-widest text-muted dark:text-[#e2b3c2] mb-1.5 uppercase">
+ <!-- Progress Bar Interaktif + Ikon Cherry Berjalan -->
+    <div class="mt-8 w-60 sm:w-80">
+      <div class="flex justify-between text-[10px] font-medium tracking-widest text-muted dark:text-[#e2b3c2] mb-2 uppercase">
         <span>Preparing Workspace</span>
         <span id="intro-percent">0%</span>
       </div>
-      <div class="w-full h-[2px] bg-line dark:bg-[#44363f] overflow-hidden rounded-full">
-        <div id="intro-line" class="h-full w-0 bg-rose transition-all duration-100 ease-out"></div>
+      
+      <!-- Jalur Progress -->
+      <div class="relative w-full h-[3px] bg-line dark:bg-[#44363f] rounded-full">
+        <!-- Garis Terisi -->
+        <div id="intro-line" class="h-full w-0 bg-rose rounded-full transition-all duration-75 ease-out"></div>
+        
+        <!-- Ikon Cherry Berjalan di Ujung Garis -->
+        <img 
+          id="intro-cherry" 
+          src="assets/favicon-cherry-2.svg" 
+          alt="" 
+          class="w-6 h-6 absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-0 transition-all duration-75 ease-out drop-shadow-sm pointer-events-none"
+        />
       </div>
     </div>
-
-    <!-- Tombol Interaktif (Pengunjung bisa langsung klik tanpa nunggu selesai) -->
-    <button id="intro-skip" type="button" class="mt-7 inline-flex items-center gap-2 rounded-full border border-rose/30 bg-white/80 dark:bg-[#2c2328]/80 px-5 py-2 text-[11px] font-semibold tracking-wider text-rose uppercase shadow-sm backdrop-blur-sm transition hover:bg-rose hover:text-white">
-      <span>Enter Portfolio</span>
-      <span>→</span>
-    </button>
-
-  </div>
 </div>
 
   <!-- Navigasi utama (lebar penuh & sticky di atas) -->
