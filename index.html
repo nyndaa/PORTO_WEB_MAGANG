@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <title>Home — Nadia | Junior Frontend Developer Portfolio</title>
+  <title>About — Nadia | Junior Frontend Developer Portfolio</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fffdf9">
@@ -9,10 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-  <!-- Tailwind CDN cocok untuk prototipe/portofolio statis tanpa proses build. -->
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Konfigurasi tema terpusat agar warna dan font mudah disesuaikan.
     tailwind.config = {
       darkMode: 'class',
       theme: {
@@ -33,487 +32,2003 @@
             serif: ["Playfair Display", "Georgia", "serif"]
           },
           boxShadow: {
-            soft: "0 20px 50px rgba(90, 62, 73, .08)"
+            soft: "0 20px 50px rgba(90, 62, 73, .08)",
+            card: "0 10px 30px rgba(48, 43, 49, .04)"
           }
         }
       }
     };
   </script>
-  <!-- Style kecil ini hanya untuk elemen dekoratif yang sulit dibuat dengan utility biasa. -->
-  <style>
-    .flower-shadow { text-shadow: 6px 7px 0 #f6dce5; }
-    .portrait-arch { border-radius: 48% 48% 16px 16px; }
-    [hidden] { display: none !important; }
 
-  </style>
-  <!-- Cek tema instan di dalam <head> agar tidak kedip saat pindah halaman -->
+  <style>
+    [hidden] { display: none !important; }
+    .portrait-arch { border-radius: 48% 48% 20px 20px; }
+
+    /* Marquee Tech Stack */
+    @keyframes marquee-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 30s linear infinite;
+    }
+
+    .marquee-wrapper:hover .animate-marquee {
+      animation-play-state: paused;
+    }
+
+    /* Hiasan Bergerak Halus */
+    @keyframes float-gentle {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-9px) rotate(6deg); }
+    }
+
+    @keyframes float-reverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(8px) rotate(-6deg); }
+    }
+
+    @keyframes sparkle-pulse {
+      0%, 100% { opacity: 0.35; transform: scale(0.92); }
+      50% { opacity: 0.9; transform: scale(1.12); }
+    }
+
+    @keyframes orb-drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(16px, -14px) scale(1.06); }
+    }
+
+    .animate-float-gentle { animation: float-gentle 5.5s ease-in-out infinite; }
+    .animate-float-reverse { animation: float-reverse 6.5s ease-in-out infinite; }
+    .animate-sparkle-pulse { animation: sparkle-pulse 4s ease-in-out infinite; }
+    .animate-orb-drift { animation: orb-drift 11s ease-in-out infinite; }
+
+/* Custom Pastel Scrollbar untuk Daftar Sertifikat */
+    .record-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .record-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .record-scroll::-webkit-scrollbar-thumb {
+      background-color: #ead3db;
+      border-radius: 9999px;
+    }
+
+    .record-scroll::-webkit-scrollbar-thumb:hover {
+      background-color: #b96782;
+    }
+
+    .dark .record-scroll::-webkit-scrollbar-thumb {
+      background-color: #3d2d35;
+    }
+
+  /* Animasi Kaki & Ekor Kucing Lari */
+    @keyframes cat-leg-a {
+      0%, 100% { transform: rotate(-22deg); }
+      50% { transform: rotate(22deg); }
+    }
+    @keyframes cat-leg-b {
+      0%, 100% { transform: rotate(22deg); }
+      50% { transform: rotate(-22deg); }
+    }
+    @keyframes cat-tail-wag {
+      0%, 100% { transform: rotate(-6deg); }
+      50% { transform: rotate(10deg); }
+    }
+    @keyframes cloud-drift {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-850px); }
+    }
+
+    .cat-running .leg-front { transform-origin: 42px 50px; animation: cat-leg-a 0.28s infinite ease-in-out; }
+    .cat-running .leg-back  { transform-origin: 26px 50px; animation: cat-leg-b 0.28s infinite ease-in-out; }
+    .cat-tail { transform-origin: 18px 44px; animation: cat-tail-wag 0.6s infinite ease-in-out; }
+    .animate-clouds { animation: cloud-drift 28s linear infinite; }  
+</style>
+
   <script>
     if (localStorage.getItem('portfolio-theme') === 'dark') {
       document.documentElement.classList.add('dark');
     }
   </script>
-  <!-- INTRO "PRESSED CHERRY" -->
-<!-- Lewati intro jika sudah tampil di sesi ini (dicek sebelum render agar tidak kedip) -->
-<script>
-  try {
-    if (sessionStorage.getItem('portfolio-intro-seen')) {
-      document.documentElement.classList.add('intro-seen');
-    }
-  } catch (e) {}
-</script>
-
-<style>
-  html.intro-seen #intro-overlay,
-  html.intro-seen #intro-curtain { display: none !important; }
-
-  /* ---------- Lapisan utama ---------- */
-  #intro-overlay {
-    --i-paper: #fffdf9;
-    --i-ink: #302b31;
-    --i-muted: #817780;
-    --i-rose: #b96782;
-    --i-line: rgba(185, 103, 130, .18);
-    --i-ease: cubic-bezier(.22, 1, .36, 1);
-    --i-lift: cubic-bezier(.76, 0, .24, 1);
-
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: grid;
-    place-items: center;
-    padding: 24px;
-    overflow: hidden;
-    background: var(--i-paper);
-    color: var(--i-ink);
-    font-family: "DM Sans", Arial, sans-serif;
-    user-select: none;
-    transition:
-      transform 1.05s var(--i-lift),
-      border-radius 1.05s var(--i-lift);
-  }
-
-  html.dark #intro-overlay {
-    --i-paper: #201a1e;
-    --i-ink: #fceef3;
-    --i-muted: #c9a3b1;
-    --i-rose: #f4abbf;
-    --i-line: rgba(244, 171, 191, .16);
-  }
-
-  /* Tirai pink di belakang: muncul sekejap saat halaman "terangkat" */
-  #intro-curtain {
-    position: fixed;
-    inset: 0;
-    z-index: 9998;
-    background: #f7dce5;
-    transition: transform 1.05s cubic-bezier(.76, 0, .24, 1) .12s;
-  }
-  html.dark #intro-curtain { background: #3a2a32; }
-
-  #intro-overlay.is-leaving {
-    transform: translateY(-100%);
-    border-bottom-left-radius: 50% 14vh;
-    border-bottom-right-radius: 50% 14vh;
-  }
-  #intro-curtain.is-leaving { transform: translateY(-100%); }
-
-  /* ---------- Atmosfer: aura pastel + tekstur kertas ---------- */
-  .intro-aura {
-    position: absolute;
-    inset: -20%;
-    pointer-events: none;
-    background:
-      radial-gradient(32% 30% at 18% 22%, rgba(249, 237, 201, .85), transparent 70%),
-      radial-gradient(34% 32% at 82% 78%, rgba(247, 220, 229, .9), transparent 70%),
-      radial-gradient(26% 26% at 78% 20%, rgba(233, 225, 243, .8), transparent 70%),
-      radial-gradient(24% 24% at 24% 80%, rgba(226, 234, 220, .75), transparent 70%);
-    filter: blur(20px);
-    animation: introDrift 14s ease-in-out infinite alternate;
-  }
-  html.dark .intro-aura { opacity: .2; }
-
-  @keyframes introDrift {
-    to { transform: translate3d(2%, -2%, 0) rotate(4deg) scale(1.05); }
-  }
-
-  .intro-grain {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: .55;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
-  }
-  html.dark .intro-grain { mix-blend-mode: screen; opacity: .25; }
-
-  /* ---------- Kelopak ceri berjatuhan ---------- */
-  .intro-petals {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 1.2s ease .6s;
-  }
-  .intro-petals span {
-    position: absolute;
-    top: -6%;
-    left: var(--x);
-    width: calc(12px * var(--s));
-    height: calc(16px * var(--s));
-    border-radius: 100% 0 100% 0;
-    background: linear-gradient(135deg, #fbe4ec, #eeb3c6);
-    opacity: .75;
-    animation: introFall var(--d) linear var(--delay) infinite;
-  }
-  html.dark .intro-petals span { opacity: .35; }
-
-  @keyframes introFall {
-    0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
-    50%  { transform: translate3d(calc(var(--drift) * .6), 55vh, 0) rotate(calc(var(--r) * .5)); }
-    100% { transform: translate3d(var(--drift), 112vh, 0) rotate(var(--r)); }
-  }
-
-  /* ---------- Bingkai & teks sudut ---------- */
-  .intro-frame {
-    position: absolute;
-    inset: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 18px 20px;
-    border: 1px solid var(--i-line);
-    border-radius: 28px;
-    pointer-events: none;
-    opacity: 0;
-    transform: scale(.985);
-    transition: opacity .9s var(--i-ease), transform 1.2s var(--i-ease);
-  }
-  @media (min-width: 640px) {
-    .intro-frame { inset: 28px; padding: 24px 30px; }
-  }
-
-  .intro-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: .28em;
-    text-transform: uppercase;
-    color: var(--i-muted);
-  }
-
-  .intro-dot {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    margin-right: 10px;
-    border-radius: 50%;
-    background: var(--i-rose);
-    vertical-align: middle;
-    animation: introBlink 1.6s ease-in-out infinite;
-  }
-  @keyframes introBlink { 50% { opacity: .25; } }
-
-  .intro-counter { font-variant-numeric: tabular-nums; }
-  .intro-counter b {
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: 15px;
-    font-style: italic;
-    font-weight: 500;
-    letter-spacing: .04em;
-    color: var(--i-rose);
-  }
-
-  /* ---------- Konten tengah ---------- */
-  .intro-stage {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: opacity .5s ease, transform .6s var(--i-ease);
-  }
-
-  .intro-cherry {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 18px;
-    overflow: visible;
-  }
-  .intro-cherry .stroke {
-    fill: none;
-    stroke: var(--i-rose);
-    stroke-width: 1.6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    transition: stroke-dashoffset 1.3s var(--i-ease);
-  }
-  .intro-cherry .fill {
-    opacity: 0;
-    transform: scale(.6);
-    transform-box: fill-box;
-    transform-origin: center;
-    transition: opacity .7s ease, transform .9s cubic-bezier(.34, 1.56, .64, 1);
-  }
-
-  .intro-eyebrow {
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: .34em;
-    text-transform: uppercase;
-    color: var(--i-muted);
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity .8s var(--i-ease) .35s, transform .8s var(--i-ease) .35s;
-  }
-
-  .intro-name {
-    display: flex;
-    margin-top: 6px;
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: clamp(3.6rem, 12vw, 7.5rem);
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: -.02em;
-  }
-  .intro-name .ch {
-    display: inline-block;
-    overflow: hidden;
-    padding: .06em .01em .14em;
-  }
-  .intro-name .ch > span {
-    display: inline-block;
-    transform: translateY(115%) rotate(6deg);
-    transition: transform 1s var(--i-ease);
-    transition-delay: calc(.5s + var(--i) * .075s);
-  }
-  .intro-name .dot { color: var(--i-rose); font-style: italic; }
-
-  .intro-underline {
-    width: min(240px, 60vw);
-    height: auto;
-    margin-top: -6px;
-    overflow: visible;
-  }
-  .intro-underline path {
-    fill: none;
-    stroke: var(--i-rose);
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-  }
-
-  .intro-tagline {
-    margin-top: 16px;
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: clamp(.95rem, 2.4vw, 1.1rem);
-    font-style: italic;
-    color: var(--i-muted);
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity .9s var(--i-ease) 1.15s, transform .9s var(--i-ease) 1.15s;
-  }
-
-  /* ---------- State: masuk ---------- */
-  #intro-overlay.is-ready .intro-frame,
-  #intro-overlay.is-ready .intro-eyebrow,
-  #intro-overlay.is-ready .intro-tagline,
-  #intro-overlay.is-ready .intro-cherry .fill,
-  #intro-overlay.is-ready .intro-name .ch > span { opacity: 1; transform: none; }
-  #intro-overlay.is-ready .intro-cherry .stroke { stroke-dashoffset: 0; }
-  #intro-overlay.is-ready .intro-petals { opacity: 1; }
-
-  /* ---------- State: keluar ---------- */
-  #intro-overlay.is-out .intro-stage { opacity: 0; transform: translateY(-28px) scale(.98); }
-  #intro-overlay.is-out .intro-frame { opacity: 0; transition-duration: .4s; }
-
-  /* ---------- Hormati pengaturan "kurangi gerakan" ---------- */
-  @media (prefers-reduced-motion: reduce) {
-    .intro-petals, #intro-curtain { display: none; }
-    .intro-aura, .intro-dot { animation: none; }
-    #intro-overlay * { transition-duration: .01ms !important; transition-delay: 0s !important; }
-    #intro-overlay.is-leaving { transform: none; opacity: 0; transition: opacity .4s ease !important; }
-  }
-</style>
+  <!-- Transisi antar halaman: tutup layar sejak awal agar tidak kedip -->
+  <script>
+    try {
+      if (sessionStorage.getItem('pt-label')) {
+        document.documentElement.classList.add('pt-entering');
+        setTimeout(function () { document.documentElement.classList.remove('pt-entering'); }, 3000);
+      }
+    } catch (e) {}
+  </script>
+  <style>
+    html.pt-entering::after { content: ""; position: fixed; inset: 0; z-index: 10000; background: #fffdf9; }
+    html.dark.pt-entering::after { background: #201a1e; }
+  </style>
 </head>
-<body class="overflow-x-clip bg-paper font-sans text-ink antialiased">
-<!-- INTRO OVERLAY: PRESSED CHERRY -->
-<div id="intro-curtain" aria-hidden="true"></div>
+<body class="relative overflow-x-clip bg-paper font-sans text-ink antialiased transition-colors duration-300 dark:bg-[#191518] dark:text-[#f5eff2]">
 
-<div id="intro-overlay" aria-hidden="true">
-  <div class="intro-aura"></div>
-  <div class="intro-grain"></div>
-
-  <!-- Kelopak ceri yang berjatuhan pelan -->
-  <div class="intro-petals">
-    <span style="--x:7%;  --s:.9;  --d:11s; --delay:-3s;  --drift:70px;  --r:320deg"></span>
-    <span style="--x:19%; --s:.6;  --d:14s; --delay:-9s;  --drift:-40px; --r:-280deg"></span>
-    <span style="--x:33%; --s:.75; --d:12s; --delay:-1s;  --drift:55px;  --r:260deg"></span>
-    <span style="--x:52%; --s:.5;  --d:16s; --delay:-6s;  --drift:-60px; --r:-340deg"></span>
-    <span style="--x:66%; --s:.85; --d:13s; --delay:-11s; --drift:45px;  --r:300deg"></span>
-    <span style="--x:78%; --s:.65; --d:15s; --delay:-4s;  --drift:-50px; --r:-260deg"></span>
-    <span style="--x:90%; --s:.8;  --d:12s; --delay:-8s;  --drift:-30px; --r:280deg"></span>
+  <!-- Ambient Pastel Orbs Bergerak di Latar Belakang -->
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+    <div class="animate-orb-drift absolute -left-24 top-24 h-80 w-80 rounded-full bg-pink/35 blur-3xl dark:bg-rose/10"></div>
+    <div class="animate-orb-drift absolute right-[-4rem] top-[38%] h-72 w-72 rounded-full bg-lilac/40 blur-3xl dark:bg-[#2d2236]/25" style="animation-delay: 2.5s;"></div>
+    <div class="animate-orb-drift absolute bottom-12 left-1/3 h-72 w-72 rounded-full bg-sage/35 blur-3xl dark:bg-[#213020]/20" style="animation-delay: 5s;"></div>
   </div>
 
-  <!-- Bingkai tipis dengan teks di keempat sudut -->
-  <div class="intro-frame">
-    <div class="intro-row">
-      <span><i class="intro-dot"></i>N&deg; 01 &mdash; Portfolio</span>
-      <span>Yogyakarta, ID</span>
-    </div>
-    <div class="intro-row">
-      <span>Frontend &amp; UI/UX</span>
-      <span class="intro-counter"><b id="intro-count">000</b> / 100</span>
-    </div>
-  </div>
+  <!-- Navigasi utama (konsisten full-width seperti index.html) -->
+  <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur-md transition-colors dark:border-[#2e262b] dark:bg-[#191518]/90"></div>
 
-  <!-- Konten tengah -->
-  <div class="intro-stage">
-    <!-- Ceri line-art: garis tergambar dulu, lalu buahnya "mekar" -->
-    <svg class="intro-cherry" viewBox="0 0 64 64">
-      <defs>
-        <radialGradient id="introBerry" cx="35%" cy="30%" r="75%">
-          <stop offset="0" stop-color="#fbd3df"/>
-          <stop offset=".55" stop-color="#e79ab3"/>
-          <stop offset="1" stop-color="#c8728f"/>
-        </radialGradient>
-      </defs>
-
-      <path class="fill" d="M33 12 C 39 5, 48 5, 53 9 C 47 14, 39 15, 33 12 Z" fill="#cfdcc4" style="transition-delay:1.05s"/>
-      <circle class="fill" cx="20" cy="48" r="8.5" fill="url(#introBerry)" style="transition-delay:.95s"/>
-      <circle class="fill" cx="45" cy="46" r="8.5" fill="url(#introBerry)" style="transition-delay:1.1s"/>
-
-      <path class="stroke" pathLength="1" d="M33 12 C 30 22, 25 32, 21 41" style="transition-delay:.1s"/>
-      <path class="stroke" pathLength="1" d="M33 12 C 35 22, 40 30, 44 39" style="transition-delay:.25s"/>
-      <path class="stroke" pathLength="1" d="M33 12 C 39 5, 48 5, 53 9 C 47 14, 39 15, 33 12 Z" style="transition-delay:.55s"/>
-      <circle class="stroke" pathLength="1" cx="20" cy="48" r="8.5" style="transition-delay:.45s"/>
-      <circle class="stroke" pathLength="1" cx="45" cy="46" r="8.5" style="transition-delay:.6s"/>
-
-      <ellipse class="fill" cx="16.8" cy="44.8" rx="2.3" ry="1.4" fill="#fff" fill-opacity=".85" style="transition-delay:1.25s"/>
-      <ellipse class="fill" cx="41.8" cy="42.8" rx="2.3" ry="1.4" fill="#fff" fill-opacity=".85" style="transition-delay:1.35s"/>
-    </svg>
-
-    <p class="intro-eyebrow">Raharjian Sustanadia Wijayanti</p>
-
-    <div class="intro-name">
-      <span class="ch" style="--i:0"><span>N</span></span>
-      <span class="ch" style="--i:1"><span>a</span></span>
-      <span class="ch" style="--i:2"><span>d</span></span>
-      <span class="ch" style="--i:3"><span>i</span></span>
-      <span class="ch" style="--i:4"><span>a</span></span>
-      <span class="ch dot" style="--i:5"><span>.</span></span>
-    </div>
-
-    <!-- Garis tangan yang tergambar mengikuti progres loading -->
-    <svg class="intro-underline" viewBox="0 0 240 16">
-      <path id="intro-line" pathLength="1" d="M3 9 C 30 3, 50 14, 80 8 S 130 3, 160 9 S 210 13, 237 6"/>
-    </svg>
-
-    <p class="intro-tagline">soft, thoughtful interfaces &mdash; made with care</p>
-  </div>
-</div>
-
-  <!-- Navigasi utama (lebar penuh & sticky di atas) -->
-  <div id="navbar-container" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md transition-colors"></div>
-
-  <div class="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
+  <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 sm:px-8 lg:px-12">
 
     <main class="flex-1">
-      <!-- Hero: 1 kolom di HP & split-screen (< 1024px), 2 kolom sejajar di laptop penuh (lg:) -->
-      <section class="grid min-h-[calc(100vh-5rem)] items-center gap-10 py-10 lg:grid-cols-2 lg:gap-14 lg:py-16">
-        
-        <!-- KOLOM 1 (KIRI): Pembukaan Simpel & Tombol -->
-        <div class="min-w-0 text-center lg:text-left">
-          <!-- Sapaan pembuka -->
-          <p class="text-sm font-bold text-rose sm:text-base">
-            Hello everyone, I’m
-          </p>
-          
-          <!-- Nama lengkap -->
-          <h1 class="mt-2 break-words font-serif text-[clamp(2.15rem,4.6vw,4rem)] font-semibold leading-[1.12] tracking-tight">
-            Raharjian Sustanadia<br><em class="font-medium text-rose">Wijayanti.</em>
-          </h1>
+      <!-- 1. CENTERED HERO HEADER + FLOATING ACCENTS -->
+      <section class="relative py-12 text-center sm:py-16">
+        <div class="pointer-events-none hidden sm:block" aria-hidden="true">
+          <span class="animate-float-gentle absolute left-14 top-14 text-2xl text-rose/45">✧</span>
+          <span class="animate-sparkle-pulse absolute right-20 top-12 text-lg text-[#c7a858]/55" style="animation-delay: 1s;">✦</span>
+          <span class="animate-float-reverse absolute bottom-6 right-14 text-2xl text-[#8ea87f]/55" style="animation-delay: 1.8s;">❀</span>
+        </div>
 
-        <!-- Peran & Kampus (Menggambarkan proses belajar & berkembang) -->
-          <p class="mt-3 text-sm font-medium text-muted sm:text-base">
-            Aspiring Junior Web Developer | Informatics Student at Universitas Teknologi Digital Indonesia
+        <div class="mx-auto max-w-2xl">
+          <p class="inline-flex items-center gap-2 rounded-full border border-line bg-white/80 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-rose shadow-sm backdrop-blur-sm dark:border-[#2e262b] dark:bg-[#221c20]">
+            <span class="animate-sparkle-pulse text-xs">✦</span>
+            About Me
+          </p>
+          <h1 class="mt-4 font-serif text-[clamp(2.1rem,4.2vw,3.35rem)] font-semibold leading-[1.15] tracking-tight">
+            A closer look at <em class="font-medium text-rose">who I am.</em>
+          </h1>
+          <p class="mt-4 text-sm leading-7 text-muted sm:text-base sm:leading-8 dark:text-[#b5a8b0]">
+            An Informatics undergraduate at Universitas Teknologi Digital Indonesia (UTDI) who loves turning thoughtful designs into clean, responsive web experiences.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. LAYERED PROFILE CARD & STORY -->
+      <section class="relative grid items-center gap-10 pb-16 md:grid-cols-[310px_1fr] lg:grid-cols-[340px_1fr] lg:gap-16 lg:pb-20">
         
-          </p>
+        <!-- Kolom Kiri: Kartu Identitas dengan Tumpukan Layer Pastel di Belakangnya -->
+        <div class="relative mx-auto w-full max-w-[330px]">
+          <!-- Layer Belakang Pastel (Memberi kedalaman tanpa terlihat kaku) -->
+          <div class="absolute -inset-2 rotate-2 rounded-3xl border border-pink bg-pink/40 dark:border-[#3d2933] dark:bg-[#291d23]"></div>
+          <div class="absolute -inset-1 -rotate-1 rounded-3xl border border-lilac bg-lilac/40 dark:border-[#32293b] dark:bg-[#231d29]"></div>
+
+          <!-- Ornamen Bergerak -->
+          <span class="pointer-events-none animate-float-gentle absolute -left-4 -top-4 z-20 text-xl text-rose/70" aria-hidden="true">✧</span>
+          <span class="pointer-events-none animate-float-reverse absolute -bottom-3 -right-3 z-20 text-xl text-[#c7a858]/70" aria-hidden="true">✦</span>
+
+       <aside class="relative z-10 rounded-2xl border border-line bg-white p-5 sm:p-6 shadow-soft dark:border-[#2e262b] dark:bg-[#221c20]">
+            <div class="portrait-arch aspect-[4/4.3] overflow-hidden bg-[#f7e2e8] dark:bg-[#31242b]">
+              <img 
+                src="assets/profil-nadia2.png" 
+                alt="Raharjian Sustanadia Wijayanti" 
+                class="h-full w-full object-cover object-top"
+              />
+            </div>
+
+            <div class="mt-4 border-b border-line px-1.5 pb-3 dark:border-[#2e262b]">
+              <h2 class="font-serif text-sm font-semibold leading-snug text-ink/80 dark:text-[#f5eff2]/85">
+                Raharjian Sustanadia Wijayanti
+              </h2>
+              <p class="mt-0.5 text-[10.5px] font-medium text-rose/85">
+                Junior Frontend &amp; Web Developer
+              </p>
+            </div>
+
+            <dl class="mt-3 space-y-1.5 px-1.5 text-[10.5px]">
+              <div class="flex items-center justify-between gap-3">
+                <dt class="text-muted/80 dark:text-[#b5a8b0]">Location</dt>
+                <dd class="font-medium text-ink/75 dark:text-[#e8dfe4]">Yogyakarta, Indonesia</dd>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <dt class="text-muted/80 dark:text-[#b5a8b0]">Campus</dt>
+                <dd class="font-medium text-ink/75 dark:text-[#e8dfe4]">UTDI (Informatics ’24)</dd>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <dt class="text-muted/80 dark:text-[#b5a8b0]">Status</dt>
+                <dd class="inline-flex items-center gap-1.5 font-semibold text-[#5b7a4a] dark:text-[#9ec489]">
+                  <span class="relative flex h-1.5 w-1.5">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#6e9459] opacity-75"></span>
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#6e9459]"></span>
+                  </span>
+                  Open for Internship
+                </dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+
+        <!-- Kolom Kanan: Cerita Perkenalan -->
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.16em] text-rose">Hello, I’m Nadia</p>
+          <h2 class="mt-2 font-serif text-2xl font-semibold leading-snug sm:text-3xl lg:text-[2rem]">
+            I enjoy turning designs into <em class="font-medium text-rose">clean, responsive</em> web experiences.
+          </h2>
           
-          <!-- Deskripsi singkat -->
-          <p class="mx-auto mt-5 max-w-lg text-sm leading-7 text-muted sm:text-base sm:leading-8 lg:mx-0">
-            This portfolio showcases my projects and explorations in building clean, responsive, and user-friendly web interfaces.
-          </p>
-          
-          <!-- Tombol aksi -->
-          <div class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 lg:justify-start">
-            <!-- Tombol Menuju Halaman Kontak -->
+          <div class="mt-5 space-y-4 text-sm leading-7 text-muted sm:text-[15px] sm:leading-8 dark:text-[#b5a8b0]">
+            <p>
+              I am a informatics student at <strong class="font-semibold text-ink dark:text-white">Universitas Teknologi Digital Indonesia (UTDI)</strong> with a strong interest in frontend web development and UI/UX implementation. I love paying attention to layout details, visual hierarchy, and smooth user interactions.
+            </p>
+            <p>
+              Alongside crafting client-side interfaces with HTML5, Tailwind CSS, JavaScript, and React, I also build full-stack web applications using Laravel, Node.js, relational and document databases (MySQL, MongoDB, Supabase), as well as cloud object storage.
+            </p>
+            <p>
+              Currently, I am looking for a <strong class="font-semibold text-ink dark:text-white">Junior Frontend or Full-Stack Web Developer Internship</strong> where I can contribute to real-world products, learn from experienced developers, and keep growing as an engineer.
+            </p>
+          </div>
+
+          <div class="mt-8 flex flex-wrap items-center gap-3.5">
             <a
-              href="contact.html"
+              href="projects.html"
               class="inline-flex items-center gap-2 rounded-full bg-rose px-6 py-3 text-xs font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#a3556f]"
             >
-              <span>Contact Me</span>
+              <span>View Selected Projects</span>
               <span>→</span>
             </a>
-
-            <!-- Tombol Download CV -->
             <a
               href="assets/CV-Raharjian_Sustanadia_Wijayanti_3.pdf"
               download="CV-Raharjian_Sustanadia_Wijayanti_3.pdf"
-              class="inline-flex items-center gap-2 rounded-full border border-pink bg-[#fdf2f5] px-6 py-3 text-xs font-bold text-[#8b6372] transition hover:-translate-y-0.5 hover:bg-pink hover:text-[#573a46]"
+              class="inline-flex items-center gap-2 rounded-full border border-pink bg-[#fdf2f5] px-6 py-3 text-xs font-bold text-[#8b6372] transition hover:-translate-y-0.5 hover:bg-pink hover:text-[#573a46] dark:border-[#3c2d34] dark:bg-[#261e23] dark:text-[#e3b8c7] dark:hover:bg-[#33272e]"
             >
-              <span>Download CV</span>
+              <span>Download CV (PDF)</span>
               <span class="text-rose">↓</span>
             </a>
           </div>
         </div>
-        <!-- AKHIR KOLOM 1 -->
-        
-        <!-- KOLOM 2 (KANAN): Ilustrasi Foto Profil Bulat -->
-        <div
-          class="relative mx-auto flex aspect-square w-full max-w-[290px] items-center justify-center sm:max-w-[380px] lg:max-w-[440px]"
-          aria-label="Animated circular profile illustration"
-        >
-          <!-- Lingkaran pastel proporsional -->
-          <div class="absolute right-2 top-2 h-[76%] w-[76%] rounded-full bg-pink/40 animate-pulse-soft"></div>
-          <div class="absolute left-2 top-6 h-[64%] w-[64%] rounded-full bg-sage/40 animate-pulse-soft" style="animation-delay: 1s"></div>
-          <div class="absolute bottom-4 right-2 h-[56%] w-[56%] rounded-full bg-lilac/40 animate-pulse-soft" style="animation-delay: 2s"></div>
+      </section>
 
-          <!-- Foto wajah berbentuk bulat -->
-          <div class="relative z-10 animate-float-slow">
-            <div class="absolute -inset-2.5 rounded-full border-2 border-pink/70 sm:-inset-3"></div>
-            <div class="absolute -inset-5 rounded-full border border-rose/30 sm:-inset-6"></div>
+<!-- 3. PROFESSIONAL ENGINEERING PROCESS (INTERACTIVE SPLIT PANEL) -->
+      <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-sparkle-pulse absolute right-6 top-12 text-lg text-rose/45" aria-hidden="true">✦</span>
 
-            <img
-              src="assets/profil-nadia2.png"
-              alt="Foto wajah Nadia"
-              class="relative h-[clamp(11.5rem,38vw,17.5rem)] w-[clamp(11.5rem,38vw,17.5rem)] rounded-full border-4 border-white object-cover shadow-soft"
-            />
+        <div class="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Engineering Workflow</p>
+            <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl lg:text-[2rem]">
+              How I approach <em class="font-medium text-rose">web development.</em>
+            </h2>
+          </div>
+          <p class="max-w-md text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
+            A structured workflow focused on interface precision, maintainable codebases, and reliable full-stack integration.
+          </p>
+        </div>
+
+        <!-- Split-Screen Interactive Panel -->
+        <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
+          
+          <!-- Kolom Kiri: Daftar Tahapan Kerja (Navigasi Interaktif) -->
+          <div class="flex flex-col justify-between gap-3.5" role="tablist" aria-label="Work Approach Steps">
+            
+            <!-- Step 01 -->
+            <button
+              type="button"
+              data-approach="0"
+              class="approach-tab group flex w-full items-start gap-4 rounded-2xl border border-rose bg-white p-5 text-left shadow-soft transition-all duration-200 dark:border-rose dark:bg-[#221c20]"
+            >
+              <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-rose text-xs font-bold text-white transition-colors">
+                01
+              </span>
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="font-serif text-lg font-semibold text-ink dark:text-white">Responsive UI Engineering</h3>
+                  <span class="text-xs font-semibold text-rose transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+                </div>
+                <p class="mt-1 text-xs leading-relaxed text-muted dark:text-[#b5a8b0]">
+                  Translating Figma wireframes into accessible, pixel-consistent layouts across mobile and desktop viewports.
+                </p>
+              </div>
+            </button>
+
+            <!-- Step 02 -->
+            <button
+              type="button"
+              data-approach="1"
+              class="approach-tab group flex w-full items-start gap-4 rounded-2xl border border-line bg-white/70 p-5 text-left transition-all duration-200 hover:border-pink hover:bg-white dark:border-[#2e262b] dark:bg-[#221c20]/60 dark:hover:border-[#47353e] dark:hover:bg-[#221c20]"
+            >
+              <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paper text-xs font-bold text-muted transition-colors dark:bg-[#191518] dark:text-[#b5a8b0]">
+                02
+              </span>
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="font-serif text-lg font-semibold text-ink dark:text-white">Modular &amp; Maintainable Code</h3>
+                  <span class="text-xs font-semibold text-muted opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">→</span>
+                </div>
+                <p class="mt-1 text-xs leading-relaxed text-muted dark:text-[#b5a8b0]">
+                  Writing semantic HTML, reusable UI components, and clean state logic designed for team collaboration.
+                </p>
+              </div>
+            </button>
+
+            <!-- Step 03 -->
+            <button
+              type="button"
+              data-approach="2"
+              class="approach-tab group flex w-full items-start gap-4 rounded-2xl border border-line bg-white/70 p-5 text-left transition-all duration-200 hover:border-pink hover:bg-white dark:border-[#2e262b] dark:bg-[#221c20]/60 dark:hover:border-[#47353e] dark:hover:bg-[#221c20]"
+            >
+              <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paper text-xs font-bold text-muted transition-colors dark:bg-[#191518] dark:text-[#b5a8b0]">
+                03
+              </span>
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="font-serif text-lg font-semibold text-ink dark:text-white">End-to-End System Integration</h3>
+                  <span class="text-xs font-semibold text-muted opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">→</span>
+                </div>
+                <p class="mt-1 text-xs leading-relaxed text-muted dark:text-[#b5a8b0]">
+                  Connecting frontend interfaces with RESTful APIs, authentication flows, and relational or NoSQL databases.
+                </p>
+              </div>
+            </button>
+
           </div>
 
-          <!-- Dekorasi melayang -->
-          <span class="pointer-events-none absolute right-6 top-2 text-2xl text-rose/60 sm:text-4xl animate-float" style="animation-delay: 0s">✧</span>
-          <span class="pointer-events-none absolute left-4 top-12 text-xl text-[#d4b459]/60 sm:text-3xl animate-float" style="animation-delay: 0.7s">✦</span>
-          <span class="pointer-events-none absolute bottom-14 left-5 text-2xl text-sage/60 sm:text-4xl animate-float" style="animation-delay: 1.4s">❀</span>
-          <span class="pointer-events-none absolute bottom-6 right-4 text-xl text-lilac/70 sm:text-3xl animate-float" style="animation-delay: 2.1s">♡</span>
-          <span class="pointer-events-none absolute right-3 top-24 text-lg text-rose/50 sm:text-2xl animate-sparkle" style="animation-delay: 0.5s">✧</span>
-          <span class="pointer-events-none absolute bottom-24 right-8 text-lg text-[#d4b459]/50 sm:text-2xl animate-sparkle" style="animation-delay: 1.2s">✦</span>
-          <span class="pointer-events-none absolute left-10 top-3 text-lg text-sage/50 sm:text-2xl animate-sparkle" style="animation-delay: 1.8s">✧</span>
-        </div>
-        <!-- AKHIR KOLOM 2 -->
+          <!-- Kolom Kanan: Panel Spesifikasi & Standar Implementasi -->
+          <div class="flex flex-col justify-between rounded-2xl border border-line bg-white p-6 shadow-soft sm:p-8 dark:border-[#2e262b] dark:bg-[#221c20]">
+            <div>
+              <div class="flex items-center justify-between border-b border-line pb-4 dark:border-[#2e262b]">
+                <span class="text-[11px] font-bold uppercase tracking-[0.16em] text-rose" id="approach-badge">
+                  01 / Interface Standard
+                </span>
+                <span class="rounded-full bg-paper px-3 py-1 text-[11px] font-medium text-muted dark:bg-[#191518] dark:text-[#b5a8b0]" id="approach-metric">
+                  Mobile-First &amp; WCAG Ready
+                </span>
+              </div>
 
+              <h3 class="mt-5 font-serif text-2xl font-semibold text-ink dark:text-white" id="approach-title">
+                Responsive UI Engineering
+              </h3>
+              <p class="mt-3 text-xs leading-6 text-muted sm:text-sm sm:leading-7 dark:text-[#b5a8b0]" id="approach-desc">
+                Every interface starts with clear visual hierarchy and fluid breakpoints so users get a consistent experience whether browsing on a smartphone or a wide desktop monitor.
+              </p>
+
+              <!-- Key Deliverables Checklist -->
+              <ul class="mt-6 space-y-3 border-t border-line pt-5 text-xs text-ink dark:border-[#2e262b] dark:text-[#f5eff2]" id="approach-checklist">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Fluid grid and flexbox layouts tested across standard mobile, tablet, and desktop breakpoints.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Consistent light and dark theme parity with readable typography and color contrast.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Interactive feedback states for buttons, forms, navigation menus, and loading indicators.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Core Tools Used in This Stage -->
+            <div class="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4 dark:border-[#2e262b]">
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-muted dark:text-[#b5a8b0]">Applied Stack</span>
+              <div class="flex flex-wrap gap-1.5" id="approach-tags">
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Figma</span>
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">HTML5</span>
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Tailwind CSS</span>
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Responsive CSS</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 4. INTERACTIVE TECHNICAL STACK (MARQUEE + CATEGORY FILTER) -->
+      <section class="relative border-t border-line py-14 lg:py-16 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-sparkle-pulse absolute right-4 top-8 text-lg text-rose/45" aria-hidden="true">✧</span>
+
+        <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Technical Stack</p>
+            <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl">Core Technologies &amp; <em class="font-medium text-rose">Tools.</em></h2>
+          </div>
+
+          <div class="flex flex-wrap gap-2" id="tech-filters">
+            <button type="button" data-filter="all" class="tech-tab rounded-full bg-rose px-4 py-1.5 text-xs font-semibold text-white transition">
+              All Stack
+            </button>
+            <button type="button" data-filter="frontend" class="tech-tab rounded-full border border-line bg-white px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-rose hover:text-ink dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#b5a8b0] dark:hover:text-white">
+              Frontend &amp; UI
+            </button>
+            <button type="button" data-filter="backend" class="tech-tab rounded-full border border-line bg-white px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-rose hover:text-ink dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#b5a8b0] dark:hover:text-white">
+              Backend &amp; DB
+            </button>
+            <button type="button" data-filter="tools" class="tech-tab rounded-full border border-line bg-white px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-rose hover:text-ink dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#b5a8b0] dark:hover:text-white">
+              Tools 
+            </button>
+          </div>
+        </div>
+
+        <div id="tech-marquee-view" class="marquee-wrapper relative overflow-hidden rounded-2xl border border-line bg-white py-8 shadow-card dark:border-[#2e262b] dark:bg-[#221c20]">
+          <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-white to-transparent sm:w-24 dark:from-[#221c20]"></div>
+          <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-white to-transparent sm:w-24 dark:from-[#221c20]"></div>
+
+          <div class="animate-marquee items-center gap-5" id="marquee-track"></div>
+        </div>
+
+        <div id="tech-grid-view" hidden class="grid grid-cols-2 gap-3.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"></div>
+
+        <p class="mt-3 text-right text-[11px] text-muted dark:text-[#b5a8b0]">
+          Hover over the stream to pause, or select a category to inspect individual tools.
+        </p>
+      </section>
+
+<!-- 5. INTERACTIVE JOURNEY ARCHIVE (KONSEP STUDIO DOSSIER ORISINAL) -->
+      <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-float-gentle absolute left-2 top-10 text-xl text-[#9db78f]/55" aria-hidden="true">❀</span>
+        <span class="pointer-events-none animate-sparkle-pulse absolute right-6 top-14 text-lg text-rose/45" aria-hidden="true">✦</span>
+
+        <div class="mb-9 text-center">
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Academic &amp; Credentials</p>
+          <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl">My Education &amp; <em class="font-medium text-rose">Certifications.</em></h2>
+        </div>
+
+        <!-- Container Studio Card dengan Tab Navigasi & Garis Timeline Bernomor -->
+        <div class="overflow-hidden rounded-3xl border border-line bg-white shadow-soft dark:border-[#2e262b] dark:bg-[#221c20]">
+          
+          <!-- Top Bar Studio Header -->
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-line bg-[#fcf8f6] px-5 py-4 sm:px-8 dark:border-[#2e262b] dark:bg-[#1c171b]">
+            <div class="flex items-center gap-2.5">
+              <span class="text-base text-rose">✿</span>
+              <span class="text-xs font-bold tracking-wider text-ink dark:text-white">NADIA’S RECORD BOOK</span>
+              <span class="hidden text-xs text-muted sm:inline dark:text-[#b5a8b0]">/ 2020 — 2026</span>
+            </div>
+
+            <!-- Tab Switcher Interaktif -->
+            <div class="flex flex-wrap gap-1.5 rounded-full border border-line bg-white p-1 dark:border-[#33292f] dark:bg-[#221c20]" role="tablist">
+              <button type="button" data-journey="education" class="journey-tab rounded-full bg-rose px-4 py-1.5 text-xs font-bold text-white transition">
+                Education
+              </button>
+              <button type="button" data-journey="certifications" class="journey-tab rounded-full px-4 py-1.5 text-xs font-semibold text-muted transition hover:text-ink dark:text-[#b5a8b0] dark:hover:text-white">
+                Certifications (13)
+              </button>
+            </div>
+          </div>
+
+          <!-- PANEL 1: EDUCATION (Dengan Timeline Bernomor 01, 02) -->
+          <div id="panel-education" class="p-6 sm:p-8 lg:p-10">
+           
+            <!-- Keterangan Jenjang Pendidikan (Judul & Deskripsi Biasa) -->
+            <div class="mb-7">
+              <h3 class="font-serif text-lg font-semibold text-ink sm:text-xl dark:text-white">
+                Formal Education Journey
+              </h3>
+              <p class="mt-1 text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
+                From Senior High School (SMA) in Natural Sciences to an ongoing Bachelor’s Degree (S1) in Informatics.
+              </p>
+            </div>
+
+            <div class="space-y-6">
+              <!-- Record 01: SMAN 2 Banguntapan -->
+              <div class="flex gap-4 sm:gap-6">
+                <div class="flex flex-col items-center">
+                  <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-lilac bg-lilac/60 text-xs font-bold text-[#5d4b75] dark:border-[#413652] dark:bg-[#31293d] dark:text-[#cbbbe0]">01</span>
+                  <div class="mt-2 h-full w-px bg-line dark:bg-[#2e262b]"></div>
+                </div>
+
+                <div class="flex-1 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:p-6 dark:border-[#33292f] dark:bg-[#191518]/70">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-[#6e598a] dark:text-[#cbbbe0]">Senior High School</span>
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-lilac/70 px-3 py-1 text-[10px] font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">
+                      <span class="h-1.5 w-1.5 rounded-full bg-[#7c659c]"></span>
+                      2020 – 2023 • COMPLETED
+                    </span>
+                  </div>
+
+                  <div class="mt-3 flex items-start gap-4">
+                    <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-lilac bg-[#f2eef8] font-serif text-xs font-bold text-[#5d4b75] dark:border-[#413652] dark:bg-[#31293d] dark:text-[#cbbbe0]">
+                      SMA
+                    </div>
+                    <div>
+                      <h3 class="font-serif text-lg font-semibold text-ink sm:text-xl dark:text-white">SMAN 2 Banguntapan</h3>
+                      <p class="mt-0.5 text-xs font-medium text-muted dark:text-[#b5a8b0]">Natural Sciences Major (Jurusan IPA) • Yogyakarta</p>
+                    </div>
+                  </div>
+
+                  <p class="mt-4 border-t border-dashed border-line pt-3.5 text-xs leading-6 text-muted dark:border-[#2e262b] dark:text-[#b5a8b0]">
+                    Focused on Mathematics, Physics, Chemistry, and Biology—building analytical problem-solving foundations and participating in creative school competitions.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Record 02: Universitas Teknologi Digital Indonesia -->
+              <div class="flex gap-4 sm:gap-6">
+                <div class="flex flex-col items-center">
+                  <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-pink bg-[#fdf2f5] text-xs font-bold text-rose dark:border-rose/30 dark:bg-rose/15">02</span>
+                </div>
+
+                <div class="flex-1 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:p-6 dark:border-[#33292f] dark:bg-[#191518]/70">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-rose">Undergraduate Degree</span>
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-sage/80 px-3 py-1 text-[10px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">
+                      <span class="h-1.5 w-1.5 rounded-full bg-[#658752]"></span>
+                      CURRENTLY STUDYING
+                    </span>
+                  </div>
+
+                  <div class="mt-3 flex items-start gap-4">
+                    <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-pink/80 bg-[#f8e6eb] font-serif text-xs font-bold text-rose dark:border-rose/30 dark:bg-rose/15">
+                      UTDI
+                    </div>
+                    <div>
+                      <h3 class="font-serif text-lg font-semibold text-ink sm:text-xl dark:text-white">Universitas Teknologi Digital Indonesia</h3>
+                      <p class="mt-0.5 text-xs font-medium text-muted dark:text-[#b5a8b0]">Bachelor of Informatics (S1 Informatika) • 2024 – Present</p>
+                    </div>
+                  </div>
+
+                 <p class="mt-4 border-t border-dashed border-line pt-3.5 text-xs leading-6 text-muted dark:border-[#2e262b] dark:text-[#b5a8b0]">
+                    Studying core software engineering, Web Frameworks, Cloud Computing, Data Engineering, Artificial Neural Networks, and developing a full-stack web capstone project.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+      
+          <!-- PANEL 2: CERTIFICATIONS (Muncul saat tab Certifications diklik) -->
+          <div id="panel-certifications" hidden class="p-6 sm:p-8 lg:p-10">
+
+            <div class="mb-7">
+              <h3 class="font-serif text-lg font-semibold text-ink sm:text-xl dark:text-white">
+                Additional Courses &amp; Certifications
+              </h3>
+              <p class="mt-1 text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
+                Beyond formal university coursework, I actively complete intensive bootcamps, micro-skills, and industry certifications in full-stack web development, cloud computing, AI, cybersecurity, and digital literacy.
+              </p>
+            </div>
+
+            <div class="record-scroll max-h-[460px] space-y-4 overflow-y-auto pr-2">
+              
+              <!-- Certificate 01: Standard Chartered Foundation & Plan International -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink/70 font-serif text-xs font-bold text-rose dark:bg-rose/20">01</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Standard Chartered Foundation × Plan International</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Web Programming Training (136 Learning Hours)</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Full-stack web development program covering HTML, CSS, JavaScript, React.js, PHP, MySQL, Express.js REST APIs, and authentication.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-pink/70 px-3.5 py-1 text-[11px] font-bold text-[#7c485a] dark:bg-rose/20 dark:text-[#e6a4ba]">2026</span>
+                  <a
+                    href="sertifikat/Certificate_of_Completion.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 02: Microsoft Learn -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lilac/80 font-serif text-xs font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">02</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Microsoft</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Microsoft Azure AI Fundamentals</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Core concepts of artificial intelligence workloads, machine learning, and cloud AI services on Microsoft Azure.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-lilac/70 px-3.5 py-1 text-[11px] font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">2025</span>
+                  <a
+                    href="sertifikat/Achievements-raharjiansustanadiawijayanti-8928%20_%20Microsoft%20Learn.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 03: Dicoding Indonesia -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sage/80 font-serif text-xs font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">03</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Dicoding Indonesia</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Belajar Dasar AI (10 Learning Hours)</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Foundations of Artificial Intelligence, data utilization for AI, machine learning, and deep learning concepts.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-sage/80 px-3.5 py-1 text-[11px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">2025</span>
+                  <a
+                    href="sertifikat/sertifikat_course_653_4290008_160125222600.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 04: Cisco Networking Academy -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-butter/80 font-serif text-xs font-bold text-[#8a6d2b] dark:bg-[#332b19] dark:text-[#e3c681]">04</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Cisco Networking Academy</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Computer Hardware Basics</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Foundational computer architecture, hardware components, and system troubleshooting principles.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-butter/80 px-3.5 py-1 text-[11px] font-bold text-[#7d6225] dark:bg-[#332b19] dark:text-[#e3c681]">2025</span>
+                  <a
+                    href="sertifikat/BASIC_HARDWARE.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 05: Komdigi - AI Engineer For Milenial -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink/70 font-serif text-xs font-bold text-rose dark:bg-rose/20">05</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">AI Engineer for Milenial</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Prompt engineering fundamentals and AI-assisted workflow optimization.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-pink/70 px-3.5 py-1 text-[11px] font-bold text-[#7c485a] dark:bg-rose/20 dark:text-[#e6a4ba]">2025</span>
+                  <a
+                    href="sertifikat/Ai_engginer_for_milenial.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 06: Komdigi - Ethical Hacker For Dummies -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lilac/80 font-serif text-xs font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">06</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Ethical Hacker for Dummies</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Cybersecurity fundamentals, ethical hacking concepts, and secure web development practices.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-lilac/70 px-3.5 py-1 text-[11px] font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">2025</span>
+                  <a
+                    href="sertifikat/Ethical_hacker_for_dummies.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 07: Komdigi - Introduction To Cloud Computing -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sage/80 font-serif text-xs font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">07</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Introduction to Cloud Computing</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Cloud service models (IaaS, PaaS, SaaS) and cloud deployment architecture fundamentals.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-sage/80 px-3.5 py-1 text-[11px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">2025</span>
+                  <a
+                    href="sertifikat/Introduction_to_cloud_computing.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 08: Komdigi - Konsep Pemrograman -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-butter/80 font-serif text-xs font-bold text-[#8a6d2b] dark:bg-[#332b19] dark:text-[#e3c681]">08</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Konsep Pemrograman (Programming Concepts)</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Algorithmic logic, control structures, and foundational software programming principles.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-butter/80 px-3.5 py-1 text-[11px] font-bold text-[#7d6225] dark:bg-[#332b19] dark:text-[#e3c681]">2025</span>
+                  <a
+                    href="sertifikat/Konsep_pemrograman.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 09: Komdigi - Literasi Digital untuk Video Content Creator -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink/70 font-serif text-xs font-bold text-rose dark:bg-rose/20">09</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Pengantar Literasi Digital untuk Video Content Creator</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Digital skills, safety, ethics, and cultural awareness in digital video content production.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-pink/70 px-3.5 py-1 text-[11px] font-bold text-[#7c485a] dark:bg-rose/20 dark:text-[#e6a4ba]">2025</span>
+                  <a
+                    href="sertifikat/Sertifikat_RAHARJIAN_SUSTANADIA_WIJAYANTI_Pengantar-Literasi-Digital-untuk-Video-Content-Creator.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 10: Komdigi - Dampak Teknologi Digital bagi UMKM -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lilac/80 font-serif text-xs font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">10</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Dampak Teknologi Digital bagi UMKM</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Digital transformation and technology adoption strategies for small and medium enterprises.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-lilac/70 px-3.5 py-1 text-[11px] font-bold text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]">2025</span>
+                  <a
+                    href="sertifikat/Dampak_teknologi_digital_bagi_umkm.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 11: Komdigi - Pengantar Mindset Digital 1 -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sage/80 font-serif text-xs font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">11</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Pengantar Mindset Digital: Mengubah Masa Depan dengan Pola Pikir Digital</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Core elements of digital mindset and adaptability in rapidly evolving technology environments.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-sage/80 px-3.5 py-1 text-[11px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">2025</span>
+                  <a
+                    href="sertifikat/Mengubah-masa-depan-dengan-pola-pikir-digital.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 12: Komdigi - Mindset Digital 1: Growth Mindset -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-butter/80 font-serif text-xs font-bold text-[#8a6d2b] dark:bg-[#332b19] dark:text-[#e3c681]">12</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">Digital Talent Scholarship — Komdigi</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Mindset Digital: Pola Pikir Bertumbuh (Growth Mindset)</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Continuous learning habits, constructive feedback adoption, and resilience in problem-solving.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-butter/80 px-3.5 py-1 text-[11px] font-bold text-[#7d6225] dark:bg-[#332b19] dark:text-[#e3c681]">2025</span>
+                  <a
+                    href="sertifikat/Pola-pikir-bertumbuh_(growth%20mindset).pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Certificate 13: MySkill - Internet of Things (IoT) Introduction -->
+              <div class="flex flex-col justify-between gap-4 rounded-2xl border border-line bg-paper/70 p-5 transition hover:border-pink sm:flex-row sm:items-center dark:border-[#33292f] dark:bg-[#191518]/70">
+                <div class="flex items-start gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-pink/70 font-serif text-xs font-bold text-rose dark:bg-rose/20">13</span>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose">MySkill E-Learning</span>
+                    <h3 class="mt-0.5 font-serif text-base font-semibold text-ink sm:text-lg dark:text-white">Internet of Things (IoT) Introduction</h3>
+                    <p class="mt-1 text-xs text-muted dark:text-[#b5a8b0]">Connected device ecosystems, sensor communication, and smart system fundamentals.</p>
+                  </div>
+                </div>
+                <div class="flex shrink-0 items-center gap-2.5 self-start sm:self-center">
+                  <span class="rounded-full bg-pink/70 px-3.5 py-1 text-[11px] font-bold text-[#7c485a] dark:bg-rose/20 dark:text-[#e6a4ba]">2024</span>
+                  <a
+                    href="sertifikat/Internet_of_Things_(IoT)_Introduction.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-line bg-white px-3.5 py-1 text-[11px] font-semibold text-ink transition hover:border-rose hover:text-rose dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#f5eff2] dark:hover:border-rose dark:hover:text-[#f4abbf]"
+                  >
+                    <span>View Certificate</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Status Bar -->
+          <div class="flex items-center justify-between border-t border-line bg-[#fcf8f6] px-5 py-3 text-[11px] text-muted sm:px-8 dark:border-[#2e262b] dark:bg-[#1c171b] dark:text-[#b5a8b0]">
+            <span class="inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-[#8fb37d]"></span>
+              Updated November 2026
+            </span>
+            <span>Yogyakarta, ID</span>
+          </div>
+        </div>
+      </section>
+
+<!-- 6. SOCIAL IMPACT & VOLUNTEERING -->
+      <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-float-gentle absolute right-8 top-10 text-xl text-[#9db78f]/60" aria-hidden="true">❀</span>
+        <span class="pointer-events-none animate-sparkle-pulse absolute left-6 top-16 text-lg text-rose/45" aria-hidden="true">✦</span>
+
+        <!-- Header & Penjelasan Inti -->
+        <div class="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div class="max-w-2xl">
+            <p class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.18em] text-rose">Social Impact &amp; Volunteering</p>
+            <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl lg:text-[2rem]">
+              Beyond academics, creating <em class="font-medium text-rose">meaningful social impact.</em>
+            </h2>
+            <p class="mt-3 text-xs leading-6 text-muted sm:text-sm sm:leading-7 dark:text-[#b5a8b0]">
+              Alongside focusing on my Informatics studies and web development projects, I actively dedicate time to community volunteering—contributing to children’s education, creative workshops, inclusive learning, and environmental initiatives across Yogyakarta.
+            </p>
+          </div>
+          <div class="shrink-0">
+            <span class="inline-flex items-center gap-2 rounded-full border border-pink bg-[#fdf2f5] px-4 py-1.5 text-[11px] font-bold text-rose dark:border-[#3c2d34] dark:bg-[#261e23] dark:text-[#e3b8c7]">
+              <span class="h-1.5 w-1.5 rounded-full bg-rose"></span>
+              8 Volunteering Records
+            </span>
+          </div>
+        </div>
+
+        <!-- Container Split-Panel: Kiri (List Kegiatan) & Kanan (Sertifikat + Rincian Kegiatan) -->
+        <div class="overflow-hidden rounded-3xl border border-line bg-white shadow-soft dark:border-[#2e262b] dark:bg-[#221c20]">
+          
+          <!-- Top Bar -->
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-[#fcf8f6] px-5 py-3.5 sm:px-8 dark:border-[#2e262b] dark:bg-[#1c171b]">
+            <div class="flex items-center gap-2">
+              <span class="h-2.5 w-2.5 rounded-full bg-[#ea9ab2]"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-[#ebd084]"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-[#9ec489]"></span>
+              <span class="ml-1.5 text-xs font-bold tracking-wider text-ink dark:text-white">COMMUNITY &amp; VOLUNTEER ARCHIVE</span>
+            </div>
+            <span id="impact-file-indicator" class="text-[11px] text-muted dark:text-[#b5a8b0]">
+              sertifikat_kegiatan / Peduly-1.pdf
+            </span>
+          </div>
+
+          <!-- Split Grid -->
+          <div class="grid lg:grid-cols-[340px_1fr]">
+            
+            <!-- KOLOM KIRI: List Nama Kegiatan -->
+            <div class="border-b border-line bg-paper/50 p-4 sm:p-5 lg:border-b-0 lg:border-r dark:border-[#2e262b] dark:bg-[#191518]/50">
+              <div class="mb-3 flex items-center justify-between px-1">
+                <span class="text-[10px] font-bold uppercase tracking-[0.16em] text-muted dark:text-[#b5a8b0]">Activity List</span>
+                <span class="text-[10px] font-semibold text-rose">2024</span>
+              </div>
+
+              <div id="impact-list" class="record-scroll max-h-[620px] space-y-2.5 overflow-y-auto pr-1" role="tablist" aria-label="Social Impact Activities">
+                <!-- Daftar kegiatan dirender otomatis oleh JavaScript -->
+              </div>
+            </div>
+
+            <!-- KOLOM KANAN: Sertifikat + Keterangan Rincian Kegiatan -->
+            <div class="flex flex-col justify-between gap-6 p-5 sm:p-7 lg:p-8">
+              
+              <!-- Header Judul Kegiatan & Tombol Full File -->
+              <div class="flex flex-wrap items-start justify-between gap-3 border-b border-line pb-4 dark:border-[#2e262b]">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span id="impact-org" class="text-[11px] font-bold uppercase tracking-wider text-rose">
+                      Peduly Yogyakarta
+                    </span>
+                    <span class="text-muted/40">•</span>
+                    <span id="impact-date" class="text-[11px] font-medium text-muted dark:text-[#b5a8b0]">
+                      5 October 2024
+                    </span>
+                    <span class="text-muted/40">•</span>
+                    <span id="impact-tag" class="rounded-full bg-pink/60 px-2.5 py-0.5 text-[10px] font-bold text-rose dark:bg-rose/20">
+                      Creative &amp; Youth
+                    </span>
+                  </div>
+                  <h3 id="impact-title" class="mt-1.5 font-serif text-xl font-semibold text-ink sm:text-2xl dark:text-white">
+                    Satur-Date: Making Clay Keychain with Orphanage Children
+                  </h3>
+                </div>
+
+                <a
+                  id="impact-open-link"
+                  href="sertifikat_kegiatan/Peduly-1.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-pink bg-[#fdf2f5] px-4 py-1.5 text-[11px] font-bold text-rose transition hover:bg-rose hover:text-white dark:border-[#3c2d34] dark:bg-[#261e23] dark:text-[#e3b8c7] dark:hover:bg-rose dark:hover:text-white"
+                >
+                  <span>Open Full Certificate</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+
+              <!-- 1. Preview Sertifikat -->
+              <div class="overflow-hidden rounded-2xl border border-line bg-[#fcf8f6] dark:border-[#33292f] dark:bg-[#191518]">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-white/80 px-4 py-2 text-[11px] text-muted dark:border-[#2e262b] dark:bg-[#221c20] dark:text-[#b5a8b0]">
+                  <span id="impact-location">📍 Special Region of Yogyakarta</span>
+                  <span class="rounded-full bg-sage/70 px-2.5 py-0.5 text-[10px] font-bold text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]">
+                    Verified Volunteer Certificate
+                  </span>
+                </div>
+
+                <div class="relative aspect-[16/10] w-full bg-paper dark:bg-[#141113]">
+                  <iframe
+                    id="impact-pdf-viewer"
+                    src="sertifikat_kegiatan/Peduly-1.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                    title="Certificate Preview"
+                    class="h-full w-full border-0"
+                  ></iframe>
+
+                  <img
+                    id="impact-img-viewer"
+                    src=""
+                    alt="Certificate Preview"
+                    hidden
+                    class="h-full w-full object-contain p-3"
+                  />
+                </div>
+              </div>
+
+              <!-- 2. Keterangan Rincian Kegiatan (Ngapain Aja) -->
+              <div class="rounded-2xl border border-line bg-paper/75 p-5 dark:border-[#33292f] dark:bg-[#191518]/80">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-[11px] font-bold uppercase tracking-[0.15em] text-rose">
+                    ✦ What I Did &amp; Activity Highlights
+                  </p>
+                  <span id="impact-role" class="text-[11px] font-semibold text-muted dark:text-[#b5a8b0]">
+                    Role: Event Volunteer
+                  </span>
+                </div>
+
+                <p id="impact-desc" class="mt-2.5 text-xs leading-6 text-ink/85 sm:text-[13px] dark:text-[#e8dfe4]">
+                  Joined Peduly Yogyakarta’s weekend social program dedicated to bringing creative play and emotional companionship to orphanage children.
+                </p>
+
+                <!-- Poin-poin rincian aktivitas -->
+                <ul id="impact-highlights" class="mt-3.5 space-y-2 border-t border-dashed border-line pt-3.5 text-xs text-muted dark:border-[#2e262b] dark:text-[#b5a8b0]">
+                  <!-- Poin aktivitas dirender otomatis oleh JavaScript -->
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+<!-- <!-- 7. INTERNSHIP & WORK EXPERIENCE (INTERACTIVE DOCUMENT DECK) -->
+      <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-sparkle-pulse absolute right-10 top-12 text-lg text-[#c7a858]/55" aria-hidden="true">✦</span>
+        <span class="pointer-events-none animate-float-gentle absolute bottom-12 left-6 text-xl text-rose/45" aria-hidden="true">✧</span>
+
+        <!-- Header Section -->
+        <div class="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div class="max-w-2xl">
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Internship &amp; Work Experience</p>
+            <h2 class="mt-3 font-serif text-2xl font-semibold sm:text-3xl lg:text-[2.15rem]">
+              Practical experience in <em class="font-medium text-rose">digital storytelling &amp; teamwork.</em>
+            </h2>
+            <p class="mt-3 text-xs leading-6 text-muted sm:text-sm sm:leading-7 dark:text-[#b5a8b0]">
+              Before applying for software engineering internships, I completed a 3-month Social Media Specialist term at <strong class="font-semibold text-ink dark:text-white">Peduly Yogyakarta</strong>—building discipline, cross-functional collaboration, and audience-focused communication skills.
+            </p>
+          </div>
+
+          <span class="inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-pink bg-[#fdf2f5] px-4 py-1.5 text-[11px] font-bold text-rose dark:border-[#3c2d34] dark:bg-[#261e23] dark:text-[#e3b8c7]">
+            <span class="h-1.5 w-1.5 rounded-full bg-rose"></span>
+            5 Oct 2024 – 5 Jan 2025 • 3 Months
+          </span>
+        </div>
+
+        <!-- Grid 2 Kolom Asimetris -->
+        <div class="grid items-stretch gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          
+          <!-- KOLOM KIRI: Kartu Cerita Pengalaman + Kutipan CEO -->
+          <div class="flex flex-col justify-between rounded-3xl border border-line bg-white p-6 shadow-soft sm:p-8 dark:border-[#2e262b] dark:bg-[#221c20]">
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[11px] font-bold uppercase tracking-[0.16em] text-rose">
+                  Yayasan Peduly Gotong Royong
+                </span>
+                <span class="rounded-full border border-pink bg-[#fdf2f5] px-2.5 py-0.5 text-[10px] font-bold text-rose dark:border-[#3c2d34] dark:bg-[#261e23]">
+                  Completed
+                </span>
+              </div>
+
+              <h3 class="mt-2 font-serif text-2xl font-semibold text-ink dark:text-white">
+                Social Media Specialist
+              </h3>
+              <p class="mt-0.5 text-xs font-medium text-muted dark:text-[#b5a8b0]">
+                Internship • Special Region of Yogyakarta
+              </p>
+
+              <!-- Pill Skill yang Terasah -->
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Content Production</span>
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Visual Branding</span>
+                <span class="rounded-full border border-line bg-paper px-3 py-1 text-[11px] font-medium text-ink dark:border-[#362c32] dark:bg-[#191518] dark:text-[#f5eff2]">Team Coordination</span>
+              </div>
+
+              <!-- Rincian Aktivitas Magang -->
+              <ul class="mt-5 space-y-2.5 border-t border-line pt-5 text-xs leading-relaxed text-muted dark:border-[#2e262b] dark:text-[#b5a8b0]">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Produced visual and short-form video content to highlight Peduly Yogyakarta’s community volunteering programs.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Collaborated with event committees on-site to document activities and maintain consistent social media aesthetics.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 text-rose">✓</span>
+                  <span>Maintained structured posting schedules, clear copywriting, and responsive audience engagement.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Kutipan Evaluasi dari Surat Rekomendasi CEO Peduly -->
+            <blockquote class="mt-6 rounded-2xl border border-lilac/80 bg-[#f7f4fc] p-4 dark:border-[#3b314a] dark:bg-[#262030]">
+              <p class="font-serif text-xs italic leading-relaxed text-[#4f4063] sm:text-[13px] dark:text-[#d8cceb]">
+                “Recognized for strong work performance, discipline, positive attitude, and dedication during 3 months as Social Media Specialist at Peduly.”
+              </p>
+              <footer class="mt-2.5 flex items-center justify-between text-[11px] font-semibold text-[#6e598a] dark:text-[#b7a5d1]">
+                <span>— Zain Al Multazam, CEO of Peduly.com</span>
+                <span>24 Jan 2025</span>
+              </footer>
+            </blockquote>
+          </div>
+
+          <!-- KOLOM KANAN: Layered Document Deck (Bisa Switch antara Sertifikat & Surat Rekomendasi) -->
+          <div class="relative flex flex-col">
+            <!-- Efek Tumpukan Kartu Pastel di Belakang -->
+            <div class="pointer-events-none absolute -inset-1.5 -rotate-1 rounded-[28px] border border-lilac bg-lilac/35 dark:border-[#32293b] dark:bg-[#231d29]/60"></div>
+            <div class="pointer-events-none absolute -inset-1 rotate-1 rounded-[28px] border border-pink bg-pink/35 dark:border-[#3d2933] dark:bg-[#291d23]/60"></div>
+
+            <div class="relative z-10 flex flex-1 flex-col justify-between rounded-3xl border border-line bg-white p-5 shadow-soft sm:p-7 dark:border-[#2e262b] dark:bg-[#221c20]">
+              <div>
+                <!-- Pill Switcher di Atas Frame -->
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4 dark:border-[#2e262b]">
+                  <div class="inline-flex rounded-full border border-line bg-paper p-1 dark:border-[#33292f] dark:bg-[#191518]" role="tablist">
+                    <button
+                      type="button"
+                      data-intern-index="0"
+                      class="intern-pill-tab rounded-full bg-rose px-4 py-1.5 text-xs font-bold text-white transition"
+                    >
+                      01. Internship Certificate
+                    </button>
+                    <button
+                      type="button"
+                      data-intern-index="1"
+                      class="intern-pill-tab rounded-full px-4 py-1.5 text-xs font-semibold text-muted transition hover:text-ink dark:text-[#b5a8b0] dark:hover:text-white"
+                    >
+                      02. Recommendation Letter
+                    </button>
+                  </div>
+
+                  <a
+                    id="intern-open-link"
+                    href="sertifikat_magang/Sertifikat-Magang.png"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-full border border-pink bg-[#fdf2f5] px-3.5 py-1.5 text-[11px] font-bold text-rose transition hover:bg-rose hover:text-white dark:border-[#3c2d34] dark:bg-[#261e23] dark:text-[#e3b8c7]"
+                  >
+                    <span>Open Full File</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+
+                <!-- Judul & Nomor Dokumen -->
+                <div class="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <span id="intern-doc-title" class="font-serif font-semibold text-ink sm:text-base dark:text-white">
+                    Certificate of Appreciation — Social Media Specialist
+                  </span>
+                  <span id="intern-doc-number" class="rounded-full bg-paper px-3 py-0.5 text-[10.5px] font-medium text-muted dark:bg-[#191518] dark:text-[#b5a8b0]">
+                    13.240/PDLY/INT/P-VLTR/XI/2024
+                  </span>
+                </div>
+
+                <!-- Preview Dokumen (PNG / PDF) -->
+                <div class="mt-4 overflow-hidden rounded-2xl border border-line bg-[#fcf8f6] p-2 sm:p-3 dark:border-[#33292f] dark:bg-[#191518]">
+                  <div class="relative aspect-[16/10.5] w-full overflow-hidden rounded-xl bg-white dark:bg-[#141113]">
+                    <img
+                      id="intern-img-viewer"
+                      src="sertifikat_magang/Sertifikat-Magang.png"
+                      alt="Sertifikat Magang Peduly"
+                      class="h-full w-full object-contain p-2"
+                    />
+
+                    <iframe
+                      id="intern-pdf-viewer"
+                      src=""
+                      title="Surat Rekomendasi Kerja Preview"
+                      hidden
+                      class="h-full w-full border-0"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Caption Bawah -->
+              <p id="intern-doc-caption" class="mt-4 text-xs leading-relaxed text-muted dark:text-[#b5a8b0]">
+                Official certificate awarded by Yayasan Peduly Gotong Royong (Yogyakarta) recognizing 3 months of contribution as a Social Media Specialist.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      
+<!-- MINI GAME: COZY CAT RUNNER -->
+      <section class="relative border-t border-line py-14 lg:py-20 dark:border-[#2e262b]">
+        <span class="pointer-events-none animate-sparkle-pulse absolute right-8 top-12 text-lg text-rose/45" aria-hidden="true">✦</span>
+        <span class="pointer-events-none animate-float-gentle absolute bottom-10 left-6 text-xl text-[#c7a858]/55" aria-hidden="true">✧</span>
+
+        <!-- Header Game -->
+        <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div class="max-w-xl">
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Interactive Mini-Game</p>
+            <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl">
+              Cozy <em class="font-medium text-rose">Cat Runner</em> Break.
+            </h2>
+            <p class="mt-2 text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
+              Press Space / ↑ or Tap / Click directly on the garden track to start running and jump!
+            </p>
+          </div>
+
+          <!-- Scoreboard -->
+          <div class="flex flex-wrap items-center gap-2.5">
+            <div class="inline-flex items-center gap-3 rounded-full border border-line bg-white px-4 py-2 text-xs font-semibold shadow-card dark:border-[#2e262b] dark:bg-[#221c20]">
+              <span class="text-muted dark:text-[#b5a8b0]">Score: <strong id="runner-score" class="text-rose">0000</strong></span>
+              <span class="text-line dark:text-[#2e262b]">|</span>
+              <span class="text-muted dark:text-[#b5a8b0]">Best: <strong id="runner-best" class="text-ink dark:text-white">0000</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arena Lintasan -->
+        <div class="overflow-hidden rounded-3xl border border-line bg-white p-4 shadow-soft sm:p-6 dark:border-[#2e262b] dark:bg-[#221c20]">
+          <div
+            id="runner-arena"
+            tabindex="0"
+            role="button"
+            aria-label="Cozy Cat Runner Game. Press Space or Click to start and jump."
+            class="relative mx-auto h-[270px] w-full max-w-3xl cursor-pointer select-none overflow-hidden rounded-2xl border border-pink/70 bg-gradient-to-b from-[#fffaf6] via-[#fdf3f6] to-[#fae7ed] outline-none focus:ring-2 focus:ring-rose/40 dark:border-[#3c2d34] dark:from-[#1b1619] dark:via-[#21191e] dark:to-[#291e24]"
+          >
+            <!-- Awan Pastel Bergerak -->
+            <svg class="animate-clouds pointer-events-none absolute left-0 top-4 h-16 w-[1700px] opacity-75 dark:opacity-25" viewBox="0 0 1700 64" fill="none">
+              <path d="M90 42h52a14 14 0 0 0 2-27.8A20 20 0 0 0 106 12a16 16 0 0 0-16 30Z" fill="#ffffff"/>
+              <path d="M360 34h44a12 12 0 0 0 2-23.8A17 17 0 0 0 374 8a14 14 0 0 0-14 26Z" fill="#ffffff"/>
+              <path d="M650 46h58a15 15 0 0 0 2-29.8A22 22 0 0 0 668 14a17 17 0 0 0-18 32Z" fill="#ffffff"/>
+              <path d="M940 42h52a14 14 0 0 0 2-27.8A20 20 0 0 0 956 12a16 16 0 0 0-16 30Z" fill="#ffffff"/>
+              <path d="M1210 34h44a12 12 0 0 0 2-23.8A17 17 0 0 0 1224 8a14 14 0 0 0-14 26Z" fill="#ffffff"/>
+              <path d="M1500 46h58a15 15 0 0 0 2-29.8A22 22 0 0 0 1518 14a17 17 0 0 0-18 32Z" fill="#ffffff"/>
+            </svg>
+
+            <!-- Bukit Pastel Lembut di Kejauhan -->
+            <svg class="pointer-events-none absolute inset-x-0 bottom-11 h-20 w-full opacity-55 dark:opacity-20" viewBox="0 0 800 80" preserveAspectRatio="none">
+              <path d="M0 80 Q 140 20, 310 65 T 620 50 T 800 65 L 800 80 Z" fill="#f3dce4"/>
+              <path d="M0 80 Q 220 35, 440 70 T 800 48 L 800 80 Z" fill="#e6eee0"/>
+            </svg>
+
+            <!-- Tanah & Rumput Pastel -->
+            <div class="pointer-events-none absolute inset-x-0 bottom-0 h-11 border-t-2 border-[#b8cca9] bg-[#e6efe0] dark:border-[#394a33] dark:bg-[#222b20]">
+              <div class="mt-2 flex justify-around text-[10px] font-bold tracking-widest text-[#8ba67b]/70">
+                <span>• •</span>
+                <span>~</span>
+                <span>•</span>
+                <span>~ ~</span>
+                <span>• •</span>
+              </div>
+            </div>
+
+            <!-- KARAKTER KUCING SVG (Mochi the Cat) -->
+            <div
+              id="runner-player"
+              style="bottom: 44px;"
+              class="pointer-events-none absolute left-10 z-10 h-14 w-14 sm:left-14"
+            >
+              <svg id="cat-svg" viewBox="0 0 64 64" class="h-full w-full overflow-visible drop-shadow-sm" fill="none">
+                <!-- Ekor Kucing -->
+                <path class="cat-tail" d="M18 45 C 8 43, 6 31, 13 28 C 17 26, 19 31, 15 34" stroke="#e59a6c" stroke-width="5" stroke-linecap="round"/>
+                <!-- Kaki Belakang -->
+                <rect class="leg-back" x="23" y="47" width="6" height="12" rx="3" fill="#d98757"/>
+                <!-- Badan & Hoodie Pink -->
+                <rect x="19" y="30" width="26" height="21" rx="10.5" fill="#b96782"/>
+                <path d="M25 31 Q 32 36 39 31" stroke="#f7dce5" stroke-width="2.2" stroke-linecap="round"/>
+                <!-- Kaki Depan -->
+                <rect class="leg-front" x="38" y="47" width="6" height="12" rx="3" fill="#f2ad80"/>
+                <!-- Telinga Kiri & Kanan -->
+                <path d="M21 21 L 19 9 L 30 16 Z" fill="#f2ad80" stroke="#302b31" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M22 19 L 21 12 L 28 16 Z" fill="#f7dce5"/>
+                <path d="M43 21 L 45 9 L 34 16 Z" fill="#f2ad80" stroke="#302b31" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M42 19 L 43 12 L 36 16 Z" fill="#f7dce5"/>
+                <!-- Kepala Kucing -->
+                <ellipse cx="32" cy="23" rx="14.5" ry="12" fill="#f7be94" stroke="#302b31" stroke-width="1.8"/>
+                <!-- Garis Belang Dahi -->
+                <path d="M32 11.5 V 15 M28.5 12.2 V 14.8 M35.5 12.2 V 14.8" stroke="#d98757" stroke-width="1.8" stroke-linecap="round"/>
+                <!-- Mata Normal -->
+                <g id="cat-eyes-normal">
+                  <circle cx="27" cy="22.5" r="2.2" fill="#302b31"/>
+                  <circle cx="26.3" cy="21.8" r="0.7" fill="#ffffff"/>
+                  <circle cx="38" cy="22.5" r="2.2" fill="#302b31"/>
+                  <circle cx="37.3" cy="21.8" r="0.7" fill="#ffffff"/>
+                </g>
+                <!-- Mata Kaget Saat Nabrak -->
+                <g id="cat-eyes-hit" hidden>
+                  <path d="M25 20.5 L 29 24.5 M29 20.5 L 25 24.5" stroke="#302b31" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M36 20.5 L 40 24.5 M40 20.5 L 36 24.5" stroke="#302b31" stroke-width="2" stroke-linecap="round"/>
+                </g>
+                <!-- Pipi Merona -->
+                <ellipse cx="23.5" cy="25.5" rx="2.4" ry="1.4" fill="#f29cb4" opacity="0.75"/>
+                <ellipse cx="41" cy="25.5" rx="2.4" ry="1.4" fill="#f29cb4" opacity="0.75"/>
+                <!-- Hidung & Mulut Mungil -->
+                <path d="M31.2 24.8 L 33.8 24.8 L 32.5 26.3 Z" fill="#b96782"/>
+                <path d="M30 27.5 Q 31.3 29 32.5 27.5 Q 33.7 29 35 27.5" stroke="#302b31" stroke-width="1.5" stroke-linecap="round"/>
+                <!-- Kumis -->
+                <path d="M16 23 L 20.5 23.8 M16 26 L 20.5 25.8 M48.5 23 L 44 23.8 M48.5 26 L 44 25.8" stroke="#302b31" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <!-- Layer Rintangan Pohon / Batu / Jamur -->
+            <div id="runner-obstacles-layer" class="pointer-events-none absolute inset-0"></div>
+
+            <!-- Petunjuk Ringan Mengambang (Tanpa Menutupi Arena & Tanpa Tombol Start) -->
+            <div
+              id="runner-prompt"
+              class="pointer-events-none absolute inset-x-0 top-7 z-20 flex flex-col items-center px-4 text-center transition-opacity duration-200"
+            >
+              <span
+                id="runner-prompt-badge"
+                class="rounded-full border border-pink bg-white/90 px-4 py-1.5 text-[11px] font-bold tracking-wide text-rose shadow-card backdrop-blur-sm dark:border-[#3c2d34] dark:bg-[#221c20]/90 dark:text-[#f4abbf]"
+              >
+                Tap to Jump &amp; Start ✦
+              </span>
+              <p
+                id="runner-prompt-sub"
+                hidden
+                class="mt-1.5 rounded-full bg-paper/85 px-3 py-0.5 text-[11px] font-medium text-muted dark:bg-[#191518]/85 dark:text-[#b5a8b0]"
+              >
+                Mochi ran 0000 m — Tap anywhere to run again!
+              </p>
+            </div>
+          </div>
+
+          <div class="mx-auto mt-3 flex max-w-3xl flex-wrap items-center justify-between gap-2 text-[11px] text-muted dark:text-[#b5a8b0]">
+            <span>Controls: Press Space / Up Arrow or Tap anywhere on the track to jump.</span>
+            <span>Watch out for trees, rocks &amp; mushrooms!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. CLOSING CTA BANNER -->
+      <section class="relative mb-16 overflow-hidden rounded-3xl border border-pink/70 bg-[#f7e8ec] p-7 sm:mb-20 sm:flex sm:items-center sm:justify-between sm:p-10 dark:border-[#382730] dark:bg-[#261c21]">
+        <span class="pointer-events-none animate-float-gentle absolute right-48 top-4 text-lg text-rose/45" aria-hidden="true">✧</span>
+        <span class="pointer-events-none animate-sparkle-pulse absolute bottom-3 right-6 text-base text-[#c7a858]/55" aria-hidden="true">♡</span>
+
+        <div class="relative z-10">
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-rose">Let’s Connect</p>
+          <h2 class="mt-1.5 font-serif text-2xl font-semibold sm:text-3xl">Looking for a frontend <em class="text-rose">developer intern?</em></h2>
+          <p class="mt-2 max-w-xl text-xs leading-6 text-muted sm:text-sm dark:text-[#b5a8b0]">
+            Feel free to reach out for internship opportunities, web collaborations, or just to say hello.
+          </p>
+        </div>
+        <div class="relative z-10 mt-6 sm:mt-0 sm:shrink-0">
+          <a 
+            href="contact.html" 
+            class="inline-flex items-center gap-2 rounded-full bg-rose px-6 py-3.5 text-xs font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#a3556f]"
+          >
+            <span>Get in Touch</span>
+            <span>↗</span>
+          </a>
+        </div>
       </section>
     </main>
 
     <!-- Footer -->
     <div id="footer-container"></div>
   </div>
+
+  <!-- Script Global Navbar & Footer -->
   <script src="script.js"></script>
+
+  <!-- Script Interaktif Tech Stack & Journey Tabs -->
+  <script>
+    // 1. Tech Stack Marquee & Filter
+    const techStackData = [
+      { name: "HTML5", category: "frontend", role: "Markup", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
+      { name: "CSS3", category: "frontend", role: "Styling", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
+      { name: "JavaScript", category: "frontend", role: "ES6+ Logic", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+      { name: "Tailwind CSS", category: "frontend", role: "CSS Framework", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "Vue.js", category: "frontend", role: "Frontend UI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" },
+      { name: "React", category: "frontend", role: "UI Library", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+      { name: "Figma", category: "frontend", role: "UI/UX Design", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" },
+
+      { name: "PHP", category: "backend", role: "Server Language", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" },
+      { name: "Laravel", category: "backend", role: "Full-Stack MVC", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" },
+      { name: "Node.js", category: "backend", role: "JS Runtime", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
+      { name: "Express", category: "backend", role: "REST API", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" },
+      { name: "MySQL", category: "backend", role: "Relational DB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+      { name: "MongoDB", category: "backend", role: "NoSQL DB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" },
+      { name: "Supabase", category: "backend", role: "BaaS & Auth", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" },
+      { name: "Git", category: "tools", role: "Version Control", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
+      { name: "GitHub", category: "tools", role: "Collaboration", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" },
+      { name: "VS Code", category: "tools", role: "Code Editor", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" },
+    
+      { name: "Vercel", category: "tools", role: "Deployment", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg" },
+      { name: "Postman", category: "tools", role: "API Testing", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" }
+    ];
+
+    const marqueeTrack = document.getElementById("marquee-track");
+    const marqueeView = document.getElementById("tech-marquee-view");
+    const gridView = document.getElementById("tech-grid-view");
+    const filterButtons = document.querySelectorAll(".tech-tab");
+
+    function createTechCard(item) {
+      const needsLightBadge = ["Express", "GitHub", "Vercel"].includes(item.name);
+      const iconWrapperClass = needsLightBadge
+        ? "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white p-1.5 shadow-sm"
+        : "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-paper p-1.5 dark:bg-[#191518]";
+
+      return `
+        <div class="group flex items-center gap-3.5 rounded-xl border border-line bg-paper/70 px-4 py-3 transition duration-200 hover:-translate-y-0.5 hover:border-rose hover:bg-white dark:border-[#33292f] dark:bg-[#191518]/80 dark:hover:border-rose dark:hover:bg-[#292126]">
+          <div class="${iconWrapperClass}">
+            <img src="${item.icon}" alt="${item.name} logo" class="h-6 w-6 object-contain transition-transform duration-200 group-hover:scale-110" loading="lazy" />
+          </div>
+          <div>
+            <p class="text-xs font-bold text-ink dark:text-white">${item.name}</p>
+            <p class="text-[10px] text-muted dark:text-[#b5a8b0]">${item.role}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    marqueeTrack.innerHTML = [...techStackData, ...techStackData].map(createTechCard).join("");
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const selected = btn.getAttribute("data-filter");
+
+        filterButtons.forEach((b) => {
+          b.className = "tech-tab rounded-full border border-line bg-white px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-rose hover:text-ink dark:border-[#362c32] dark:bg-[#221c20] dark:text-[#b5a8b0] dark:hover:text-white";
+        });
+        btn.className = "tech-tab rounded-full bg-rose px-4 py-1.5 text-xs font-semibold text-white transition";
+
+        if (selected === "all") {
+          marqueeView.hidden = false;
+          gridView.hidden = true;
+        } else {
+          const filtered = techStackData.filter((item) => item.category === selected);
+          gridView.innerHTML = filtered.map(createTechCard).join("");
+          marqueeView.hidden = true;
+          gridView.hidden = false;
+        }
+      });
+    });
+
+    // 2. Journey Archive Tabs (Education vs Certifications)
+    const journeyTabs = document.querySelectorAll(".journey-tab");
+    const panelEducation = document.getElementById("panel-education");
+    const panelCertifications = document.getElementById("panel-certifications");
+
+    journeyTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.getAttribute("data-journey");
+
+        journeyTabs.forEach((t) => {
+          t.className = "journey-tab rounded-full px-4 py-1.5 text-xs font-semibold text-muted transition hover:text-ink dark:text-[#b5a8b0] dark:hover:text-white";
+        });
+        tab.className = "journey-tab rounded-full bg-rose px-4 py-1.5 text-xs font-bold text-white transition";
+
+        if (target === "education") {
+          panelEducation.hidden = false;
+          panelCertifications.hidden = true;
+        } else {
+          panelEducation.hidden = true;
+          panelCertifications.hidden = false;
+        }
+      });
+    });
+
+    // 3. Social Impact & Volunteering Interactive Viewer
+    const socialImpactData = [
+      {
+        id: "01",
+        title: "Satur-Date: Making Clay Keychain with Orphanage Children",
+        org: "Peduly Yogyakarta",
+        role: "Volunteer Facilitator",
+        date: "5 October 2024",
+        location: "Special Region of Yogyakarta",
+        tag: "Creative & Youth",
+        badgeBg: "bg-pink/70 text-rose dark:bg-rose/20",
+        file: "sertifikat_kegiatan/Peduly-1.pdf",
+        type: "pdf",
+        desc: "Joined Peduly Yogyakarta’s weekend social program focused on fostering creativity and warm companionship for orphanage children.",
+        highlights: [
+          "Guided orphanage children step-by-step in shaping and designing handmade clay keychains.",
+          "Encouraged self-expression, patience, and fine-motor creativity through interactive art play.",
+          "Built a supportive, joyful group atmosphere alongside fellow Peduly volunteers."
+        ]
+      },
+      {
+        id: "02",
+        title: "Peduly Goes to School: Building Brighter Future",
+        org: "Peduly Yogyakarta",
+        role: "Education Volunteer",
+        date: "6 September 2024",
+        location: "Special Region of Yogyakarta",
+        tag: "Education Support",
+        badgeBg: "bg-lilac/80 text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]",
+        file: "sertifikat_kegiatan/Peduly-2.pdf",
+        type: "pdf",
+        desc: "Participated in a school outreach initiative aimed at inspiring students and strengthening their motivation to learn.",
+        highlights: [
+          "Delivered interactive educational sharing sessions to encourage students’ future aspirations.",
+          "Facilitated group discussions and fun ice-breaking games to boost classroom engagement.",
+          "Collaborated with the committee to ensure smooth session flow throughout the school visit."
+        ]
+      },
+      {
+        id: "03",
+        title: "Creative Day: Berkreasi dengan Pipecleaners",
+        org: "Peduly Yogyakarta",
+        role: "Workshop Volunteer",
+        date: "20 July 2024",
+        location: "Panti Asuhan Yauma Bantul, Yogyakarta",
+        tag: "Community Workshop",
+        badgeBg: "bg-sage/80 text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]",
+        file: "sertifikat_kegiatan/Peduly-3.pdf",
+        type: "pdf",
+        desc: "Hosted a hands-on craft day with children at Panti Asuhan Yauma Bantul using colorful pipecleaners.",
+        highlights: [
+          "Assisted children in twisting and assembling colorful pipecleaners into flowers and creative shapes.",
+          "Provided one-on-one encouragement so every child could complete their own craft piece.",
+          "Shared quality recreational time and positive interactions with the orphanage community."
+        ]
+      },
+      {
+        id: "04",
+        title: "Fun Learning: Cooking Class with Adik Panti",
+        org: "Pemuda Peduli Yogyakarta",
+        role: "Activity Volunteer",
+        date: "29 September 2024",
+        location: "Panti Madania Yogyakarta",
+        tag: "Life Skills & Care",
+        badgeBg: "bg-butter/80 text-[#8a6d2b] dark:bg-[#332b19] dark:text-[#e3c681]",
+        file: "sertifikat_kegiatan/Pemuda-Peduli-1.png",
+        type: "image",
+        desc: "Collaborated with Pemuda Peduli Yogyakarta to organize an interactive cooking class and fun learning session at Panti Madania.",
+        highlights: [
+          "Accompanied children in preparing simple, kid-friendly dishes while teaching basic food hygiene.",
+          "Promoted teamwork, sharing, and practical everyday life skills in a fun environment.",
+          "Helped coordinate ingredients, group stations, and interactive games during the event."
+        ]
+      },
+      {
+        id: "05",
+        title: "Semua Bisa Merdeka",
+        org: "Pemuda Peduli Yogyakarta",
+        role: "Event Volunteer",
+        date: "18 August 2024",
+        location: "Panti Asuhan Madania Yogyakarta",
+        tag: "Independence Day Social",
+        badgeBg: "bg-pink/70 text-rose dark:bg-rose/20",
+        file: "sertifikat_kegiatan/Pemuda-Peduli-2.png",
+        type: "image",
+        desc: "Celebrated Indonesia’s Independence Day alongside orphanage children at Panti Asuhan Madania Yogyakarta.",
+        highlights: [
+          "Organized traditional Independence Day competitions and inclusive team games for all ages.",
+          "Fostered sportsmanship, confidence, and togetherness among the children.",
+          "Supported event logistics and prize distribution to make the celebration memorable."
+        ]
+      },
+      {
+        id: "06",
+        title: "OFVDAY (One Fine Volunteer Day) #2",
+        org: "Project Child Indonesia",
+        role: "Community Volunteer",
+        date: "2 June 2024",
+        location: "Sekolah Sungai Code, Jetisharjo, Yogyakarta",
+        tag: "Child Empowerment",
+        badgeBg: "bg-lilac/80 text-[#5d4b75] dark:bg-[#31293d] dark:text-[#cbbbe0]",
+        file: "sertifikat_kegiatan/Project-Child.pdf",
+        type: "pdf",
+        desc: "Contributed time and energy to Project Child Indonesia’s volunteer day supporting riverside community children at Sekolah Sungai Code.",
+        highlights: [
+          "Engaged with children living along the Code River area through creative learning and play.",
+          "Supported Project Child Indonesia’s mission to provide safe, inspiring educational spaces.",
+          "Collaborated with fellow volunteers in running structured recreational activities."
+        ]
+      },
+      {
+        id: "07",
+        title: "Skolagama × PKWD 4 UNY Goes to SLB Wiyata Dharma 4",
+        org: "Skolagama & PKWD 4 UNY",
+        role: "Inclusive Program Volunteer",
+        date: "11 September 2024",
+        location: "SLB Wiyata Dharma 4, Yogyakarta",
+        tag: "Inclusive Education",
+        badgeBg: "bg-sage/80 text-[#4e6342] dark:bg-[#263322] dark:text-[#a8c996]",
+        file: "sertifikat_kegiatan/Skolagama.pdf",
+        type: "pdf",
+        desc: "Participated in an inclusive creativity project implementing Profil Pelajar Pancasila values through recycled planting media.",
+        highlights: [
+          "Assisted students with special needs (SLB) in creating eco-friendly planting media from recycled materials.",
+          "Practiced patient, adaptive communication to ensure every student felt included and supported.",
+          "Combined environmental sustainability awareness with hands-on inclusive learning."
+        ]
+      },
+      {
+        id: "08",
+        title: "YOT Plogging (#YOT15TAHUN)",
+        org: "Young On Top",
+        role: "Environmental Volunteer",
+        date: "2024",
+        location: "Yogyakarta (National Simultaneous Action)",
+        tag: "Environment",
+        badgeBg: "bg-butter/80 text-[#8a6d2b] dark:bg-[#332b19] dark:text-[#e3c681]",
+        file: "sertifikat_kegiatan/YOT.pdf",
+        type: "pdf",
+        desc: "Took part in Young On Top’s nationwide simultaneous plogging action held across multiple cities in Indonesia.",
+        highlights: [
+          "Combined jogging with picking up litter along public routes to promote cleaner urban spaces.",
+          "Campaigned for everyday environmental responsibility alongside local youth communities.",
+          "Contributed to a coordinated national youth movement celebrating YOT’s 15th anniversary."
+        ]
+      }
+    ];
+
+    const impactListEl = document.getElementById("impact-list");
+    const impactOrgEl = document.getElementById("impact-org");
+    const impactRoleEl = document.getElementById("impact-role");
+    const impactDateEl = document.getElementById("impact-date");
+    const impactTitleEl = document.getElementById("impact-title");
+    const impactLocationEl = document.getElementById("impact-location");
+    const impactDescEl = document.getElementById("impact-desc");
+    const impactHighlightsEl = document.getElementById("impact-highlights");
+    const impactTagEl = document.getElementById("impact-tag");
+    const impactOpenLinkEl = document.getElementById("impact-open-link");
+    const impactFileIndicatorEl = document.getElementById("impact-file-indicator");
+    const impactPdfViewerEl = document.getElementById("impact-pdf-viewer");
+    const impactImgViewerEl = document.getElementById("impact-img-viewer");
+
+    function renderImpactList(activeIndex = 0) {
+      impactListEl.innerHTML = socialImpactData.map((item, idx) => {
+        const isActive = idx === activeIndex;
+        const cardClass = isActive
+          ? "border-rose bg-white shadow-card dark:border-rose dark:bg-[#221c20]"
+          : "border-line bg-white/60 hover:border-pink hover:bg-white dark:border-[#2e262b] dark:bg-[#221c20]/50 dark:hover:border-[#47353e] dark:hover:bg-[#221c20]";
+
+        return `
+          <button
+            type="button"
+            data-impact-index="${idx}"
+            class="impact-item group flex w-full items-start gap-3 rounded-2xl border p-3.5 text-left transition-all duration-200 ${cardClass}"
+          >
+            <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-xl font-serif text-xs font-bold ${item.badgeBg}">
+              ${item.id}
+            </span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-[10px] font-bold uppercase tracking-wider text-rose">
+                ${item.org}
+              </p>
+              <h4 class="mt-0.5 line-clamp-2 font-serif text-sm font-semibold leading-snug text-ink dark:text-white">
+                ${item.title}
+              </h4>
+              <p class="mt-1 text-[10.5px] text-muted dark:text-[#b5a8b0]">
+                ${item.date}
+              </p>
+            </div>
+            <span class="mt-1 text-xs font-bold transition-transform duration-200 ${isActive ? 'text-rose translate-x-0.5' : 'text-muted/50 group-hover:text-rose'}">
+              →
+            </span>
+          </button>
+        `;
+      }).join("");
+
+      document.querySelectorAll(".impact-item").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const index = Number(btn.getAttribute("data-impact-index"));
+          selectImpactActivity(index);
+        });
+      });
+    }
+
+    function selectImpactActivity(index) {
+      const item = socialImpactData[index];
+      if (!item) return;
+
+      impactOrgEl.textContent = item.org;
+      impactRoleEl.textContent = `Role: ${item.role}`;
+      impactDateEl.textContent = item.date;
+      impactTitleEl.textContent = item.title;
+      impactLocationEl.textContent = `📍 ${item.location}`;
+      impactDescEl.textContent = item.desc;
+      impactTagEl.textContent = item.tag;
+      impactOpenLinkEl.href = item.file;
+      impactFileIndicatorEl.textContent = item.file.replace("/", " / ");
+
+      impactHighlightsEl.innerHTML = item.highlights.map((point) => `
+        <li class="flex items-start gap-2">
+          <span class="mt-0.5 text-rose">✓</span>
+          <span>${point}</span>
+        </li>
+      `).join("");
+
+      if (item.type === "image") {
+        impactPdfViewerEl.hidden = true;
+        impactImgViewerEl.hidden = false;
+        impactImgViewerEl.src = item.file;
+        impactImgViewerEl.alt = `${item.title} Certificate`;
+      } else {
+        impactImgViewerEl.hidden = true;
+        impactPdfViewerEl.hidden = false;
+        impactPdfViewerEl.src = `${item.file}#toolbar=0&navpanes=0&scrollbar=0`;
+      }
+
+      renderImpactList(index);
+    }
+
+    selectImpactActivity(0);
+
+  // 4. Internship Document Pill Switcher
+    const internshipDocs = [
+      {
+        title: "Certificate of Appreciation — Social Media Specialist",
+        number: "13.240/PDLY/INT/P-VLTR/XI/2024",
+        file: "sertifikat_magang/Sertifikat-Magang.png",
+        type: "image",
+        caption: "Official certificate awarded by Yayasan Peduly Gotong Royong (Yogyakarta) recognizing 3 months of contribution as a Social Media Specialist."
+      },
+      {
+        title: "Surat Rekomendasi Kerja — Peduly.com",
+        number: "10.259/PDLY/SR/VLTR/XII/2024",
+        file: "sertifikat_magang/Surat-Rekomedasi-Kerja.pdf",
+        type: "pdf",
+        caption: "Official recommendation letter signed by Zain Al Multazam (CEO of Peduly.com) in Surabaya on 24 January 2025 endorsing Nadia’s performance and work ethic."
+      }
+    ];
+
+    const internPillTabs = document.querySelectorAll(".intern-pill-tab");
+    const internDocTitleEl = document.getElementById("intern-doc-title");
+    const internDocNumberEl = document.getElementById("intern-doc-number");
+    const internOpenLinkEl = document.getElementById("intern-open-link");
+    const internImgViewerEl = document.getElementById("intern-img-viewer");
+    const internPdfViewerEl = document.getElementById("intern-pdf-viewer");
+    const internDocCaptionEl = document.getElementById("intern-doc-caption");
+
+    internPillTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const idx = Number(tab.getAttribute("data-intern-index"));
+        const doc = internshipDocs[idx];
+        if (!doc) return;
+
+        internPillTabs.forEach((t) => {
+          t.className = "intern-pill-tab rounded-full px-4 py-1.5 text-xs font-semibold text-muted transition hover:text-ink dark:text-[#b5a8b0] dark:hover:text-white";
+        });
+        tab.className = "intern-pill-tab rounded-full bg-rose px-4 py-1.5 text-xs font-bold text-white transition";
+
+        internDocTitleEl.textContent = doc.title;
+        internDocNumberEl.textContent = doc.number;
+        internOpenLinkEl.href = doc.file;
+        internDocCaptionEl.textContent = doc.caption;
+
+        if (doc.type === "image") {
+          internPdfViewerEl.hidden = true;
+          internImgViewerEl.hidden = false;
+          internImgViewerEl.src = doc.file;
+        } else {
+          internImgViewerEl.hidden = true;
+          internPdfViewerEl.hidden = false;
+          internPdfViewerEl.src = `${doc.file}#toolbar=0&navpanes=0&scrollbar=0`;
+        }
+      });
+    });
+
+// 5. Mini Game: Cozy Cat Runner (Instant Play & Clean Restart)
+    const runnerArena = document.getElementById("runner-arena");
+    const runnerPlayer = document.getElementById("runner-player");
+    const catSvg = document.getElementById("cat-svg");
+    const catEyesNormal = document.getElementById("cat-eyes-normal");
+    const catEyesHit = document.getElementById("cat-eyes-hit");
+    const runnerObstaclesLayer = document.getElementById("runner-obstacles-layer");
+    const runnerPrompt = document.getElementById("runner-prompt");
+    const runnerPromptBadge = document.getElementById("runner-prompt-badge");
+    const runnerPromptSub = document.getElementById("runner-prompt-sub");
+    const runnerScoreEl = document.getElementById("runner-score");
+    const runnerBestEl = document.getElementById("runner-best");
+
+    const svgObstacles = [
+      {
+        width: 44,
+        height: 54,
+        svg: `
+          <svg viewBox="0 0 44 54" class="h-full w-full drop-shadow-sm" fill="none">
+            <rect x="18" y="40" width="8" height="14" rx="2" fill="#9c7356"/>
+            <path d="M22 4 L 38 24 H 29 L 41 41 H 3 L 15 24 H 6 Z" fill="#6f965c" stroke="#302b31" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="18" cy="20" r="2" fill="#f7dce5"/>
+            <circle cx="26" cy="31" r="2.2" fill="#f9edc9"/>
+          </svg>
+        `
+      },
+      {
+        width: 48,
+        height: 36,
+        svg: `
+          <svg viewBox="0 0 48 36" class="h-full w-full drop-shadow-sm" fill="none">
+            <path d="M5 34 C 4 20, 14 10, 25 12 C 36 13, 44 21, 43 34 Z" fill="#b8b0b6" stroke="#302b31" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M12 22 Q 18 16 25 18" stroke="#ded8dc" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="34" cy="27" r="2" fill="#968d94"/>
+          </svg>
+        `
+      },
+      {
+        width: 42,
+        height: 44,
+        svg: `
+          <svg viewBox="0 0 42 44" class="h-full w-full drop-shadow-sm" fill="none">
+            <rect x="15" y="24" width="12" height="18" rx="5" fill="#fff6eb" stroke="#302b31" stroke-width="1.8"/>
+            <path d="M4 25 C 4 10, 38 10, 38 25 Z" fill="#b96782" stroke="#302b31" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="15" cy="17" r="2.5" fill="#fffdf9"/>
+            <circle cx="27" cy="18" r="2.2" fill="#fffdf9"/>
+            <circle cx="21" cy="12" r="1.8" fill="#fffdf9"/>
+          </svg>
+        `
+      }
+    ];
+
+    const GROUND_Y = 44;
+    let runnerRunning = false;
+    let gameOverCooldown = false;
+    let playerBottom = GROUND_Y;
+    let velocityY = 0;
+    const gravity = -0.68;
+    const jumpStrength = 13.4;
+
+    let gameSpeed = 5.4;
+    let runnerDistance = 0;
+    let runnerBest = Number(localStorage.getItem("nadia-cat-runner-best") || 0);
+    let obstacles = [];
+    let nextSpawnFrames = 65;
+    let runnerFrameId = null;
+
+    function formatPadScore(num) {
+      return String(Math.floor(num)).padStart(4, "0");
+    }
+
+    runnerBestEl.textContent = formatPadScore(runnerBest);
+
+    // Tampilkan 1 pohon preview di layar awal supaya langsung terlihat estetik
+    function renderIdlePreview() {
+      runnerObstaclesLayer.innerHTML = "";
+      const previewTree = document.createElement("div");
+      previewTree.style.right = "16%";
+      previewTree.style.bottom = `${GROUND_Y - 2}px`;
+      previewTree.style.width = `${svgObstacles[0].width}px`;
+      previewTree.style.height = `${svgObstacles[0].height}px`;
+      previewTree.className = "absolute";
+      previewTree.innerHTML = svgObstacles[0].svg;
+      runnerObstaclesLayer.appendChild(previewTree);
+    }
+
+    renderIdlePreview();
+
+    function triggerJump() {
+      if (playerBottom <= GROUND_Y + 2) {
+        velocityY = jumpStrength;
+      }
+    }
+
+    function handleRunnerAction() {
+      if (gameOverCooldown) return;
+
+      if (!runnerRunning) {
+        startRunnerGame();
+        triggerJump();
+      } else {
+        triggerJump();
+      }
+    }
+
+    runnerArena.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      handleRunnerAction();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "Space" || e.code === "ArrowUp") {
+        // Aktif jika arena sedang difokuskan atau game sedang berjalan
+        if (runnerRunning || document.activeElement === runnerArena) {
+          e.preventDefault();
+          handleRunnerAction();
+        }
+      }
+    });
+
+    function createRunnerObstacle() {
+      const template = svgObstacles[Math.floor(Math.random() * svgObstacles.length)];
+      const arenaWidth = runnerArena.clientWidth;
+      const el = document.createElement("div");
+
+      el.style.left = `${arenaWidth + 20}px`;
+      el.style.bottom = `${GROUND_Y - 2}px`;
+      el.style.width = `${template.width}px`;
+      el.style.height = `${template.height}px`;
+      el.className = "absolute";
+      el.innerHTML = template.svg;
+
+      runnerObstaclesLayer.appendChild(el);
+      obstacles.push({
+        el,
+        x: arenaWidth + 20,
+        width: template.width,
+        height: template.height
+      });
+    }
+
+    function endRunnerGame() {
+      runnerRunning = false;
+      cancelAnimationFrame(runnerFrameId);
+
+      // Jeda 350ms supaya klik panik saat tabrakan tidak langsung me-restart tanpa sengaja
+      gameOverCooldown = true;
+      setTimeout(() => {
+        gameOverCooldown = false;
+      }, 350);
+
+      catSvg.classList.remove("cat-running");
+      catEyesNormal.setAttribute("hidden", "");
+      catEyesHit.removeAttribute("hidden");
+
+      const finalScore = Math.floor(runnerDistance);
+      if (finalScore > runnerBest) {
+        runnerBest = finalScore;
+        localStorage.setItem("nadia-cat-runner-best", String(runnerBest));
+        runnerBestEl.textContent = formatPadScore(runnerBest);
+      }
+
+      runnerPromptBadge.textContent = "Oops, Bonk! Tap or Press Space to Restart ↻";
+      runnerPromptSub.textContent = `Mochi ran ${formatPadScore(finalScore)} meters!`;
+      runnerPromptSub.hidden = false;
+      runnerPrompt.hidden = false;
+    }
+
+    function updateRunnerLoop() {
+      if (!runnerRunning) return;
+
+      playerBottom += velocityY;
+      velocityY += gravity;
+      if (playerBottom <= GROUND_Y) {
+        playerBottom = GROUND_Y;
+        velocityY = 0;
+        catSvg.classList.add("cat-running");
+      } else {
+        catSvg.classList.remove("cat-running");
+      }
+      runnerPlayer.style.bottom = `${playerBottom}px`;
+
+      runnerDistance += 0.22;
+      gameSpeed = Math.min(11.5, 5.4 + runnerDistance * 0.0045);
+      runnerScoreEl.textContent = formatPadScore(runnerDistance);
+
+      nextSpawnFrames--;
+      if (nextSpawnFrames <= 0) {
+        createRunnerObstacle();
+        nextSpawnFrames = Math.floor(55 + Math.random() * 55 - Math.min(22, runnerDistance * 0.02));
+      }
+
+      const pLeft = runnerPlayer.offsetLeft + 12;
+      const pRight = runnerPlayer.offsetLeft + runnerPlayer.offsetWidth - 12;
+      const pBottom = playerBottom + 6;
+
+      obstacles = obstacles.filter((obs) => {
+        obs.x -= gameSpeed;
+        obs.el.style.left = `${obs.x}px`;
+
+        const oLeft = obs.x + 8;
+        const oRight = obs.x + obs.width - 8;
+        const oTop = GROUND_Y + obs.height - 8;
+
+        const collided = pRight > oLeft && pLeft < oRight && pBottom < oTop;
+        if (collided) {
+          endRunnerGame();
+          return false;
+        }
+
+        if (obs.x + obs.width < -25) {
+          obs.el.remove();
+          return false;
+        }
+
+        return true;
+      });
+
+      if (runnerRunning) {
+        runnerFrameId = requestAnimationFrame(updateRunnerLoop);
+      }
+    }
+
+    function startRunnerGame() {
+      cancelAnimationFrame(runnerFrameId);
+
+      // Bersihkan total semua rintangan lama (termasuk yang baru ditabrak & preview awal)
+      runnerObstaclesLayer.innerHTML = "";
+      obstacles = [];
+
+      runnerRunning = true;
+      runnerDistance = 0;
+      gameSpeed = 5.4;
+      playerBottom = GROUND_Y;
+      velocityY = 0;
+      nextSpawnFrames = 55;
+
+      catEyesHit.setAttribute("hidden", "");
+      catEyesNormal.removeAttribute("hidden");
+      catSvg.classList.add("cat-running");
+
+      runnerPlayer.style.bottom = `${GROUND_Y}px`;
+      runnerScoreEl.textContent = "0000";
+      runnerPrompt.hidden = true;
+      runnerPromptSub.hidden = true;
+      runnerArena.focus();
+
+      runnerFrameId = requestAnimationFrame(updateRunnerLoop);
+    }
+  </script>  
 </body>
 </html>

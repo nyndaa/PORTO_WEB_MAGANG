@@ -47,6 +47,19 @@
       document.documentElement.classList.add('dark');
     }
   </script>
+  <!-- Transisi antar halaman: tutup layar sejak awal agar tidak kedip -->
+  <script>
+    try {
+      if (sessionStorage.getItem('pt-label')) {
+        document.documentElement.classList.add('pt-entering');
+        setTimeout(function () { document.documentElement.classList.remove('pt-entering'); }, 3000);
+      }
+    } catch (e) {}
+  </script>
+  <style>
+    html.pt-entering::after { content: ""; position: fixed; inset: 0; z-index: 10000; background: #fffdf9; }
+    html.dark.pt-entering::after { background: #201a1e; }
+  </style>
 </head>
 <body class="overflow-x-clip bg-paper font-sans text-ink antialiased">
 
