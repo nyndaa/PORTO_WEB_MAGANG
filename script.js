@@ -1,4 +1,3 @@
-
 /* ============================================================
    PORTFOLIO - SHARED COMPONENTS & THEME MANAGEMENT
    ============================================================ */
@@ -446,52 +445,75 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 // ==========================================
-// PASTEL BLOOM INTRO
+// INTRO: PRESSED CHERRY
+// Ganti seluruh blok "PASTEL BLOOM INTRO" di script.js dengan ini.
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("intro-overlay");
+  const curtain = document.getElementById("intro-curtain");
   if (!overlay) return;
 
-  const box = document.getElementById("intro-box");
-  const outer = document.getElementById("bloom-outer");
-  const mid = document.getElementById("bloom-mid");
-  const inner = document.getElementById("bloom-inner");
-  const percentEl = document.getElementById("intro-percent");
+  const cleanUp = () => {
+    overlay.remove();
+    if (curtain) curtain.remove();
+    document.body.style.overflow = "";
+  };
+
+  // Sudah tampil di sesi ini → langsung buang tanpa animasi.
+  if (document.documentElement.classList.contains("intro-seen")) {
+    cleanUp();
+    return;
+  }
+
+  const countEl = document.getElementById("intro-count");
+  const lineEl = document.getElementById("intro-line");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   document.body.style.overflow = "hidden";
 
-  // Mekarkan kelopak lingkaran perlahan
-  requestAnimationFrame(() => {
-    if (outer) outer.classList.replace("scale-75", "scale-110");
-    if (mid) mid.classList.replace("scale-75", "scale-105");
-    if (inner) inner.classList.replace("scale-75", "scale-100");
-  });
+  // Jalankan animasi masuk di frame berikutnya agar transisi CSS terpicu.
+  requestAnimationFrame(() => overlay.classList.add("is-ready"));
 
-  const duration = 1100;
-  const startTime = performance.now();
+  const duration = reduceMotion ? 600 : 2200;
+  const startDelay = reduceMotion ? 0 : 450; // beri waktu ceri mulai tergambar
+  let startTime = null;
 
-  function animateBloom(now) {
-    const elapsed = now - startTime;
-    const raw = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - raw, 3);
-    const percent = Math.round(eased * 100);
+  // Tunggu font siap (maks 2,5 detik) supaya nama tidak berganti font saat tampil.
+  const fontsReady = Promise.race([
+    document.fonts ? document.fonts.ready : Promise.resolve(),
+    new Promise(resolve => setTimeout(resolve, 2500))
+  ]);
 
-    if (percentEl) percentEl.textContent = `${percent}%`;
+  function tick(now) {
+    if (startTime === null) startTime = now + startDelay;
 
-    if (raw < 1) {
-      requestAnimationFrame(animateBloom);
-    } else {
-      setTimeout(() => {
-        // Efek iris mekar penuh saat keluar
-        if (outer) outer.style.transform = "scale(5)";
-        if (box) box.classList.add("opacity-0", "scale-95");
-        overlay.classList.add("opacity-0", "pointer-events-none");
-        document.body.style.overflow = "";
+    const raw = Math.min(Math.max((now - startTime) / duration, 0), 1);
+    // easeInOutCubic: pelan di awal, cepat di tengah, lembut di akhir
+    const eased = raw < 0.5 ? 4 * raw ** 3 : 1 - (-2 * raw + 2) ** 3 / 2;
 
-        setTimeout(() => overlay.remove(), 700);
-      }, 150);
-    }
+    if (countEl) countEl.textContent = String(Math.round(eased * 100)).padStart(3, "0");
+    if (lineEl) lineEl.style.strokeDashoffset = String(1 - eased);
+
+    if (raw < 1) requestAnimationFrame(tick);
+    else fontsReady.then(leave);
   }
 
-  requestAnimationFrame(animateBloom);
+  function leave() {
+    try { sessionStorage.setItem("portfolio-intro-seen", "1"); } catch (e) {}
+
+    // 1) Konten tengah naik & memudar
+    overlay.classList.add("is-out");
+
+    // 2) Lembar kertas terangkat, disusul tirai pink
+    setTimeout(() => {
+      overlay.classList.add("is-leaving");
+      if (curtain) curtain.classList.add("is-leaving");
+      document.body.style.overflow = "";
+    }, reduceMotion ? 0 : 450);
+
+    // 3) Bersihkan dari DOM
+    setTimeout(cleanUp, reduceMotion ? 500 : 1700);
+  }
+
+  requestAnimationFrame(tick);
 });
