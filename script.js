@@ -518,26 +518,31 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ============================================================
-10. PAGE TRANSITION (CHERRY SHEET)
+10. PAGE TRANSITION (CHERRY BLOOM)
    ============================================================ */
 
 /**
- * Transisi antar halaman: lembar pink + kertas naik menutup layar
- * sambil menampilkan nama halaman tujuan, lalu terangkat di halaman baru.
+ * Transisi antar halaman bertema "cherry bloom":
+ * - Saat link diklik, lingkaran pink, sage, lilac, lalu kertas mekar dari titik klik,
+ *   kelopak ceri memercik, dan halaman lama mundur sambil buram.
+ * - Nama halaman tujuan muncul huruf demi huruf dengan garis tangan.
+ * - Di halaman baru, lingkaran menguncup ke tengah dan konten "mendarat" pelan.
+ *
  * Berlaku otomatis untuk semua link internal ke file .html.
  * Tambahkan atribut data-no-transition pada link untuk mengecualikannya.
  */
 (function initializePageTransition() {
     const html = document.documentElement;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const LEAVE_DURATION = reduceMotion ? 250 : 720;
+    const LEAVE_DURATION = reduceMotion ? 500 : 1100;
+    const STORAGE_KEY = "pt-label"; // dipakai juga oleh skrip kecil di <head>
 
-    const PAGE_LABELS = {
-        "": "Home",
-        "index.html": "Home",
-        "about.html": "About",
-        "projects.html": "Projects",
-        "contact.html": "Contact"
+    const PAGES = {
+        "": { label: "Home", no: "01" },
+        "index.html": { label: "Home", no: "01" },
+        "about.html": { label: "About", no: "02" },
+        "projects.html": { label: "Projects", no: "03" },
+        "contact.html": { label: "Contact", no: "04" }
     };
 
     /* ---------- Style transisi ---------- */
@@ -545,8 +550,9 @@ document.addEventListener("DOMContentLoaded", () => {
     style.id = "page-transition-styles";
     style.textContent = `
         #page-transition {
-            --pt-ease: cubic-bezier(.76, 0, .24, 1);
+            --pt-ease: cubic-bezier(.77, 0, .18, 1);
             --pt-soft: cubic-bezier(.22, 1, .36, 1);
+            --pt-pop: cubic-bezier(.34, 1.56, .64, 1);
             position: fixed;
             inset: 0;
             z-index: 10000;
@@ -555,133 +561,289 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         #page-transition.is-active { pointer-events: auto; }
 
-        .pt-layer {
+        /* Lingkaran warna yang mekar dari titik klik */
+        .pt-ring {
             position: absolute;
             inset: 0;
-            transform: translateY(100%);
-            border-radius: 50% 50% 0 0 / 12vh 12vh 0 0;
-            transition: transform .65s var(--pt-ease), border-radius .65s var(--pt-ease);
-            will-change: transform;
+            clip-path: circle(0px at var(--x) var(--y));
+            transition: clip-path .7s var(--pt-ease);
         }
         .pt-pink  { background: #f7dce5; }
+        .pt-sage  { background: #e2eadc; transition-delay: .07s; }
+        .pt-lilac { background: #e9e1f3; transition-delay: .14s; }
         .pt-paper {
             display: grid;
             place-items: center;
+            padding: 24px;
             background: #fffdf9;
-            transition-delay: .08s;
+            transition-delay: .21s;
         }
         html.dark .pt-pink  { background: #3a2a32; }
+        html.dark .pt-sage  { background: #2a3229; }
+        html.dark .pt-lilac { background: #2e2836; }
         html.dark .pt-paper { background: #201a1e; }
 
+        /* Tekstur kertas tipis */
+        .pt-paper::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: .5;
+            mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+        }
+        html.dark .pt-paper::before { mix-blend-mode: screen; opacity: .2; }
+
+        /* ---------- Label halaman tujuan ---------- */
         .pt-label {
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity .4s ease, transform .6s var(--pt-soft);
         }
-        .pt-label svg { width: 38px; height: 38px; margin-bottom: 14px; }
+        .pt-cherry {
+            width: 42px;
+            height: 42px;
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: scale(.4) rotate(-25deg);
+            transition: opacity .4s ease, transform .8s var(--pt-pop);
+        }
         .pt-eyebrow {
             font-family: "DM Sans", Arial, sans-serif;
-            font-size: 10px;
+            font-size: 10.5px;
             font-weight: 600;
-            letter-spacing: .32em;
+            letter-spacing: .7em;
             text-transform: uppercase;
             color: #817780;
+            opacity: 0;
+            transition: opacity .6s ease, letter-spacing 1s var(--pt-soft);
         }
         .pt-title {
-            margin-top: 6px;
+            display: flex;
+            margin-top: 4px;
             font-family: "Playfair Display", Georgia, serif;
-            font-size: clamp(2.4rem, 8vw, 4rem);
+            font-size: clamp(3.2rem, 12vw, 7rem);
             font-weight: 500;
-            line-height: 1.05;
+            line-height: 1;
             letter-spacing: -.02em;
             color: #302b31;
         }
-        .pt-title em { color: #b96782; }
+        .pt-ch {
+            display: inline-block;
+            overflow: hidden;
+            padding: .06em .01em .16em;
+        }
+        .pt-ch > span {
+            display: inline-block;
+            transform: translateY(115%) rotate(8deg);
+            transition: transform .6s var(--pt-soft);
+            transition-delay: calc(.4s + var(--i) * .045s);
+        }
+        .pt-ch.is-dot { color: #b96782; font-style: italic; }
+        .pt-line {
+            width: min(220px, 55vw);
+            height: 16px;
+            margin-top: -4px;
+            overflow: visible;
+        }
+        .pt-line path {
+            fill: none;
+            stroke: #b96782;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+            transition: stroke-dashoffset .8s var(--pt-soft) .7s;
+        }
         html.dark .pt-eyebrow { color: #c9a3b1; }
         html.dark .pt-title { color: #fceef3; }
-        html.dark .pt-title em { color: #f4abbf; }
+        html.dark .pt-ch.is-dot { color: #f4abbf; }
+        html.dark .pt-line path { stroke: #f4abbf; }
 
-        /* Menutup layar (halaman lama) */
-        #page-transition.is-covering .pt-layer { transform: none; border-radius: 0; }
-        #page-transition.is-covering .pt-label { opacity: 1; transform: none; transition-delay: .4s; }
-
-        /* Langsung tertutup (awal halaman baru) */
-        #page-transition.is-covered .pt-layer,
-        #page-transition.is-covered .pt-label { transform: none; border-radius: 0; opacity: 1; transition: none; }
-
-        /* Membuka layar (halaman baru) */
-        #page-transition.is-revealing .pt-layer {
-            transform: translateY(-100%);
-            border-radius: 0 0 50% 50% / 0 0 12vh 12vh;
-        }
-        #page-transition.is-revealing .pt-paper { transition-delay: .12s; }
-        #page-transition.is-revealing .pt-pink  { transition-delay: .22s; }
-        #page-transition.is-revealing .pt-label {
+        /* ---------- Kelopak yang memercik dari titik klik ---------- */
+        .pt-petal {
+            position: absolute;
+            left: var(--x);
+            top: var(--y);
+            width: calc(13px * var(--s));
+            height: calc(17px * var(--s));
+            margin: -8px 0 0 -6px;
+            border-radius: 100% 0 100% 0;
+            background: linear-gradient(135deg, #fde8ef, #e79ab3);
             opacity: 0;
-            transform: translateY(-14px);
-            transition-duration: .3s;
+        }
+        #page-transition.is-covering .pt-petal {
+            animation: ptBurst 1.05s var(--pt-soft) forwards;
+            animation-delay: var(--pd);
+        }
+        @keyframes ptBurst {
+            0%   { opacity: 0; transform: translate(0, 0) rotate(0deg) scale(.3); }
+            12%  { opacity: 1; }
+            100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(1); }
         }
 
+        /* ---------- State: menutup (halaman lama) ---------- */
+        #page-transition.is-covering .pt-ring { clip-path: circle(var(--r) at var(--x) var(--y)); }
+        #page-transition.is-covering .pt-cherry { opacity: 1; transform: none; transition-delay: .35s; }
+        #page-transition.is-covering .pt-eyebrow { opacity: 1; letter-spacing: .32em; transition-delay: .4s; }
+        #page-transition.is-covering .pt-ch > span { transform: none; }
+        #page-transition.is-covering .pt-line path { stroke-dashoffset: 0; }
+
+        /* ---------- State: sudah tertutup (awal halaman baru) ---------- */
+        #page-transition.is-covered .pt-ring { clip-path: circle(var(--r) at var(--x) var(--y)); }
+        #page-transition.is-covered .pt-cherry,
+        #page-transition.is-covered .pt-ch > span { opacity: 1; transform: none; }
+        #page-transition.is-covered .pt-eyebrow { opacity: 1; letter-spacing: .32em; }
+        #page-transition.is-covered .pt-line path { stroke-dashoffset: 0; }
+        #page-transition.is-covered * { transition: none !important; }
+
+        /* ---------- State: membuka (lingkaran menguncup ke tengah) ---------- */
+        #page-transition.is-revealing .pt-ring {
+            clip-path: circle(0px at var(--x) var(--y));
+            transition-duration: .75s;
+        }
+        #page-transition.is-revealing .pt-paper { transition-delay: .3s; }
+        #page-transition.is-revealing .pt-lilac { transition-delay: .4s; }
+        #page-transition.is-revealing .pt-sage  { transition-delay: .5s; }
+        #page-transition.is-revealing .pt-pink  { transition-delay: .6s; }
+        #page-transition.is-revealing .pt-ch > span {
+            transform: translateY(-115%) rotate(-6deg);
+            transition-duration: .45s;
+            transition-timing-function: cubic-bezier(.55, 0, .45, 1);
+            transition-delay: calc(var(--i) * .03s);
+        }
+        #page-transition.is-revealing .pt-cherry { opacity: 0; transform: scale(.6) rotate(15deg); transition-duration: .35s; }
+        #page-transition.is-revealing .pt-eyebrow { opacity: 0; transition-duration: .3s; }
+        #page-transition.is-revealing .pt-line path { stroke-dashoffset: -1; transition-delay: 0s; transition-duration: .5s; }
+
+        /* ---------- Halaman lama mundur & buram, halaman baru mendarat ---------- */
+        html.pt-leaving, html.pt-arriving, html.pt-settling { background: #f7dce5; }
+        html.dark.pt-leaving, html.dark.pt-arriving, html.dark.pt-settling { background: #3a2a32; }
+
+        html.pt-leaving body {
+            transform: scale(.93) translateY(-1%);
+            filter: blur(5px);
+            opacity: .55;
+            transition: transform .9s var(--pt-ease, cubic-bezier(.77,0,.18,1)),
+                        filter .9s ease, opacity .9s ease;
+        }
+        html.pt-leaving body,
+        html.pt-arriving body,
+        html.pt-settling body { transform-origin: 50% var(--pt-oy, 50vh); }
+
+        html.pt-arriving body { transform: scale(1.06); filter: blur(8px); }
+        html.pt-settling body {
+            transition: transform 1.1s cubic-bezier(.22, 1, .36, 1), filter .9s ease;
+        }
+
+        /* ---------- Mode "kurangi gerakan": fade lembut tanpa gerak ---------- */
         @media (prefers-reduced-motion: reduce) {
-            .pt-layer, .pt-label { transform: none !important; border-radius: 0 !important; }
-            .pt-layer { opacity: 0; transition: opacity .25s ease !important; }
-            #page-transition.is-covering .pt-layer,
-            #page-transition.is-covered .pt-layer { opacity: 1; }
+            .pt-ring { clip-path: none !important; opacity: 0; transition: opacity .35s ease !important; }
+            #page-transition.is-covering .pt-ring,
+            #page-transition.is-covered .pt-ring { opacity: 1; }
+            #page-transition.is-revealing .pt-ring { opacity: 0; transition-delay: .15s !important; }
+            .pt-petal { display: none; }
+            .pt-label * { transition-duration: .01ms !important; transition-delay: 0s !important; }
+            html.pt-leaving body, html.pt-arriving body, html.pt-settling body {
+                transform: none !important; filter: none !important; opacity: 1 !important;
+            }
         }
     `;
     document.head.appendChild(style);
 
-    /* ---------- Elemen transisi ---------- */
-    function buildTransition(label, stateClass) {
+    /* ---------- Pembuat elemen transisi ---------- */
+    function buildTransition(page, stateClass, x, y) {
         const old = document.getElementById("page-transition");
         if (old) old.remove();
+
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const r = Math.ceil(Math.hypot(Math.max(x, w - x), Math.max(y, h - y))) + 4;
 
         const el = document.createElement("div");
         el.id = "page-transition";
         el.setAttribute("aria-hidden", "true");
         if (stateClass) el.className = stateClass;
+        el.style.setProperty("--x", `${x}px`);
+        el.style.setProperty("--y", `${y}px`);
+        el.style.setProperty("--r", `${r}px`);
 
         el.innerHTML = `
-            <div class="pt-layer pt-pink"></div>
-            <div class="pt-layer pt-paper">
+            <div class="pt-ring pt-pink"></div>
+            <div class="pt-ring pt-sage"></div>
+            <div class="pt-ring pt-lilac"></div>
+            <div class="pt-ring pt-paper">
                 <div class="pt-label">
-                    <svg viewBox="0 0 64 64">
+                    <svg class="pt-cherry" viewBox="0 0 64 64">
                         <path d="M33 12 C 39 5, 48 5, 53 9 C 47 14, 39 15, 33 12 Z" fill="#cfdcc4"/>
                         <path d="M33 12 C 30 22, 25 32, 21 41 M33 12 C 35 22, 40 30, 44 39" fill="none" stroke="#b96782" stroke-width="1.8" stroke-linecap="round"/>
                         <circle cx="20" cy="48" r="8.5" fill="#e79ab3"/>
                         <circle cx="45" cy="46" r="8.5" fill="#e79ab3"/>
-                        <ellipse cx="16.8" cy="44.8" rx="2.3" ry="1.4" fill="#fff" fill-opacity=".8"/>
-                        <ellipse cx="41.8" cy="42.8" rx="2.3" ry="1.4" fill="#fff" fill-opacity=".8"/>
+                        <ellipse cx="16.8" cy="44.8" rx="2.3" ry="1.4" fill="#fff" fill-opacity=".85"/>
+                        <ellipse cx="41.8" cy="42.8" rx="2.3" ry="1.4" fill="#fff" fill-opacity=".85"/>
                     </svg>
-                    <span class="pt-eyebrow">Nadia &mdash; Portfolio</span>
+                    <span class="pt-eyebrow"></span>
                     <span class="pt-title"></span>
+                    <svg class="pt-line" viewBox="0 0 240 16">
+                        <path pathLength="1" d="M3 9 C 30 3, 50 14, 80 8 S 130 3, 160 9 S 210 13, 237 6"/>
+                    </svg>
                 </div>
             </div>
         `;
 
-        // Isi judul dengan textContent agar aman dari HTML.
-        const title = el.querySelector(".pt-title");
-        title.textContent = label;
-        const dot = document.createElement("em");
-        dot.textContent = ".";
-        title.appendChild(dot);
+        // Teks disisipkan lewat textContent agar aman.
+        el.querySelector(".pt-eyebrow").textContent = `N° ${page.no} — Nadia's Portfolio`;
 
-        document.body.appendChild(el);
+        const title = el.querySelector(".pt-title");
+        [...page.label, "."].forEach((char, i, arr) => {
+            const outer = document.createElement("span");
+            outer.className = "pt-ch" + (i === arr.length - 1 ? " is-dot" : "");
+            outer.style.setProperty("--i", i);
+            const inner = document.createElement("span");
+            inner.textContent = char;
+            outer.appendChild(inner);
+            title.appendChild(outer);
+        });
+
+        // Kelopak yang memercik ke segala arah.
+        if (!reduceMotion && stateClass !== "is-covered is-active") {
+            for (let i = 0; i < 14; i++) {
+                const angle = (Math.PI * 2 * i) / 14 + Math.random() * 0.4;
+                const dist = 110 + Math.random() * 180;
+                const petal = document.createElement("span");
+                petal.className = "pt-petal";
+                petal.style.setProperty("--dx", `${Math.cos(angle) * dist}px`);
+                petal.style.setProperty("--dy", `${Math.sin(angle) * dist + 40}px`);
+                petal.style.setProperty("--rot", `${(Math.random() * 2 - 1) * 420}deg`);
+                petal.style.setProperty("--s", (0.6 + Math.random() * 0.7).toFixed(2));
+                petal.style.setProperty("--pd", `${(Math.random() * 0.12).toFixed(2)}s`);
+                el.appendChild(petal);
+            }
+        }
+
+        // Ditempel ke <html> (bukan <body>) karena body ikut di-scale saat transisi.
+        html.appendChild(el);
         return el;
     }
 
+    function setBodyOrigin() {
+        html.style.setProperty("--pt-oy", `${window.scrollY + window.innerHeight / 2}px`);
+    }
+
     /* ---------- Masuk: buka layar di halaman baru ---------- */
-    let incomingLabel = null;
+    let incoming = null;
     try {
-        incomingLabel = sessionStorage.getItem("pt-label");
-        sessionStorage.removeItem("pt-label");
+        const raw = sessionStorage.getItem(STORAGE_KEY);
+        sessionStorage.removeItem(STORAGE_KEY);
+        if (raw) {
+            try { incoming = JSON.parse(raw); } catch (e) { incoming = { label: raw, no: "01" }; }
+            if (!incoming || !incoming.label) incoming = null;
+        }
     } catch (e) {}
 
-    if (incomingLabel) {
+    if (incoming) {
         const intro = document.getElementById("intro-overlay");
         const introWillPlay = intro && !html.classList.contains("intro-seen");
 
@@ -689,7 +851,12 @@ document.addEventListener("DOMContentLoaded", () => {
             // Intro di beranda sudah menutup layar, jadi transisi tidak perlu.
             html.classList.remove("pt-entering");
         } else {
-            const el = buildTransition(incomingLabel, "is-covered is-active");
+            const el = buildTransition(
+                incoming, "is-covered is-active",
+                window.innerWidth / 2, window.innerHeight / 2
+            );
+            setBodyOrigin();
+            html.classList.add("pt-arriving");
             html.classList.remove("pt-entering");
 
             // Tunggu navbar termuat (maks 700ms) supaya tidak muncul tiba-tiba.
@@ -702,16 +869,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
             Promise.race([navbarReady, new Promise(r => setTimeout(r, 700))]).then(() => {
                 requestAnimationFrame(() => {
+                    // Ganti state sekaligus (tanpa reflow di tengah) agar
+                    // lingkaran menguncup langsung dari posisi tertutup penuh.
                     el.classList.remove("is-covered", "is-active");
-                    void el.offsetWidth; // paksa reflow agar transisi berjalan
                     el.classList.add("is-revealing");
-                    setTimeout(() => el.remove(), 1000);
+
+                    // Konten halaman "mendarat" saat lingkaran mulai menguncup.
+                    setTimeout(() => {
+                        html.classList.add("pt-settling");
+                        html.classList.remove("pt-arriving");
+                    }, reduceMotion ? 0 : 380);
+
+                    setTimeout(() => {
+                        el.remove();
+                        html.classList.remove("pt-settling");
+                        html.style.removeProperty("--pt-oy");
+                    }, reduceMotion ? 600 : 1600);
                 });
             });
         }
     }
 
-    /* ---------- Keluar: tutup layar sebelum pindah halaman ---------- */
+    /* ---------- Keluar: lingkaran mekar sebelum pindah halaman ---------- */
     let isNavigating = false;
 
     document.addEventListener("click", event => {
@@ -735,12 +914,23 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         isNavigating = true;
 
-        const label = PAGE_LABELS[file] || link.textContent.trim() || "Nadia";
-        try { sessionStorage.setItem("pt-label", label); } catch (e) {}
+        const page = PAGES[file] || { label: link.textContent.trim() || "Nadia", no: "00" };
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(page)); } catch (e) {}
 
-        const el = buildTransition(label, "is-active");
+        // Titik asal lingkaran: posisi klik (atau tengah link bila lewat keyboard).
+        let x = event.clientX;
+        let y = event.clientY;
+        if (!x && !y) {
+            const rect = link.getBoundingClientRect();
+            x = rect.left + rect.width / 2;
+            y = rect.top + rect.height / 2;
+        }
+
+        const el = buildTransition(page, "is-active", x, y);
+        setBodyOrigin();
         void el.offsetWidth;
         el.classList.add("is-covering");
+        html.classList.add("pt-leaving");
 
         setTimeout(() => { window.location.href = url.href; }, LEAVE_DURATION);
     });
@@ -749,7 +939,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("pageshow", event => {
         if (!event.persisted) return;
         isNavigating = false;
-        html.classList.remove("pt-entering");
+        html.classList.remove("pt-entering", "pt-leaving", "pt-arriving", "pt-settling");
         const el = document.getElementById("page-transition");
         if (el) el.remove();
     });
