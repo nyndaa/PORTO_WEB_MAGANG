@@ -444,101 +444,54 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
+
 // ==========================================
-// INTERACTIVE ARCHITECTURAL INTRO + WALKING CHERRY
+// PASTEL BLOOM INTRO
 // ==========================================
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("intro-overlay");
   if (!overlay) return;
 
-  const spotlight = document.getElementById("intro-spotlight");
-  const card = document.getElementById("intro-card");
-  const sub = document.getElementById("intro-sub");
-  const nameEl = document.getElementById("intro-name");
-  const role = document.getElementById("intro-role");
-  const line = document.getElementById("intro-line");
-  const cherry = document.getElementById("intro-cherry");
+  const box = document.getElementById("intro-box");
+  const outer = document.getElementById("bloom-outer");
+  const mid = document.getElementById("bloom-mid");
+  const inner = document.getElementById("bloom-inner");
   const percentEl = document.getElementById("intro-percent");
-  const skipBtn = document.getElementById("intro-skip");
 
   document.body.style.overflow = "hidden";
-  let isClosing = false;
 
-  const closeIntro = () => {
-    if (isClosing) return;
-    isClosing = true;
-
-    // Efek transisi keluar: kartu mengecil lembut sementara tirai memudar
-    if (card) {
-      card.style.transition = "all 550ms cubic-bezier(0.22, 1, 0.36, 1)";
-      card.style.opacity = "0";
-      card.style.transform = "translateY(-16px) scale(0.96)";
-    }
-
-    overlay.classList.add("opacity-0", "pointer-events-none");
-    document.body.style.overflow = "";
-    setTimeout(() => overlay.remove(), 650);
-  };
-
-  // 1. Animasi teks muncul bertahap
+  // Mekarkan kelopak lingkaran perlahan
   requestAnimationFrame(() => {
-    if (sub) sub.classList.remove("translate-y-full");
-    if (nameEl) nameEl.classList.remove("translate-y-full");
-    if (role) role.classList.remove("translate-y-full");
+    if (outer) outer.classList.replace("scale-75", "scale-110");
+    if (mid) mid.classList.replace("scale-75", "scale-105");
+    if (inner) inner.classList.replace("scale-75", "scale-100");
   });
 
-  // 2. Efek interaktif mouse
-  overlay.addEventListener("mousemove", (e) => {
-    if (isClosing) return;
-    if (spotlight) {
-      spotlight.style.background = `radial-gradient(450px circle at ${e.clientX}px ${e.clientY}px, rgba(247, 220, 229, 0.65), transparent 70%)`;
-    }
-    if (card) {
-      const moveX = (e.clientX - window.innerWidth / 2) * -0.015;
-      const moveY = (e.clientY - window.innerHeight / 2) * -0.015;
-      card.style.transform = `translate(${moveX}px, ${moveY}px)`;
-    }
-  });
-
-  // 3. Animasi ceri berjalan + progress bar mulus (60fps dengan requestAnimationFrame)
-  const duration = 1200; // Total durasi 1.2 detik (pas & tidak kelamaan)
+  const duration = 1100;
   const startTime = performance.now();
 
-  function animateProgress(currentTime) {
-    if (isClosing) return;
-    const elapsed = currentTime - startTime;
-    const rawProgress = Math.min(elapsed / duration, 1);
-    
-    // Easing halus (melambat sedikit di akhir sebelum 100%)
-    const eased = 1 - Math.pow(1 - rawProgress, 3);
+  function animateBloom(now) {
+    const elapsed = now - startTime;
+    const raw = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - raw, 3);
     const percent = Math.round(eased * 100);
 
-    if (line) line.style.width = `${percent}%`;
     if (percentEl) percentEl.textContent = `${percent}%`;
-    
-    // Gerakkan ceri + sedikit efek goyang lucu saat berjalan
-    if (cherry) {
-      const wobble = Math.sin(elapsed * 0.025) * 14;
-      cherry.style.left = `${percent}%`;
-      cherry.style.transform = `translate(-50%, -50%) rotate(${wobble}deg)`;
-    }
 
-    if (rawProgress < 1) {
-      requestAnimationFrame(animateProgress);
+    if (raw < 1) {
+      requestAnimationFrame(animateBloom);
     } else {
-      setTimeout(closeIntro, 200);
+      setTimeout(() => {
+        // Efek iris mekar penuh saat keluar
+        if (outer) outer.style.transform = "scale(5)";
+        if (box) box.classList.add("opacity-0", "scale-95");
+        overlay.classList.add("opacity-0", "pointer-events-none");
+        document.body.style.overflow = "";
+
+        setTimeout(() => overlay.remove(), 700);
+      }, 150);
     }
   }
 
-  requestAnimationFrame(animateProgress);
-
-  // 4. Klik tombol -> langsung lompat ke 100% dan transisi keluar
-  if (skipBtn) {
-    skipBtn.addEventListener("click", () => {
-      if (line) line.style.width = "100%";
-      if (cherry) cherry.style.left = "100%";
-      if (percentEl) percentEl.textContent = "100%";
-      closeIntro();
-    });
-  }
-})();
+  requestAnimationFrame(animateBloom);
+});
