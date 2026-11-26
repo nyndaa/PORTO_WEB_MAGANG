@@ -444,35 +444,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
-/* ============================================================
-   10. INITIALIZE PORTFOLIO
-   ============================================================ */
-
-/**
- * Menjalankan seluruh fungsi setelah halaman selesai dimuat.
- * Navbar dan footer dimuat terlebih dahulu sebelum inisialisasi
- * navigasi dan tombol tema dilakukan.
- */
-document.addEventListener("DOMContentLoaded", async () => {
-
-    // Muat Navbar dan Footer secara bersamaan.
-    await Promise.all([
-        loadComponent("navbar-container", "components/navbar.html"),
-        loadComponent("footer-container", "components/footer.html")
-    ]);
-
-    // Inisialisasi navigasi setelah navbar tersedia.
-    setActiveNavigation();
-
-    // Inisialisasi tema dan tombol pergantian tema.
-    initializeTheme();
-    initializeThemeToggle();
-
-    // Inisialisasi filter project.
-    initializeProjectFilter();
-
-});
-
 // ==========================================
 // INTERACTIVE ARCHITECTURAL INTRO REVEAL (FAST)
 // ==========================================
